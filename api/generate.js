@@ -11,7 +11,9 @@ ABSOLUTE RULES — NEVER VIOLATE:
 3. NEVER invent case law. Only cite well-known, real Pakistani case law you are confident exists. If unsure, use "as held by the superior courts of Pakistan" without fabricating a citation.
 4. Use proper Pakistani legal language — formal English, "Hon'ble Court", "Respectfully Sheweth", etc.
 5. Cite REAL Pakistani statutes: PPC 1860, CrPC 1898, CPC 1908, QSO 1984, Constitution 1973, MFLO 1961, Transfer of Property Act 1882, Contract Act 1872, etc.
-6. Leave date blanks as "___day of ________ [year]" unless user provides specific dates.
+6. Leave date blanks as "Dated: ________________" unless user provides specific dates. NEVER auto-fill today's date.
+7. NEVER cite wrong statutes. CrPC sections (like 561-A) are ONLY for criminal cases. CPC sections are ONLY for civil cases. Article 199 petitions use CONSTITUTIONAL provisions only — do NOT mix in CrPC or CPC unless the case is specifically criminal or civil.
+8. Every court document that is a PETITION must include these companion sections as SEPARATE pages: INDEX (table of contents with annexures), AFFIDAVIT (sworn statement), VERIFICATION, and DISPENSATION APPLICATION (for certified copies). Urgent matters also need URGENCY APPLICATION addressed to Deputy Registrar.
 
 REQUIRED CSS CLASSES:
 - doc-court-header > doc-court-name, doc-pet-no — court heading
@@ -25,6 +27,7 @@ REQUIRED CSS CLASSES:
 - doc-index > doc-index-title + table — index table
 - doc-sig-block > doc-sig-line, doc-sig-name, doc-sig-role — signature
 - ri > ri-n — lettered items (a, b, c)
+- doc-page-break — use <hr class="doc-page-break"> between each companion section (INDEX, URGENCY, MAIN PETITION, AFFIDAVIT, DISPENSATION) to create visual page separation. Each section should feel like a separate page.
 
 FORMATTING FROM REAL FILED DOCUMENTS:
 
@@ -54,11 +57,120 @@ CERTIFICATE: "CERTIFICATE:-" bold. "As per instructions of my client it is 1st [
 const TOOL_PROMPTS = {
   argument: "Generate WRITTEN SUBMISSIONS. Structure: Court header, Parties (ONLY user-provided), Subject, Respectfully Sheweth, Numbered paras for facts/evidence, G R O U N D S with lettered grounds (a,b,c) each citing specific law sections, PRAYER, Signature (PETITIONER + THROUGH: Advocate).",
 
-  petition: "Generate a COURT PETITION. Structure: Court header (centered bold), Petition No.___/year, Petitioner details then PETITIONER right, VERSUS centered, Respondent then RESPONDENT(S) right, Subject underlined, separator dots, Respectfully Sheweth:- underlined, Numbered 'That...' paragraphs, G R O U N D S with lettered grounds, PRAYER, P E T I T I O N E R right, THROUGH: Advocate, CERTIFICATE.",
+  petition: `Generate a COMPLETE COURT PETITION FILING PACKAGE. Structure:
+PAGE 1 — INDEX: Court header, case title, 'I N D E X' table listing all documents and annexures. Signature block.
+PAGE 2 — MAIN PETITION: Court header centered bold. Petition No.___/year. Petitioner details then 'PETITIONER' right. 'VERSUS' centered bold. Respondent then 'RESPONDENT(S)' right. Subject line underlined — cite ONLY the correct statute for the case type. Separator dots centered. 'Respectfully Sheweth:-' underlined. Numbered 'That...' paragraphs with detailed facts and legal reasoning. 'G R O U N D S' with lettered grounds. 'PRAYER' with numbered relief items. Signature: 'P E T I T I O N E R' right. 'THROUGH:' Advocate. 'CERTIFICATE:-'.
+PAGE 3 — AFFIDAVIT: Same header. 'Affidavit of:- [name]' bold underlined. 'I, the above named deponent, do hereby solemnly affirm and declare on oath as under:' Sworn paragraphs. 'That the contents are true and correct...nothing kept concealed.' '…Deponent' right. 'VERIFICATION:-' 'Verified on oath at [city]...' '……Deponent' right.
+PAGE 4 — DISPENSATION APPLICATION: Same header. Application for dispensing with certified copies. Prayer. Signature.`,
 
-  writ: "Generate WRIT PETITION per real Lahore High Court format: 'IN THE [HIGH COURT] [BENCH] [CITY]' bold underlined centered. W.P.No.___/year centered. Petitioner details then '………… (Petitioner)' right bold. VERSUS bold underlined centered. Respondent(s) ONLY as user provided then '………..RESPONDENT(S)' right bold. Subject: 'PETITION UNDER ARTICLE 199...' underlined justified. Dot separator centered. 'Respectfully Sheweth:-' underlined. 'That...' paragraphs justified. PRAYER bold underlined. 'HUMBLE PETITIONER' right. 'THROUGH:-' then advocate right. CERTIFICATE. Then SEPARATE AFFIDAVIT section: same header, 'Affidavit of:- [name]' bold underlined, 'I the above named deponent do hereby solemnly affirm and declare on oath as under:', sworn paragraphs, '…Deponent' right, 'VERIFICATION:-', verified text, '……Deponent' right.",
+  writ: `Generate a COMPLETE WRIT PETITION FILING PACKAGE with ALL required sections as separate pages. Follow this EXACT structure from real Lahore High Court filings:
 
-  bail: "Generate BAIL APPLICATION per real format. FOR SESSIONS COURT: 'BEFORE THE COURT OF LEARNED SESSIONS JUDGE, [CITY]' centered. Petitioner s/o father address then PETITIONER. VERSUS. '1. The State.' plus user's respondent then RESPONDENTS. 'PETITION UNDER SECTION 497/498 Cr.P.C. FOR THE GRANT OF [BAIL TYPE]' bold underlined. FIR TABLE with borders (FIR No, Dated, U/s, P/S, District). 'Respectfully Sheweth,' Para 1: 'That the brief facts giving rise to the instant petition are that...' Para 2: 'That the petitioner seeks bail inter alia on the following:-' G R O U N D S with many lettered grounds (a through t): innocence, false implication, malafide, delay in FIR, no witnesses, no forensic, no recovery, nothing to connect, investigation complete, no flight risk, ready to furnish bail bonds. PRAYER: 'Under the above circumstances...post-arrest bail may kindly be granted...' P E T I T I O N E R spaced right. THROUGH: Advocate. CERTIFICATE: 'As per instructions of my client it is 1st post-arrest bail...'",
+PAGE 1 — INDEX:
+Repeat court header and case title, then 'I N D E X' centered bold. HTML table with columns: Sr.No | Description of Documents | Annex | Page. Rows:
+1. Urgency Form
+2. Writ Petition
+3. Affidavit
+4. [List any annexures user mentioned like copy of order, representation etc as Annex A, B, C]
+5. Dispensation Application with Affidavit
+6. Power of Attorney
+Then 'P E T I T I O N E R' right, 'THROUGH:' advocate block.
+
+PAGE 2 — URGENCY APPLICATION:
+Same court header and case title. 'To, The Deputy Registrar, High Court, [Bench] at [City].' 'Sir,' 'Will you kindly treat the accompanying petition as an urgent case in accordance with provision of Rule-9, Chapter 3-A Rules and Orders of the Lahore High Court.' 'The grounds of urgency is:-' then brief urgency reason. 'Yours Obedient,' signature right. 'Dated:________________' 'THROUGH:' advocate block.
+
+PAGE 3 — MAIN WRIT PETITION:
+'IN THE [HIGH COURT] [BENCH] [CITY]' bold underlined centered.
+Blank lines for spacing.
+'W.P.No.__________________/[year]' centered underlined.
+Petitioner full name, s/o, address details.
+'……………………………… (Petitioner)' right-aligned bold.
+'VERSUS' bold underlined centered.
+Respondent name(s) — ONLY those user provided, bold.
+'.………………..RESPONDENT(S)' right-aligned bold.
+SUBJECT LINE: 'PETITION UNDER ARTICLE 199 OF THE CONSTITUTION OF ISLAMIC REPUBLIC OF PAKISTAN, 1973 FOR [specific relief based on facts]' underlined justified.
+IMPORTANT: Do NOT cite CrPC or CPC in the subject unless the case is specifically criminal/civil. For service matters, property rights, fundamental rights — use ONLY Article 199 of the Constitution.
+Dotted separator '..……………………………………………………………………….…….…….' centered underlined.
+'Respectfully Sheweth:-' underlined.
+Numbered 'That...' paragraphs (8-12 paragraphs) with detailed facts, legal analysis, and constitutional violations. Each paragraph justified.
+Last paragraph: 'That the petitioner has no other adequate remedy except to approach this Hon'ble Court under Article 199...'
+'G R O U N D S' spaced centered bold — if needed.
+Lettered grounds (a through j) — each citing specific constitutional articles.
+'PRAYER' bold underlined.
+'In the light of above submissions, it is, respectfully prayed that...' then numbered prayer items (i, ii, iii...).
+Last prayer: 'Grant any other relief which this Hon'ble Court may deem fit and proper.'
+'HUMBLE PETITIONER' right-aligned bold.
+'Dated: ________________' left.
+'THROUGH:-' left then advocate name and details right-aligned.
+'CERTIFICATE:' bold underlined.
+'As per instructions of the client this is the first Constitutional Petition on the subject matter before this Hon'ble Court.' then 'Advocate' centered below.
+
+PAGE 4 — AFFIDAVIT:
+Same court header and case title repeated.
+'Affidavit of:- [Petitioner full name and details]' bold underlined.
+'I, the above named deponent, do hereby solemnly affirm and declare on oath as under:' bold.
+Numbered paragraphs repeating key petition facts as sworn statements (6-8 paras).
+Second-to-last para: 'That the contents of the accompanying petition are true and correct to the best of my knowledge and belief, and nothing has been kept concealed and no misrepresentation has been made.' bold.
+'…Deponent' right-aligned bold.
+'VERIFICATION:-' bold.
+'Verified on oath at [city] this ___day of ________, [year] that the contents of above affidavit are true and correct to the best of my knowledge and belief.' bold.
+'……Deponent' right-aligned bold.
+
+PAGE 5 — DISPENSATION APPLICATION:
+Same court header and case title repeated.
+'APPLICATION FOR DISPENSING WITH THE CERTIFIED COPIES OF ANNEXURES.' bold underlined centered.
+'Respectfully Sheweth,'
+'That the above titled case has been filed in this Hon'ble Court without certified copies of annexures and the same shall be placed on file as and when available.'
+Prayer: 'It is respectfully prayed that production of certified copies of annexures may very kindly be dispensed with.'
+'PETITIONER' right bold. 'Dated:' left. 'Through:' advocate block.`,
+
+  bail: `Generate a COMPLETE BAIL APPLICATION FILING PACKAGE. Follow this EXACT structure from real filed bail petitions:
+
+PAGE 1 — INDEX:
+Court header and case title. 'I N D E X' centered. Table: Sr.No | Description | Annex | Page. Rows: 1. Bail Petition 2. Copy of FIR (Annex A) 3. Any other annexures user mentioned 4. Power of Attorney. Signature block.
+
+PAGE 2 — MAIN BAIL PETITION:
+'BEFORE THE COURT OF LEARNED SESSIONS JUDGE, [CITY]' or 'BEFORE THE COURT OF LEARNED SESSIONS JUDGE/ JUDGE SPECIAL COURT [TYPE], [CITY]' centered bold.
+For HIGH COURT bail: 'IN THE [HIGH COURT] [BENCH] [CITY]' then 'Crl. Misc. No. _______________B/[year]'
+Blank lines. Petitioner: '[Name] S/O [Father], [full address if given]' then 'PETITIONER' on next line.
+'VERSUS' centered bold.
+'1. The State.' then numbered respondents ONLY as user provided. 'RESPONDENTS' right.
+'PETITION UNDER SECTION 497 Cr.P.C. FOR THE GRANT OF BAIL AFTER ARREST TO THE PETITIONER IN CASE:' bold underlined. (Use 498 for pre-arrest bail).
+FIR TABLE — HTML table with visible borders:
+| FIR No. | [number] |
+| Dated | [date] |
+| U/s | [sections] |
+| P/S | [police station] |
+| District | [district] |
+'Respectfully Sheweth,'
+Para 1: 'That the brief facts giving rise to the instant petition are that the respondent No.2 lodged the above referred criminal case against the petitioner...' (narrate FIR facts from user input).
+Para 2: 'That the petitioner seeks his post-arrest bail inter alia on the following:-'
+'G R O U N D S' spaced centered bold.
+Many lettered grounds (a through t or more):
+a. Innocence/false implication
+b. Malafide/ulterior motives of complainant, FIR story self-contradictory
+c. Delay in FIR registration (if applicable), no date/time of occurrence
+d. No witness deposed against petitioner
+e. No forensic analysis/report connecting petitioner
+f. No recovery from petitioner / if any recovery it is fake/planted
+g. Nothing on file to connect accused with commission of offence
+h. Investigation complete, corpus not required
+i. False implication due to ulterior motive/pressure for compromise
+j. No date, time, place of occurrence mentioned
+k. No private eye witness
+l. No direct allegation, only general allegations
+m. Maximum punishment does not fall within prohibitory clause
+n. In judicial lockup since arrest, no progress in trial, statutory ground
+o. Prosecution failed to produce material to connect petitioner
+p. Reasonable doubt — accused should not be deprived of bail
+q. Nothing recovered / planted by police with connivance of complainant
+r. Investigation complete, person not required for further investigation
+s. No apprehension of absconding or tampering with evidence
+t. Ready to furnish bail bonds to satisfaction of court
+'PRAYER:' bold.
+'Under the above circumstances, it is therefore, respectfully prayed that this petition may graciously be allowed and post-arrest bail may kindly be granted and petitioner be released till the disposal of the main case.'
+'P E T I T I O N E R' spaced right.
+'THROUGH:' then advocate name, 'Advocate High Court,' 'C.C. No.____'
+'CERTIFICATE:-' bold. 'As per instructions of my client it is 1st post-arrest bail on the subject matter before this Hon'ble Court.' 'ADVOCATE' centered.`,
 
   plaint: "Generate PLAINT / CIVIL SUIT under Order VII CPC. Court header, Suit No.___/year, Plaintiff vs Defendant, Subject, Sections: JURISDICTION, FACTS (detailed numbered paras), CAUSE OF ACTION, LIMITATION, Valuation/court fee, PRAYER with specific reliefs, VERIFICATION, Signature.",
 
@@ -122,7 +234,7 @@ module.exports = async function handler(req, res) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 4096, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
+      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 8192, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
     });
 
     if (!response.ok) {
