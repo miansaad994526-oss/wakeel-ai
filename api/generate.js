@@ -14,8 +14,19 @@ ABSOLUTE RULES — NEVER VIOLATE:
 6. Leave date blanks as "Dated: ________________" or "___day of ________, [year]" unless user provides specific dates. NEVER auto-fill today's date.
 7. NEVER cite wrong statutes. CrPC sections (like 561-A, 497, 498) are ONLY for criminal matters. CPC sections are ONLY for civil matters. Article 199 petitions use CONSTITUTIONAL provisions — do NOT mix CrPC/CPC unless the underlying case is specifically criminal/civil.
 8. Every PETITION or BAIL APPLICATION must include companion sections separated by <hr class="doc-page-break">: the main document, AFFIDAVIT with VERIFICATION, DISPENSATION APPLICATION, and INDEX table. High Court matters also need URGENCY APPLICATION.
-9. Write with DEPTH — strong legal arguments, specific statutory references, persuasive articulation of facts. The format must match what lawyers file, but the content must be better written than average.
-10. Each ground in GROUNDS section must be a substantive legal argument (2-3 sentences minimum), not a one-liner.
+
+WRITING QUALITY — CRITICAL:
+9. Be PRECISE and IMPACTFUL. Every sentence must serve a legal purpose. Do NOT pad with filler phrases, repetitive synonyms, or flowery language that adds no legal substance.
+10. Each paragraph should make ONE clear legal point. Do not repeat the same argument in different words across multiple paragraphs.
+11. GROUNDS must be substantive (2-3 focused sentences each) but NOT bloated. 8-12 strong grounds are better than 20 weak repetitive ones. Quality over quantity.
+12. For BAIL APPLICATIONS: Use 10-14 specific grounds that apply to the user's facts. Do NOT include all 20 generic grounds — only include grounds that are RELEVANT to the specific case. If no delay in FIR, don't mention delay. If no recovery issue, skip recovery ground.
+13. For WRIT PETITIONS: 8-10 numbered paragraphs maximum in main body. Each paragraph should advance the narrative, not restate previous paragraphs.
+14. AFFIDAVIT should be concise — 5-6 sworn paragraphs summarizing key facts only, NOT a full rewrite of the petition.
+15. DISPENSATION APPLICATION should be 1-2 short paragraphs only.
+16. INDEX table should list items without extra elaboration.
+17. PRAYER section: 3-5 specific reliefs maximum. Do not add redundant prayer items.
+18. The test: Would a senior advocate reading this document say "well-drafted and to the point" or "unnecessarily long"? Aim for the former.
+19. Total output target: Main petition 1500-2500 words. Bail application 1500-2000 words. Legal notice 800-1200 words. Affidavit 300-500 words. Simple documents (POA, application) 400-800 words. These are GUIDES not hard limits — go longer only if the facts demand it.
 
 REQUIRED CSS CLASSES:
 - doc-court-header > doc-court-name, doc-pet-no — court heading
@@ -95,27 +106,27 @@ Para 1: "That an FIR No. [X] was lodged..." narrate facts.
 Para 2: Prior bail history if applicable.
 Para 3: "That the whole story narrated in FIR is false and fabricated..."
 
-"G R O U N D S" centered bold. Lettered grounds (a-t):
-a) Innocence/false implication/FIR fabricated to blackmail
-b) Vast unexplained delay in FIR shows malafide
-c) No nexus with alleged story, prosecution story afterthought
-d) Police under complainant influence, malafide intention
-e) No prima facie case made out
-f) Previously non-convicted, offences not attracted
-g) Alleged offence not under prohibitory clause of S.497
-h) Law-abiding citizen
-i) No independent/private eye witness
-j) No forensic evidence connecting petitioner
-k) No recovery / recovery fake and planted
-l) Nothing on file to connect accused with offence
-m) Investigation complete, challan submitted, custodial interrogation not required
-n) False implication due to enmity/pressure for compromise
-o) No date/time/place of occurrence in FIR
-p) In judicial lockup since arrest, no trial progress — statutory ground
-q) Reasonable doubt — benefit to accused
-r) Ready to join investigation (pre-arrest)
-s) No apprehension of absconding/tampering
-t) Ready to furnish bail bonds to satisfaction of court
+"G R O U N D S" centered bold. Select 10-14 RELEVANT grounds from below — ONLY include those that APPLY to this specific case. Do not include all 20 generic grounds:
+a) Innocence/false implication — only if user claims false case
+b) Delay in FIR — only if delay actually exists in facts
+c) No nexus with alleged story — always applicable
+d) Police malafide — only if user mentions police bias
+e) No prima facie case — always applicable
+f) Previously non-convicted — always applicable
+g) Not under prohibitory clause of S.497 — only if offence is bailable
+h) Law-abiding citizen — always applicable
+i) No independent eye witness — only if relevant to case type
+j) No forensic evidence — only if forensic would be expected
+k) No recovery — only if recovery is relevant to the offence
+l) Nothing on file to connect accused — always applicable
+m) Investigation complete / challan submitted — only if true per user facts
+n) False implication due to enmity — only if user mentions motive
+o) No date/time/place in FIR — only if actually missing
+p) Statutory ground / no trial progress — only if in custody long time
+q) Reasonable doubt — always applicable
+r) Ready to join investigation — pre-arrest only
+s) No absconding risk — always applicable
+t) Ready to furnish bail bonds — always last ground
 
 "P R A Y E R" bold.
 Post-arrest: "...post-arrest bail may kindly be granted and petitioner released till disposal of main case."
@@ -230,7 +241,7 @@ module.exports = async function handler(req, res) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 8192, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
+      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 6000, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
     });
 
     if (!response.ok) {
