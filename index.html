@@ -809,6 +809,7 @@ select option{background:#fff;}
       <div class="sb-item" onclick="openTool('appeal',this)"><span class="sb-item-icon">📣</span>Appeal / Revision</div>
       <div class="sb-item" onclick="openTool('legal-notice',this)"><span class="sb-item-icon">✉️</span>Legal Notice</div>
       <div class="sb-item" onclick="openTool('affidavit',this)"><span class="sb-item-icon">✍️</span>Affidavit / Oath</div>
+      <div class="sb-item" onclick="openTool('complaint',this)"><span class="sb-item-icon">⚖️</span>Criminal Complaint</div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Transactional Documents</div>
@@ -887,6 +888,7 @@ select option{background:#fff;}
         <div class="tool-card" onclick="openTool('appeal')"><span class="tool-icon">📣</span><div class="tool-name">Appeal / Revision</div><div class="tool-desc">File appeals against trial court decisions with complete legal grounds and prayer</div><span class="tool-tag tg-green">All Courts</span></div>
         <div class="tool-card" onclick="openTool('legal-notice')"><span class="tool-icon">✉️</span><div class="tool-name">Legal Notice</div><div class="tool-desc">Formal legal notices for recovery, breach of contract, cheque dishonour, property</div><span class="tool-tag tg-gold">Formal</span></div>
         <div class="tool-card" onclick="openTool('affidavit')"><span class="tool-icon">✍️</span><div class="tool-name">Affidavit / Oath</div><div class="tool-desc">Sworn affidavits and declarations under the Oaths Act 1873 for court submission</div><span class="tool-tag tg-blue">Documentation</span></div>
+        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">⚖️</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under §200 & §156(3) CrPC before Magistrate — cheating, fraud, harassment, assault</div><span class="tool-tag tg-red">Criminal</span></div>
       </div>
       <div class="sec-head"><h2>Transactional Documents</h2><div class="sec-head-line"></div></div>
       <div class="tools-grid">
@@ -1590,9 +1592,21 @@ const COURT_OPTIONS = `
   <option>Civil Judge, Faisalabad</option><option>Civil Judge, Multan</option>
   <option>Civil Judge, Peshawar</option><option>Civil Judge, Quetta</option>
 </optgroup>
+<optgroup label="Judicial Magistrate Courts">
+  <option>Judicial Magistrate, Lahore</option><option>Judicial Magistrate, Karachi</option>
+  <option>Judicial Magistrate, Islamabad</option><option>Judicial Magistrate, Rawalpindi</option>
+  <option>Judicial Magistrate, Faisalabad</option><option>Judicial Magistrate, Multan</option>
+  <option>Judicial Magistrate, Peshawar</option><option>Judicial Magistrate, Quetta</option>
+  <option>Judicial Magistrate, Gujranwala</option><option>Judicial Magistrate, Sialkot</option>
+  <option>Senior Civil Judge / Judicial Magistrate, Lahore</option>
+  <option>Senior Civil Judge / Judicial Magistrate, Multan</option>
+  <option>Executive Magistrate, Lahore</option><option>Executive Magistrate, Multan</option>
+</optgroup>
 <optgroup label="Special Courts">
   <option>Anti-Terrorism Court</option><option>Banking Court</option>
   <option>Family Court</option><option>Labour Court</option><option>Consumer Court</option>
+  <option>Drug Court</option><option>NAB Court</option><option>FIA Court</option>
+  <option>Special Judge (Central), Lahore</option><option>Special Judge (Central), Karachi</option>
 </optgroup>`;
 
 const HC_OPTIONS = `
@@ -1695,6 +1709,18 @@ const TOOLS = {
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Relation to Case / مقدمے سے تعلق</label><input type="text" id="f3" placeholder="e.g. ملزم کا والد — Father of accused" /></div>
     <div class="fld"><label class="fld-lbl">Court / Authority / عدالت</label><input type="text" id="f4" placeholder="e.g. Sessions Court Lahore" /></div></div>
     <div class="fld"><label class="fld-lbl">Content of Oath / حلف کا مضمون <span class="fld-req">*</span></label><textarea id="f5" placeholder="حلف برار کیا بیان دے رہا ہے — واقعات، کردار، جائیداد…"></textarea></div>`
+  },
+  complaint:{
+    title:'Criminal Complaint',sub:'Criminal complaints under §200 & §156(3) CrPC before Judicial Magistrate',loadMsg:'Drafting criminal complaint under CrPC §200/156(3)…',
+    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / شکایت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC — Before Magistrate (مجسٹریٹ کے سامنے فوجداری شکایت)</option><option>Application u/s 156(3) CrPC — FIR Registration (ایف آئی آر درج کروانے کی درخواست)</option><option>Complaint of Cheating / Fraud — §420 PPC (دھوکہ دہی)</option><option>Complaint of Forgery — §468/471 PPC (جعلسازی)</option><option>Complaint of Criminal Breach of Trust — §406 PPC (امانت میں خیانت)</option><option>Complaint of Harassment / Stalking — §509 PPC / PECA (ہراسانی)</option><option>Complaint of Assault / Hurt — §337/352 PPC (مار پیٹ)</option><option>Complaint of Wrongful Confinement — §342 PPC (غیر قانونی قید)</option><option>Complaint of Mischief — §427 PPC (نقصان)</option><option>Complaint of Defamation — §499/500 PPC (ہتک عزت)</option><option>Complaint of Trespass — §447 PPC (بے اجازت داخل)</option><option>Complaint of Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Complaint of Domestic Violence (گھریلو تشدد)</option><option>Consumer Complaint — CPPA 2019 (صارفین شکایت)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / شاکی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="شاکی کا مکمل نام ولدیت پتہ — Full name s/o, Address, CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Accused / ملزم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ملزم کا نام پتہ — Name, address of accused" /></div></div>
+    <div class="fld"><label class="fld-lbl">Court / Magistrate / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
+    <div class="fld"><label class="fld-lbl">Offence Sections / دفعات</label><input type="text" id="f4" placeholder="e.g. 420, 468, 471 PPC — خالی چھوڑیں AI خود لگائے گا" /><div class="fld-hint">خالی چھوڑیں — AI automatically selects relevant PPC sections</div></div>
+    <div class="fld"><label class="fld-lbl">Facts of Complaint / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f5" placeholder="مکمل واقعات بیان کریں — تاریخیں، مقام، کیا ہوا، گواہان — What happened, when, where, witnesses…"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Date of Incident / واقعے کی تاریخ</label><input type="text" id="f6" placeholder="e.g. 15-01-2025" /></div>
+    <div class="fld"><label class="fld-lbl">Loss / Damage / نقصان</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000 یا جائیداد کی تفصیل" /></div></div>
+    <div class="fld"><label class="fld-lbl">Evidence Available / دستیاب شواہد</label><textarea id="f8" placeholder="دستاویزات، گواہان، چیک، رسیدیں، ویڈیو — Documents, witnesses, receipts…" style="min-height:72px;"></textarea></div>`
   },
   agreement:{
     title:'Agreement / Contract',sub:'Legally binding agreements — employment, service, tenancy, sale, partnership',loadMsg:'Drafting agreement under Contract Act 1872…',
