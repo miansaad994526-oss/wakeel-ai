@@ -195,7 +195,59 @@ FOR CONSOLIDATION: Multiple case titles, "APPLICATION FOR CONSOLIDATION", common
 "MEMORANDUM OF UNDERSTANDING" centered bold underlined. "This MOU is entered into on this ___day of ________, [year] at [city]."
 "BETWEEN" Party 1 "(First Party)" "AND" Party 2 "(Second Party)". "(collectively 'the Parties')".
 "WHEREAS:-" recitals (1-3). "NOW THEREFORE..." Numbered articles (1-10+): Purpose, Roles, Duration, Financial, Confidentiality, IP, Dispute Resolution, Termination, Amendment, Governing Law.
-"IN WITNESS WHEREOF..." Signature blocks with Name, Designation, Date, Stamp. "WITNESSES:-" 2 blocks.`
+"IN WITNESS WHEREOF..." Signature blocks with Name, Designation, Date, Stamp. "WITNESSES:-" 2 blocks.`,
+
+  complaint: `Generate a COMPLETE CRIMINAL COMPLAINT FILING PACKAGE under CrPC. All sections separated by <hr class="doc-page-break">.
+
+PAGE 1 — MAIN COMPLAINT:
+Court header: "BEFORE THE COURT OF LEARNED JUDICIAL MAGISTRATE, [CITY]" OR for §156(3): "BEFORE THE COURT OF LEARNED SENIOR CIVIL JUDGE / JUDICIAL MAGISTRATE, [CITY]" — centered bold.
+"Complaint / Application No. ___________/[year]" centered.
+Complainant full details → "……………………………… COMPLAINANT" right bold.
+"VERSUS" centered bold underlined.
+Accused details → "……………………………… ACCUSED" right bold.
+SUBJECT: "COMPLAINT UNDER SECTION [200 CrPC / 156(3) CrPC] READ WITH SECTIONS [PPC sections] FOR [offence]" bold underlined.
+Dotted separator "…………………………………………………………………………………"
+"Respectfully Sheweth:-" underlined.
+
+Numbered "That..." paragraphs (8-10):
+1. Complainant's background and address.
+2. Accused's background, relationship to complainant.
+3. Detailed facts of the offence with dates, places, amounts.
+4. Continuation of facts — how offence was committed.
+5. Efforts made to resolve — police station approach, any FIR refused.
+6. For §156(3): "That the complainant approached PS [name] and requested registration of FIR but the same was refused/neglected without lawful justification."
+7. Legal provisions violated — cite specific PPC sections with their descriptions.
+8. "That the accused has committed a cognizable offence and this Hon'ble Court has jurisdiction."
+9. "That the complainant has not filed any similar complaint before any other court."
+10. "That the complainant is ready to produce evidence and witnesses before this Hon'ble Court."
+
+"P R A Y E R" bold underlined:
+"It is therefore most respectfully prayed that this Hon'ble Court may graciously be pleased to:"
+"(i) Take cognizance of the offence under Section 190/200 CrPC / direct the SHO to register FIR under §156(3) CrPC;"
+"(ii) Issue process / summons against the accused;"
+"(iii) [Specific relief matching facts];"
+"(iv) Grant any other relief which this Hon'ble Court deems just and proper in the circumstances of the case."
+
+"COMPLAINANT" right bold. "Through:-" advocate block. "Dated: ________________". 
+"CERTIFICATE:-" "As per instructions, this is the first complaint on the subject matter before this Hon'ble Court." "Counsel" centered.
+
+PAGE 2 — AFFIDAVIT:
+Same court header. "AFFIDAVIT" centered bold. "of [complainant name details]".
+"I, the above named deponent, do hereby solemnly affirm and declare on oath as under:-"
+5-6 sworn paragraphs summarizing key facts.
+Last: "contents true and correct to the best of my knowledge and belief."
+"……………… DEPONENT" right bold.
+"VERIFICATION:-" bold. "Verified on oath at [city] this ___day of ________, [year]..." "……………… DEPONENT" right.
+
+PAGE 3 — DISPENSATION APPLICATION:
+Same header. "APPLICATION FOR DISPENSING WITH THE CERTIFIED COPIES OF ANNEXURES" bold underlined centered.
+"Respectfully Sheweth:-" "That the complainant has filed the accompanying Criminal Complaint without certified copies of annexures for reasons beyond control. The original documents are being produced." Prayer. Signature.
+
+PAGE 4 — INDEX:
+Same header. "I N D E X" centered bold.
+Table: Sr.# | Description | Annex | Date | Page #
+Items: 1. Criminal Complaint and Affidavit, 2. Copy of relevant documents (Annex A), 3. [Other evidence], 4. Dispensation Application, 5. Power of Attorney.
+Signature.`
 };
 
 function buildUserPrompt(tool, fields, lang, toolTitle) {
