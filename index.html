@@ -1927,36 +1927,62 @@ async function generate() {
   const lang = document.getElementById('lang-ur') && document.getElementById('lang-ur').classList.contains('active') ? 'ur' : 'en';
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000);
-
+    // Streaming fetch — Edge Runtime has no timeout; content streams in as generated
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      signal: controller.signal,
       body: JSON.stringify({ tool: activeTool, fields: f, lang: lang, toolTitle: t.title })
     });
-
-    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
       throw new Error(errData.error || 'API request failed (' + response.status + ')');
     }
 
-    const data = await response.json();
-    let html = data.html;
-    if (!html || html.length < 50) throw new Error('AI returned empty response');
-
-    document.getElementById('ws-loading').style.display = 'none';
+    // Show live streaming placeholder immediately
     const doc = document.getElementById('ws-doc');
-    doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
     const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
     const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">AI Generated \u2014 Review before filing</span></div>';
-    doc.innerHTML = metaBar + html;
+    doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
+    doc.innerHTML = metaBar + '<div style="padding:32px;text-align:center;color:#888;font-family:serif;font-size:15px;">\u231b Drafting document\u2026 please wait</div>';
     doc.style.display = 'block';
-    // Scroll document panel to top
+    document.getElementById('ws-loading').style.display = 'none';
+    document.getElementById('ws-empty').style.display = 'none';
     const wsRightBody = document.querySelector('.ws-right-body');
+    if (wsRightBody) wsRightBody.scrollTop = 0;
+
+    // Read SSE stream and accumulate text deltas
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let html = '';
+    let sseBuffer = '';
+    let streamError = null;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      sseBuffer += decoder.decode(value, { stream: true });
+      const lines = sseBuffer.split('\n');
+      sseBuffer = lines.pop() || '';
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const raw = line.slice(6).trim();
+        if (!raw) continue;
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed.error) { streamError = parsed.error; break; }
+          if (parsed.text) { html += parsed.text; }
+          if (parsed.done) break;
+        } catch (_) { /* skip malformed */ }
+      }
+      if (streamError) break;
+    }
+
+    if (streamError) throw new Error(streamError);
+    html = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
+    if (!html || html.length < 50) throw new Error('AI returned empty response');
+
+    doc.innerHTML = metaBar + html;
     if (wsRightBody) wsRightBody.scrollTop = 0;
 
     docCount++;
@@ -1976,10 +2002,7 @@ async function generate() {
 
   } catch (err) {
     document.getElementById('ws-loading').style.display = 'none';
-    if (err.name === 'AbortError') {
-      showToast('Generation timed out (45s). Try with shorter details.', 'err');
-      document.getElementById('ws-empty').style.display = 'flex';
-    } else {
+    {
       const html = buildDoc(activeTool, f, lang);
       const doc = document.getElementById('ws-doc');
       doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
