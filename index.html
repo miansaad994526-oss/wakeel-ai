@@ -1870,22 +1870,23 @@ async function generate() {
 
   const t = TOOLS[activeTool];
 
-  /* ── FIELD VALIDATION ── */
-  const first = document.getElementById('f0');
-  if (first && !first.value.trim()) {
-    showToast('Please fill in the required fields', 'err');
-    first.focus(); return;
-  }
-
-  // Check required textareas are not empty
-  const textareas = document.querySelectorAll('#ws-fields textarea');
-  for (const ta of textareas) {
-    const lbl = ta.closest('.fld')?.querySelector('.fld-lbl');
-    const isRequired = lbl && lbl.querySelector('.fld-req');
-    if (isRequired && !ta.value.trim()) {
-      const fieldName = lbl ? lbl.textContent.replace(/\s*\*\s*$/, '').split('/')[0].trim() : 'Field';
-      showToast('Please fill in: ' + fieldName, 'err');
-      ta.focus(); return;
+  /* ── FIELD VALIDATION (skipped if document uploaded) ── */
+  const hasUploadedDoc = uploadedFiles.some(f => f.data);
+  if (!hasUploadedDoc) {
+    const first = document.getElementById('f0');
+    if (first && !first.value.trim()) {
+      showToast('Please fill in the required fields — or upload a document to auto-fill', 'err');
+      first.focus(); return;
+    }
+    const textareas = document.querySelectorAll('#ws-fields textarea');
+    for (const ta of textareas) {
+      const lbl = ta.closest('.fld')?.querySelector('.fld-lbl');
+      const isRequired = lbl && lbl.querySelector('.fld-req');
+      if (isRequired && !ta.value.trim()) {
+        const fieldName = lbl ? lbl.textContent.replace(/\s*\*\s*$/, '').split('/')[0].trim() : 'Field';
+        showToast('Please fill in: ' + fieldName + ' — or upload a document to auto-fill', 'err');
+        ta.focus(); return;
+      }
     }
   }
 
@@ -1929,7 +1930,10 @@ async function generate() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       signal: controller.signal,
-      body: JSON.stringify({ tool: activeTool, fields: f, lang: lang, toolTitle: t.title })
+      body: JSON.stringify({
+        tool: activeTool, fields: f, lang: lang, toolTitle: t.title,
+        attachedFiles: uploadedFiles.filter(uf => uf.data).map(uf => ({ name: uf.name, type: uf.type, data: uf.data }))
+      })
     });
 
     clearTimeout(timeoutId);
@@ -2815,15 +2819,19 @@ function formatSize(b) { if (b<1024) return b+' B'; if (b<1048576) return (b/102
 
 function uploadSectionHTML() {
   return `<div class="upload-section">
-    <div class="upload-sec-label">Supporting Documents & Files</div>
+    <div class="upload-sec-label">Upload Documents — AI will read & fill fields automatically</div>
     <div class="upload-zone" id="upload-zone">
-      <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.webp,.xls,.xlsx,.csv" />
-      <div class="upload-zone-icon">📎</div>
-      <div class="upload-zone-label">Drag & drop files here</div>
-      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>For your reference only — files are NOT read by AI<br>PDF, Word, Images — max 10MB each</div>
+      <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.txt" />
+      <div class="upload-zone-icon">📄</div>
+      <div class="upload-zone-label">Drag & drop PDF or image here</div>
+      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 10MB each</div>
     </div>
     <div class="files-list" id="files-list"></div>
     <div class="upload-count" id="upload-count" style="display:none;"></div>
+    <button id="extract-btn" onclick="extractFromDocument()" style="display:none;margin-top:10px;width:100%;padding:11px 16px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;align-items:center;justify-content:center;gap:8px;">
+      <span id="extract-spinner" class="spinner" style="display:none;"></span>
+      <span id="extract-label">✦ Extract & Fill Fields from Document</span>
+    </button>
   </div>`;
 }
 
@@ -2843,11 +2851,28 @@ function handleFiles(fileList) {
   Array.from(fileList).forEach(file => {
     if (file.size > 10485760) { showToast('File too large: '+file.name+' (max 10MB)', 'err'); return; }
     if (uploadedFiles.find(f => f.name === file.name)) { showToast('Already added: '+file.name, 'err'); return; }
-    if (uploadedFiles.length >= 8) { showToast('Maximum 8 files per document', 'err'); return; }
-    uploadedFiles.push({ name: file.name, size: file.size, type: file.type });
-    showToast('📎 '+file.name+' added');
+    if (uploadedFiles.length >= 5) { showToast('Maximum 5 files per document', 'err'); return; }
+    const isReadable = /^image\/|application\/pdf/.test(file.type) || file.name.toLowerCase().endsWith('.pdf');
+    if (isReadable) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const base64 = e.target.result.split(',')[1];
+        uploadedFiles.push({ name: file.name, size: file.size, type: file.type, data: base64 });
+        renderFileList();
+        showExtractBtn();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      uploadedFiles.push({ name: file.name, size: file.size, type: file.type, data: null });
+      renderFileList();
+      showToast('📎 '+file.name+' added (reference only — AI reads PDF/images)');
+    }
   });
-  renderFileList();
+}
+
+function showExtractBtn() {
+  const btn = document.getElementById('extract-btn');
+  if (btn) btn.style.display = uploadedFiles.some(f => f.data) ? 'flex' : 'none';
 }
 
 function renderFileList() {
@@ -2867,7 +2892,76 @@ function renderFileList() {
   }
 }
 
-function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); }
+function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); showExtractBtn(); }
+
+async function extractFromDocument() {
+  const readable = uploadedFiles.filter(f => f.data);
+  if (!readable.length) { showToast('No readable file found — upload a PDF or image', 'err'); return; }
+
+  const btn = document.getElementById('extract-btn');
+  const spinner = document.getElementById('extract-spinner');
+  const label = document.getElementById('extract-label');
+  btn.disabled = true;
+  if (spinner) spinner.style.display = 'inline-block';
+  if (label) label.textContent = 'Extracting…';
+
+  // Build field schema: { id: label } pairs from current form
+  const fieldSchema = {};
+  document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea').forEach(el => {
+    if (!el.id || !el.id.startsWith('f')) return;
+    const lbl = el.closest('.fld')?.querySelector('.fld-lbl');
+    if (lbl) fieldSchema[el.id] = lbl.textContent.replace(/\s*\*\s*$/, '').trim();
+  });
+
+  try {
+    const t = TOOLS[activeTool];
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tool: activeTool,
+        toolTitle: t.title,
+        mode: 'extract',
+        fields: { fieldSchema: JSON.stringify(fieldSchema) },
+        attachedFiles: readable.map(f => ({ name: f.name, type: f.type, data: f.data }))
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Extraction failed');
+
+    const extracted = data.extracted || {};
+    let filled = 0;
+    Object.entries(extracted).forEach(([id, value]) => {
+      if (!value) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.tagName === 'SELECT') {
+        // Try to find closest matching option
+        const opts = Array.from(el.options);
+        const match = opts.find(o => o.value.toLowerCase().includes(value.toLowerCase()) || value.toLowerCase().includes(o.value.toLowerCase()));
+        if (match) { el.value = match.value; filled++; }
+      } else {
+        el.value = value;
+        filled++;
+      }
+    });
+
+    if (filled > 0) {
+      showToast('✓ Extracted ' + filled + ' field' + (filled>1?'s':'') + ' from document');
+      if (label) label.textContent = '✓ Fields Filled — Re-extract';
+    } else {
+      showToast('Document read — no matching fields found', 'err');
+      if (label) label.textContent = '✦ Extract & Fill Fields from Document';
+    }
+  } catch (e) {
+    showToast('Extraction failed: ' + e.message, 'err');
+    if (label) label.textContent = '✦ Extract & Fill Fields from Document';
+  } finally {
+    if (spinner) spinner.style.display = 'none';
+    btn.disabled = false;
+  }
+}
 
 function attachedFilesHTML() {
   if (!uploadedFiles.length) return '';
