@@ -1932,7 +1932,18 @@ async function generate() {
       signal: controller.signal,
       body: JSON.stringify({
         tool: activeTool, fields: f, lang: lang, toolTitle: t.title,
-        attachedFiles: uploadedFiles.filter(uf => uf.data).map(uf => ({ name: uf.name, type: uf.type, data: uf.data }))
+        attachedFiles: (() => {
+          // Only attach files whose base64 data fits within ~3MB to avoid 413 errors
+          const out = [];
+          let total = 0;
+          for (const uf of uploadedFiles.filter(x => x.data)) {
+            const sz = Math.ceil(uf.data.length * 4 / 3);
+            if (total + sz > 3500000) break;
+            out.push({ name: uf.name, type: uf.type, data: uf.data });
+            total += sz;
+          }
+          return out;
+        })()
       })
     });
 
@@ -2824,7 +2835,7 @@ function uploadSectionHTML() {
       <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.txt" />
       <div class="upload-zone-icon">📄</div>
       <div class="upload-zone-label">Drag & drop PDF or image here</div>
-      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 10MB each</div>
+      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 4MB each</div>
     </div>
     <div class="files-list" id="files-list"></div>
     <div class="upload-count" id="upload-count" style="display:none;"></div>
@@ -2849,7 +2860,7 @@ function initUploadZone() {
 
 function handleFiles(fileList) {
   Array.from(fileList).forEach(file => {
-    if (file.size > 10485760) { showToast('File too large: '+file.name+' (max 10MB)', 'err'); return; }
+    if (file.size > 4194304) { showToast('File too large: '+file.name+' (max 4MB for AI reading)', 'err'); return; }
     if (uploadedFiles.find(f => f.name === file.name)) { showToast('Already added: '+file.name, 'err'); return; }
     if (uploadedFiles.length >= 5) { showToast('Maximum 5 files per document', 'err'); return; }
     const isReadable = /^image\/|application\/pdf/.test(file.type) || file.name.toLowerCase().endsWith('.pdf');
@@ -2872,7 +2883,16 @@ function handleFiles(fileList) {
 
 function showExtractBtn() {
   const btn = document.getElementById('extract-btn');
-  if (btn) btn.style.display = uploadedFiles.some(f => f.data) ? 'flex' : 'none';
+  const label = document.getElementById('extract-label');
+  const readable = uploadedFiles.filter(f => f.data);
+  if (!btn) return;
+  btn.style.display = readable.length ? 'flex' : 'none';
+  if (label && readable.length) {
+    const name = readable[0].name.length > 28 ? readable[0].name.substring(0,25)+'…' : readable[0].name;
+    label.textContent = readable.length > 1
+      ? `✦ Extract from "${name}" (+${readable.length-1} more)`
+      : `✦ Extract & Fill Fields from "${name}"`;
+  }
 }
 
 function renderFileList() {
@@ -2915,6 +2935,17 @@ async function extractFromDocument() {
 
   try {
     const t = TOOLS[activeTool];
+    // Only send ONE file for extraction (Vercel 4.5MB body limit)
+    // Pick the first readable file
+    const fileToExtract = readable[0];
+    const base64Size = Math.ceil(fileToExtract.data.length * 4 / 3);
+    if (base64Size > 3800000) {
+      showToast('File too large for extraction (max ~3MB). Try a smaller file.', 'err');
+      btn.disabled = false;
+      if (spinner) spinner.style.display = 'none';
+      if (label) label.textContent = '✦ Extract & Fill Fields from Document';
+      return;
+    }
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -2923,7 +2954,7 @@ async function extractFromDocument() {
         toolTitle: t.title,
         mode: 'extract',
         fields: { fieldSchema: JSON.stringify(fieldSchema) },
-        attachedFiles: readable.map(f => ({ name: f.name, type: f.type, data: f.data }))
+        attachedFiles: [{ name: fileToExtract.name, type: fileToExtract.type, data: fileToExtract.data }]
       })
     });
 
