@@ -140,7 +140,9 @@ If for court: court header + case title. If standalone: "AFFIDAVIT" centered bol
 Numbered "That..." paragraphs (6-8). Second-to-last: "contents true and correct...nothing concealed." Last: "made in good faith and in support of [purpose]."
 "……………… DEPONENT" right bold. "VERIFICATION:-" bold. "Verified on oath at [city] this ___day of ________, [year]..." "…………… DEPONENT" right bold.`,
 
-  complaint: `Generate a COMPLETE CRIMINAL COMPLAINT FILING PACKAGE. Strictly follow the exact format used in Pakistani Magistrate courts. All sections separated by <hr class="doc-page-break">.
+  complaint: `Generate a COMPLETE CRIMINAL COMPLAINT FILING PACKAGE. Strictly follow the exact format used in Pakistani Magistrate courts. All 4 sections MUST be generated — do not stop early. All sections separated by <hr class="doc-page-break">.
+
+CRITICAL: Keep the main complaint to 8-10 focused paragraphs. Affidavit max 6 paragraphs. Dispensation 1 paragraph. Index table only. Do NOT over-elaborate — a senior advocate values brevity.
 
 PAGE 1 — MAIN COMPLAINT (tophitonadvocate.com format):
 Court header: "BEFORE THE COURT OF LEARNED JUDICIAL MAGISTRATE, [CITY]" (centered bold) OR for §156(3): "BEFORE THE COURT OF LEARNED SENIOR CIVIL JUDGE / JUDICIAL MAGISTRATE, [CITY]".
@@ -153,46 +155,47 @@ SUBJECT: "CRIMINAL COMPLAINT UNDER SECTION 200 Cr.P.C. READ WITH SECTION 156(3) 
 Dotted separator.
 "Respectfully Sheweth:-" (underlined).
 
-Numbered "That..." paragraphs (8-10):
-1. Complainant is a law-abiding citizen of Pakistan residing at [address] and is well known in the area.
-2. The accused is known to the complainant and their background/relationship.
-3. Detailed narrative of the offence — what happened, when, where, how much, with full specifics.
-4. Continuation — further facts, how the accused committed the offence, any demands or threats.
-5. That the complainant approached the concerned Police Station/SHO for registration of FIR but the same has been refused/neglected without lawful justification, hence this complaint.
-6. PPC offences committed — cite specific sections with their full titles (e.g., "Section 420 PPC (Cheating and dishonestly inducing delivery of property)").
-7. That the accused has committed cognizable offences and this Hon'ble Court has territorial and pecuniary jurisdiction.
-8. That no similar complaint has been filed before any other court and this is the first complaint on this subject matter.
-9. That the complainant is ready to produce evidence, documents and witnesses before this Hon'ble Court as and when required.
+Numbered "That..." paragraphs (8-10 — concise, not padded):
+1. Complainant is a law-abiding citizen of Pakistan residing at [address].
+2. The accused background/relationship to complainant.
+3. Detailed narrative of the offence — what happened, when, where, how much.
+4. Continuation of facts — how offence was committed.
+5. Complainant approached Police Station/SHO but FIR was refused without lawful justification.
+6. PPC offences — cite specific sections with their titles.
+7. Cognizable offences; Court has territorial and pecuniary jurisdiction.
+8. No similar complaint filed before any other court — first complaint.
+9. Complainant ready to produce evidence and witnesses as required.
 
-"P R A Y E R" (centered bold underlined — spaced letters):
+"P R A Y E R" (centered bold underlined):
 "It is, therefore, most respectfully prayed that this Hon'ble Court may graciously be pleased to:"
 "(i) Take cognizance of the offence and summon the accused to face trial;"
-"(ii) Direct the concerned SHO to register FIR against the accused under Section 156(3) Cr.P.C.;" (for §156(3) type)
-"(iii) [Specific relief based on facts — compensation, recovery, etc.];"
-"(iv) Any other relief which this Hon'ble Court deems fit and proper in the circumstances of the case."
+"(ii) Direct the concerned SHO to register FIR under Section 156(3) Cr.P.C.;" (only for §156(3) type)
+"(iii) [Specific relief based on facts];"
+"(iv) Any other relief which this Hon'ble Court deems fit and proper."
 
-"COMPLAINANT" (right bold).
-"Through:-" advocate name, designation, CC No., dated line.
-"CERTIFICATE:-" "As per instructions, this is the first complaint on the subject matter before this Hon'ble Court." "Counsel" (centered).
+"COMPLAINANT" (right bold). "Through:-" advocate name, CC No., dated. "CERTIFICATE:-" single line. "Counsel" centered.
 
-PAGE 2 — AFFIDAVIT:
-Same court header. "AFFIDAVIT" (centered bold underlined).
+PAGE 2 — AFFIDAVIT (max 6 paragraphs — concise):
+Same court header + case title. "AFFIDAVIT" centered bold underlined.
 "of [complainant name, s/o, CNIC, address]".
 "I, the above named deponent, do hereby solemnly affirm and declare on oath as under:-"
-5-6 numbered sworn paragraphs summarizing key facts from complaint.
-"That the contents of the above-mentioned Criminal Complaint are true and correct to the best of my knowledge and belief and nothing has been concealed therefrom."
+5-6 short sworn paragraphs summarizing key facts from complaint.
+Last: "That the contents of the above-mentioned Criminal Complaint are true and correct to the best of my knowledge and belief and nothing has been concealed therefrom."
 "……………… DEPONENT" (right bold).
-"VERIFICATION:-" bold. "Verified on oath at [city] this ___day of ________, [year] that the contents of the above affidavit are true and correct to the best of my knowledge and belief." "……………… DEPONENT" right.
+"VERIFICATION:-" bold. "Verified on oath at [city] this ___day of ________, [year]..." "……………… DEPONENT" right.
 
-PAGE 3 — DISPENSATION APPLICATION:
-Same header. "APPLICATION FOR DISPENSING WITH THE CERTIFIED COPIES OF ANNEXURES" (bold underlined centered).
-"Respectfully Sheweth:-" Brief request to dispense with certified copies as originals are being produced. Prayer. Signature.
+PAGE 3 — DISPENSATION APPLICATION (1 short paragraph only):
+Same header + parties. "APPLICATION FOR DISPENSING WITH THE CERTIFIED COPIES OF ANNEXURES" bold underlined centered.
+"Respectfully Sheweth:-"
+ONE paragraph: "That the complainant is filing the accompanying Criminal Complaint without certified/attested copies of annexures for reasons beyond his/her control. The original documents are being produced before this Hon'ble Court for perusal and verification."
+"It is, therefore, prayed that this Hon'ble Court may graciously be pleased to dispense with the requirement of certified copies of all annexures and accept the originals placed on record."
+"COMPLAINANT" right. "Through:-" advocate. "Dated: ________________".
 
-PAGE 4 — INDEX:
-Same header. "I N D E X" (centered bold spaced).
+PAGE 4 — INDEX (table only — no extra text):
+Same header + parties. "I N D E X" centered bold spaced.
 HTML table with columns: Sr.# | Description | Annex | Date | Page #
-Rows: 1. Criminal Complaint with Affidavit | — | | 2. Copy of [relevant documents] | Annex-A | | 3. [Other evidence per facts] | Annex-B | | 4. Dispensation Application | — | | 5. Power of Attorney | — |
-Signature block.`,
+Rows: 1. Criminal Complaint with Affidavit | — | | 2. Copy of [relevant documents per facts] | Annex-A | | 3. [Other evidence if mentioned] | Annex-B | | 4. Dispensation Application | — | | 5. Power of Attorney | — |
+"COMPLAINANT" right. "Through:-" advocate. "Dated: ________________".`,
 
   agreement: `Generate LEGAL AGREEMENT under Contract Act 1872. Real Pakistani format.
 "[AGREEMENT TYPE]" centered bold underlined. "FOR RS. [amount]/-" if monetary. "This [type] is executed and made at [city], this ___day of ________, [year];"
@@ -289,7 +292,7 @@ export default async function handler(req) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 4000,
+        max_tokens: 16000,
         stream: true,
         system: systemPromptFull,
         messages: [{ role: 'user', content: userPrompt }]
