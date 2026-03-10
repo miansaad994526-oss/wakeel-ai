@@ -809,7 +809,6 @@ select option{background:#fff;}
       <div class="sb-item" onclick="openTool('appeal',this)"><span class="sb-item-icon">📣</span>Appeal / Revision</div>
       <div class="sb-item" onclick="openTool('legal-notice',this)"><span class="sb-item-icon">✉️</span>Legal Notice</div>
       <div class="sb-item" onclick="openTool('affidavit',this)"><span class="sb-item-icon">✍️</span>Affidavit / Oath</div>
-      <div class="sb-item" onclick="openTool('complaint',this)"><span class="sb-item-icon">⚖️</span>Criminal Complaint</div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Transactional Documents</div>
@@ -888,7 +887,6 @@ select option{background:#fff;}
         <div class="tool-card" onclick="openTool('appeal')"><span class="tool-icon">📣</span><div class="tool-name">Appeal / Revision</div><div class="tool-desc">File appeals against trial court decisions with complete legal grounds and prayer</div><span class="tool-tag tg-green">All Courts</span></div>
         <div class="tool-card" onclick="openTool('legal-notice')"><span class="tool-icon">✉️</span><div class="tool-name">Legal Notice</div><div class="tool-desc">Formal legal notices for recovery, breach of contract, cheque dishonour, property</div><span class="tool-tag tg-gold">Formal</span></div>
         <div class="tool-card" onclick="openTool('affidavit')"><span class="tool-icon">✍️</span><div class="tool-name">Affidavit / Oath</div><div class="tool-desc">Sworn affidavits and declarations under the Oaths Act 1873 for court submission</div><span class="tool-tag tg-blue">Documentation</span></div>
-        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">⚖️</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under §200 & §156(3) CrPC before Magistrate — cheating, fraud, harassment, assault</div><span class="tool-tag tg-red">Criminal</span></div>
       </div>
       <div class="sec-head"><h2>Transactional Documents</h2><div class="sec-head-line"></div></div>
       <div class="tools-grid">
@@ -933,6 +931,7 @@ select option{background:#fff;}
             <button class="btn-out print-hide" onclick="copyDoc()">📋 Copy Text</button>
             <button class="btn-out print-hide" onclick="saveDoc()">💾 Save</button>
             <button class="btn-out print-hide" onclick="printDoc()">🖨 Print</button>
+            <button class="btn-out print-hide" onclick="exportWord()">📝 Export Word</button>
             <button class="btn-out prim print-hide" onclick="exportPDF()">⬇ Export PDF</button>
           </div>
         </div>
@@ -1592,21 +1591,9 @@ const COURT_OPTIONS = `
   <option>Civil Judge, Faisalabad</option><option>Civil Judge, Multan</option>
   <option>Civil Judge, Peshawar</option><option>Civil Judge, Quetta</option>
 </optgroup>
-<optgroup label="Judicial Magistrate Courts">
-  <option>Judicial Magistrate, Lahore</option><option>Judicial Magistrate, Karachi</option>
-  <option>Judicial Magistrate, Islamabad</option><option>Judicial Magistrate, Rawalpindi</option>
-  <option>Judicial Magistrate, Faisalabad</option><option>Judicial Magistrate, Multan</option>
-  <option>Judicial Magistrate, Peshawar</option><option>Judicial Magistrate, Quetta</option>
-  <option>Judicial Magistrate, Gujranwala</option><option>Judicial Magistrate, Sialkot</option>
-  <option>Senior Civil Judge / Judicial Magistrate, Lahore</option>
-  <option>Senior Civil Judge / Judicial Magistrate, Multan</option>
-  <option>Executive Magistrate, Lahore</option><option>Executive Magistrate, Multan</option>
-</optgroup>
 <optgroup label="Special Courts">
   <option>Anti-Terrorism Court</option><option>Banking Court</option>
   <option>Family Court</option><option>Labour Court</option><option>Consumer Court</option>
-  <option>Drug Court</option><option>NAB Court</option><option>FIA Court</option>
-  <option>Special Judge (Central), Lahore</option><option>Special Judge (Central), Karachi</option>
 </optgroup>`;
 
 const HC_OPTIONS = `
@@ -1709,18 +1696,6 @@ const TOOLS = {
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Relation to Case / مقدمے سے تعلق</label><input type="text" id="f3" placeholder="e.g. ملزم کا والد — Father of accused" /></div>
     <div class="fld"><label class="fld-lbl">Court / Authority / عدالت</label><input type="text" id="f4" placeholder="e.g. Sessions Court Lahore" /></div></div>
     <div class="fld"><label class="fld-lbl">Content of Oath / حلف کا مضمون <span class="fld-req">*</span></label><textarea id="f5" placeholder="حلف برار کیا بیان دے رہا ہے — واقعات، کردار، جائیداد…"></textarea></div>`
-  },
-  complaint:{
-    title:'Criminal Complaint',sub:'Criminal complaints under §200 & §156(3) CrPC before Judicial Magistrate',loadMsg:'Drafting criminal complaint under CrPC §200/156(3)…',
-    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / شکایت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC — Before Magistrate (مجسٹریٹ کے سامنے فوجداری شکایت)</option><option>Application u/s 156(3) CrPC — FIR Registration (ایف آئی آر درج کروانے کی درخواست)</option><option>Complaint of Cheating / Fraud — §420 PPC (دھوکہ دہی)</option><option>Complaint of Forgery — §468/471 PPC (جعلسازی)</option><option>Complaint of Criminal Breach of Trust — §406 PPC (امانت میں خیانت)</option><option>Complaint of Harassment / Stalking — §509 PPC / PECA (ہراسانی)</option><option>Complaint of Assault / Hurt — §337/352 PPC (مار پیٹ)</option><option>Complaint of Wrongful Confinement — §342 PPC (غیر قانونی قید)</option><option>Complaint of Mischief — §427 PPC (نقصان)</option><option>Complaint of Defamation — §499/500 PPC (ہتک عزت)</option><option>Complaint of Trespass — §447 PPC (بے اجازت داخل)</option><option>Complaint of Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Complaint of Domestic Violence (گھریلو تشدد)</option><option>Consumer Complaint — CPPA 2019 (صارفین شکایت)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / شاکی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="شاکی کا مکمل نام ولدیت پتہ — Full name s/o, Address, CNIC" /></div>
-    <div class="fld"><label class="fld-lbl">Accused / ملزم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ملزم کا نام پتہ — Name, address of accused" /></div></div>
-    <div class="fld"><label class="fld-lbl">Court / Magistrate / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
-    <div class="fld"><label class="fld-lbl">Offence Sections / دفعات</label><input type="text" id="f4" placeholder="e.g. 420, 468, 471 PPC — خالی چھوڑیں AI خود لگائے گا" /><div class="fld-hint">خالی چھوڑیں — AI automatically selects relevant PPC sections</div></div>
-    <div class="fld"><label class="fld-lbl">Facts of Complaint / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f5" placeholder="مکمل واقعات بیان کریں — تاریخیں، مقام، کیا ہوا، گواہان — What happened, when, where, witnesses…"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Date of Incident / واقعے کی تاریخ</label><input type="text" id="f6" placeholder="e.g. 15-01-2025" /></div>
-    <div class="fld"><label class="fld-lbl">Loss / Damage / نقصان</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000 یا جائیداد کی تفصیل" /></div></div>
-    <div class="fld"><label class="fld-lbl">Evidence Available / دستیاب شواہد</label><textarea id="f8" placeholder="دستاویزات، گواہان، چیک، رسیدیں، ویڈیو — Documents, witnesses, receipts…" style="min-height:72px;"></textarea></div>`
   },
   agreement:{
     title:'Agreement / Contract',sub:'Legally binding agreements — employment, service, tenancy, sale, partnership',loadMsg:'Drafting agreement under Contract Act 1872…',
@@ -1927,62 +1902,36 @@ async function generate() {
   const lang = document.getElementById('lang-ur') && document.getElementById('lang-ur').classList.contains('active') ? 'ur' : 'en';
 
   try {
-    // Streaming fetch — Edge Runtime has no timeout; content streams in as generated
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45000);
+
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
       body: JSON.stringify({ tool: activeTool, fields: f, lang: lang, toolTitle: t.title })
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
       throw new Error(errData.error || 'API request failed (' + response.status + ')');
     }
 
-    // Show live streaming placeholder immediately
-    const doc = document.getElementById('ws-doc');
-    const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
-    const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">AI Generated \u2014 Review before filing</span></div>';
-    doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
-    doc.innerHTML = metaBar + '<div style="padding:32px;text-align:center;color:#888;font-family:serif;font-size:15px;">\u231b Drafting document\u2026 please wait</div>';
-    doc.style.display = 'block';
-    document.getElementById('ws-loading').style.display = 'none';
-    document.getElementById('ws-empty').style.display = 'none';
-    const wsRightBody = document.querySelector('.ws-right-body');
-    if (wsRightBody) wsRightBody.scrollTop = 0;
-
-    // Read SSE stream and accumulate text deltas
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let html = '';
-    let sseBuffer = '';
-    let streamError = null;
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      sseBuffer += decoder.decode(value, { stream: true });
-      const lines = sseBuffer.split('\n');
-      sseBuffer = lines.pop() || '';
-      for (const line of lines) {
-        if (!line.startsWith('data: ')) continue;
-        const raw = line.slice(6).trim();
-        if (!raw) continue;
-        try {
-          const parsed = JSON.parse(raw);
-          if (parsed.error) { streamError = parsed.error; break; }
-          if (parsed.text) { html += parsed.text; }
-          if (parsed.done) break;
-        } catch (_) { /* skip malformed */ }
-      }
-      if (streamError) break;
-    }
-
-    if (streamError) throw new Error(streamError);
-    html = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
+    const data = await response.json();
+    let html = data.html;
     if (!html || html.length < 50) throw new Error('AI returned empty response');
 
+    document.getElementById('ws-loading').style.display = 'none';
+    const doc = document.getElementById('ws-doc');
+    doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
+    const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
+    const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">AI Generated \u2014 Review before filing</span></div>';
     doc.innerHTML = metaBar + html;
+    doc.style.display = 'block';
+    // Scroll document panel to top
+    const wsRightBody = document.querySelector('.ws-right-body');
     if (wsRightBody) wsRightBody.scrollTop = 0;
 
     docCount++;
@@ -2002,7 +1951,10 @@ async function generate() {
 
   } catch (err) {
     document.getElementById('ws-loading').style.display = 'none';
-    {
+    if (err.name === 'AbortError') {
+      showToast('Generation timed out (45s). Try with shorter details.', 'err');
+      document.getElementById('ws-empty').style.display = 'flex';
+    } else {
       const html = buildDoc(activeTool, f, lang);
       const doc = document.getElementById('ws-doc');
       doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
@@ -2354,11 +2306,41 @@ async function aiRefine() {
       })
     });
 
-    if (!response.ok) throw new Error('Refine request failed');
-    const data = await response.json();
+    if (!response.ok) throw new Error('Refine request failed (' + response.status + ')');
 
-    if (data.html && data.html.length > 50) {
-      doc.innerHTML = doc.querySelector('.doc-meta-bar')?.outerHTML + data.html || data.html;
+    // Read SSE stream (same as generate())
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let html = '';
+    let sseBuffer = '';
+    let streamError = null;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      sseBuffer += decoder.decode(value, { stream: true });
+      const lines = sseBuffer.split('\n');
+      sseBuffer = lines.pop() || '';
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const raw = line.slice(6).trim();
+        if (!raw) continue;
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed.error) { streamError = parsed.error; break; }
+          if (parsed.text) { html += parsed.text; }
+          if (parsed.done) break;
+        } catch (_) { /* skip malformed SSE chunk */ }
+      }
+      if (streamError) break;
+    }
+
+    if (streamError) throw new Error(streamError);
+    html = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
+
+    if (html && html.length > 50) {
+      const metaBar = doc.querySelector('.doc-meta-bar')?.outerHTML || '';
+      doc.innerHTML = metaBar + html;
       showToast('✅ Document refined by AI!');
     } else {
       showToast('AI returned empty response — try a different instruction', 'err');
@@ -2436,7 +2418,94 @@ function exportPDF() {
   openPrintWindow();
 }
 
-function openPrintWindow() {
+function exportWord() {
+  const docEl = document.getElementById('ws-doc');
+  if (!docEl || !docEl.innerHTML.trim()) { showToast('Generate a document first','err'); return; }
+
+  const isUrdu = docEl.classList.contains('urdu');
+  const toolTitle = TOOLS[activeTool]?.title || 'Legal Document';
+
+  // Get visible content (exclude meta bar)
+  const clone = docEl.cloneNode(true);
+  const metaBar = clone.querySelector('.doc-meta-bar');
+  if (metaBar) metaBar.remove();
+  const bodyContent = clone.innerHTML;
+
+  const wordStyles = `
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 2;
+      color: #000;
+      margin: 0;
+      ${isUrdu ? 'direction: rtl; font-size: 14pt; line-height: 2.4;' : ''}
+    }
+    .doc-court-header { text-align: center; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #000; }
+    .doc-court-name { font-size: 13pt; font-weight: bold; text-transform: uppercase; text-decoration: underline; letter-spacing: .5px; margin-bottom: 8px; }
+    .doc-pet-no { font-size: 12pt; font-style: italic; }
+    .doc-parties { margin: 24px 0; font-size: 12pt; line-height: 2.2; }
+    .doc-party-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .doc-party-name { max-width: 65%; }
+    .doc-party-role { font-style: italic; font-size: 11pt; }
+    .doc-versus { text-align: center; font-weight: bold; letter-spacing: 3px; font-size: 12pt; margin: 4px 0; }
+    .doc-subject { text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline; font-size: 12pt; line-height: 1.7; margin: 20px 0; }
+    .doc-sheweth { font-weight: bold; text-transform: uppercase; margin: 20px 0 12px; font-size: 12pt; }
+    .doc-para { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12pt; line-height: 2; text-align: justify; }
+    .doc-para-n { min-width: 24px; font-weight: bold; }
+    .doc-section-head { font-weight: bold; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin: 20px 0 14px; font-size: 12pt; text-decoration: underline; }
+    .doc-prayer-head { font-weight: bold; text-transform: uppercase; margin: 24px 0 10px; font-size: 12pt; }
+    .doc-prayer-intro { margin-bottom: 10px; font-size: 12pt; line-height: 2; text-align: justify; }
+    .doc-prayer-item { display: flex; gap: 12px; margin-bottom: 8px; font-size: 12pt; line-height: 2; }
+    .doc-certificate { margin: 24px 0; padding: 14px 18px; border: 1px solid #000; font-size: 11pt; font-style: italic; line-height: 1.9; }
+    .doc-cert-head { font-weight: bold; font-style: normal; text-transform: uppercase; margin-bottom: 6px; font-size: 11pt; }
+    .doc-index { margin: 24px 0; }
+    .doc-index-title { text-align: center; font-weight: bold; text-decoration: underline; text-transform: uppercase; margin-bottom: 12px; font-size: 14pt; }
+    table { width: 100%; border-collapse: collapse; font-size: 11pt; }
+    td, th { border: 1px solid #000; padding: 6px 10px; text-align: left; line-height: 1.6; }
+    th { font-weight: bold; text-align: center; }
+    .doc-sig-block { margin-top: 48px; }
+    .doc-sig-line { height: 1px; background: #000; width: 100%; margin-bottom: 6px; }
+    .doc-sig-name { font-size: 11pt; font-weight: bold; text-transform: uppercase; }
+    .doc-sig-role { font-size: 10pt; font-style: italic; margin-top: 2px; }
+    .doc-verification { margin-top: 24px; padding: 12px 16px; border: 1px solid #000; font-size: 11pt; font-style: italic; line-height: 1.9; }
+    .ri { display: flex; gap: 14px; margin-bottom: 10px; font-size: 12pt; line-height: 2; text-align: justify; }
+    .ri-n { min-width: 22px; font-weight: bold; }
+    .arg { margin-bottom: 10px; font-size: 12pt; line-height: 2; padding: 8px 12px; border-left: 3px solid #000; }
+    .arg-lbl { font-weight: bold; text-transform: uppercase; font-size: 10pt; letter-spacing: 1px; margin-bottom: 4px; }
+    .doc-meta-bar, .print-hide { display: none !important; }
+  `;
+
+  const wordHtml = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:w="urn:schemas-microsoft-com:office:word"
+          xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+      <meta charset="utf-8">
+      <title>${toolTitle}</title>
+      <!--[if gte mso 9]>
+      <xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom>
+        <w:DoNotOptimizeForBrowser/>
+      </w:WordDocument></xml>
+      <![endif]-->
+      <style>${wordStyles}</style>
+    </head>
+    <body>${bodyContent}</body>
+    </html>`;
+
+  const blob = new Blob(['\ufeff' + wordHtml], { type: 'application/msword' });
+  const url = URL.createObjectURL(blob);
+  const filename = toolTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_') + '_WakeelAI.doc';
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  showToast('📝 Word document downloaded!');
+}
+
+
   const docEl  = document.getElementById('ws-doc');
   const isUrdu = docEl.classList.contains('urdu');
   const css = `
