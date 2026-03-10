@@ -268,8 +268,44 @@ module.exports = async function handler(req, res) {
   if (!ANTHROPIC_API_KEY) return res.status(500).json({ error: 'API key not configured.' });
 
   try {
-    const { tool, fields, lang, toolTitle } = req.body;
+    const { tool, fields, lang, toolTitle, attachedFiles, mode } = req.body;
     if (!tool || !fields) return res.status(400).json({ error: 'Missing tool or fields' });
+
+    // ── EXTRACT MODE: read uploaded doc and return JSON field values ──
+    if (mode === 'extract') {
+      if (!attachedFiles || !attachedFiles.length) return res.status(400).json({ error: 'No files provided for extraction' });
+      const file = attachedFiles[0];
+      const msgContent = [];
+      const isImage = /^image\//i.test(file.type);
+      const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+      if (isImage) {
+        msgContent.push({ type: 'image', source: { type: 'base64', media_type: file.type, data: file.data } });
+      } else if (isPDF) {
+        msgContent.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: file.data } });
+      } else {
+        return res.status(400).json({ error: 'Only PDF and image files support auto-extraction' });
+      }
+      msgContent.push({ type: 'text', text: `You are extracting information from a legal document to fill a form for the tool: "${toolTitle || tool}".\n\nExtract all relevant information and return ONLY a JSON object with the following field IDs as keys. Use the label hints to map content correctly:\n\n${fields.fieldSchema}\n\nReturn ONLY valid JSON, no explanation, no markdown fences. If a field cannot be determined, use empty string "".` });
+
+      const extractRes = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 2000, messages: [{ role: 'user', content: msgContent }] })
+      });
+      if (!extractRes.ok) {
+        const errBody = await extractRes.text();
+        return res.status(extractRes.status).json({ error: `Extraction API error (${extractRes.status})`, details: errBody });
+      }
+      const extractData = await extractRes.json();
+      const rawText = extractData.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
+      const clean = rawText.replace(/^```json?\s*/i, '').replace(/```\s*$/i, '').trim();
+      try {
+        const parsed = JSON.parse(clean);
+        return res.status(200).json({ extracted: parsed });
+      } catch (e) {
+        return res.status(200).json({ extracted: {}, raw: rawText });
+      }
+    }
 
     let systemPromptFull, userPrompt;
 
@@ -282,10 +318,28 @@ module.exports = async function handler(req, res) {
       userPrompt = buildUserPrompt(tool, fields, lang, toolTitle || tool);
     }
 
+    // Build message — include attached files as context if provided
+    const messageContent = [];
+    if (attachedFiles && attachedFiles.length) {
+      for (const file of attachedFiles) {
+        const isImage = /^image\//i.test(file.type);
+        const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+        if (isImage && file.data) {
+          messageContent.push({ type: 'image', source: { type: 'base64', media_type: file.type, data: file.data } });
+        } else if (isPDF && file.data) {
+          messageContent.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: file.data } });
+        }
+      }
+      if (messageContent.length) {
+        messageContent.push({ type: 'text', text: 'The above file(s) are supporting documents provided by the user. Use their content to supplement any missing field details when generating the document.' });
+      }
+    }
+    messageContent.push({ type: 'text', text: userPrompt });
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 6000, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
+      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 6000, system: systemPromptFull, messages: [{ role: 'user', content: messageContent }] })
     });
 
     if (!response.ok) {
