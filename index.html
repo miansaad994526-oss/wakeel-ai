@@ -1930,21 +1930,7 @@ async function generate() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       signal: controller.signal,
-      body: JSON.stringify({
-        tool: activeTool, fields: f, lang: lang, toolTitle: t.title,
-        attachedFiles: (() => {
-          // Only attach files whose base64 data fits within ~3MB to avoid 413 errors
-          const out = [];
-          let total = 0;
-          for (const uf of uploadedFiles.filter(x => x.data)) {
-            const sz = Math.ceil(uf.data.length * 4 / 3);
-            if (total + sz > 3500000) break;
-            out.push({ name: uf.name, type: uf.type, data: uf.data });
-            total += sz;
-          }
-          return out;
-        })()
-      })
+      body: JSON.stringify({ tool: activeTool, fields: f, lang: lang, toolTitle: t.title })
     });
 
     clearTimeout(timeoutId);
@@ -2100,7 +2086,6 @@ function buildDoc(tool, f, lang) {
     ${arg('rebuttal','Rebuttal to Objection','That the said contention is without merit and is hereby respectfully refuted. The evidence is consistent throughout. There is no motive for false implication. The case of the '+side+' is fully established on record.')}
     </div>
     ${prayer(['Pass an order in favour of the '+pos+' in the above-captioned matter;','Such other relief as this Hon\'ble Court deems just, equitable and proper in the circumstances;'])}
-    ${attachedFilesHTML()}
     ${advocateSig('','','')}`;
   }
 
@@ -2135,7 +2120,6 @@ function buildDoc(tool, f, lang) {
     ${para('','That reliance is respectfully placed on <em>Tariq Bashir v. The State (PLD 1995 SC 34)</em>, <em>Muhammad Yousaf v. The State (PLD 2021 SC 194)</em> and <em>Zulfiqar Ali v. The State (2022 SCMR 765)</em> wherein the superior courts held that bail is the rule and jail is the exception.')}
     ${para('','That further arguments shall be advanced at the time of hearing of this petition.')}
     ${prayer(['The titled petition may kindly be allowed and the petitioner/accused <strong>'+accused+'</strong> may be admitted to bail pending final decision of the case;','Ad-interim bail may also be granted to the petitioner till the disposal of the instant petition;'])}
-    ${attachedFilesHTML()}
     ${indexTable([['Grounds of Bail Petition + Affidavit','',''],['Copy of FIR','A',''],['Copy of bail petition before lower court (if any)','B',''],['Power of Attorney / Wakalat Nama','',''],['Necessary documents','',' ']])}
     ${certificate('Certified that as per instructions received from the petitioner, this is the first bail petition on behalf of the petitioner before this Hon\'ble Court and no such petition has been filed before any other Court.')}
     ${advocateSig('','','')}`;
@@ -2161,7 +2145,6 @@ function buildDoc(tool, f, lang) {
     ${arg('claim','Primary Submission','Based on the facts stated herein and the applicable provisions of Pakistani law, the applicant is entitled to the relief sought. The matter is covered under the relevant statutory provisions and settled jurisprudence of the superior courts of Pakistan.')}
     ${arg('support','Supporting Ground','The documentary evidence on record, together with the available oral testimony, establishes the applicant\'s case to the requisite standard of proof. This evidence is consistent, reliable and has not been controverted.')}
     ${prayer([relief || 'Pass such order as is just and proper in the circumstances of this case, in the interest of justice.','Any other relief as this Hon\'ble Court may deem fit and proper.'])}
-    ${attachedFilesHTML()}
     ${advocateSig('','','')}`;
 }
 
@@ -2935,24 +2918,15 @@ async function extractFromDocument() {
 
   try {
     const t = TOOLS[activeTool];
-    // Only send ONE file for extraction (Vercel 4.5MB body limit)
-    // Pick the first readable file
+    // Send to Supabase Edge Function — no Vercel 4.5MB body limit
     const fileToExtract = readable[0];
-    const base64Size = Math.ceil(fileToExtract.data.length * 4 / 3);
-    if (base64Size > 3800000) {
-      showToast('File too large for extraction (max ~3MB). Try a smaller file.', 'err');
-      btn.disabled = false;
-      if (spinner) spinner.style.display = 'none';
-      if (label) label.textContent = '✦ Extract & Fill Fields from Document';
-      return;
-    }
-    const response = await fetch('/api/generate', {
+    const EXTRACT_URL = 'https://ininmjjxnemjyvqhrhup.supabase.co/functions/v1/extract-doc';
+    const response = await fetch(EXTRACT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         tool: activeTool,
         toolTitle: t.title,
-        mode: 'extract',
         fields: { fieldSchema: JSON.stringify(fieldSchema) },
         attachedFiles: [{ name: fileToExtract.name, type: fileToExtract.type, data: fileToExtract.data }]
       })
