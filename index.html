@@ -809,6 +809,8 @@ select option{background:#fff;}
       <div class="sb-item" onclick="openTool('appeal',this)"><span class="sb-item-icon">📣</span>Appeal / Revision</div>
       <div class="sb-item" onclick="openTool('legal-notice',this)"><span class="sb-item-icon">✉️</span>Legal Notice</div>
       <div class="sb-item" onclick="openTool('affidavit',this)"><span class="sb-item-icon">✍️</span>Affidavit / Oath</div>
+      <div class="sb-item" onclick="openTool('complaint',this)"><span class="sb-item-icon">⚖️</span>Criminal Complaint</div>
+      <div class="sb-item" onclick="openTool('legal-opinion',this)"><span class="sb-item-icon">📋</span>Legal Opinion</div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Transactional Documents</div>
@@ -887,6 +889,8 @@ select option{background:#fff;}
         <div class="tool-card" onclick="openTool('appeal')"><span class="tool-icon">📣</span><div class="tool-name">Appeal / Revision</div><div class="tool-desc">File appeals against trial court decisions with complete legal grounds and prayer</div><span class="tool-tag tg-green">All Courts</span></div>
         <div class="tool-card" onclick="openTool('legal-notice')"><span class="tool-icon">✉️</span><div class="tool-name">Legal Notice</div><div class="tool-desc">Formal legal notices for recovery, breach of contract, cheque dishonour, property</div><span class="tool-tag tg-gold">Formal</span></div>
         <div class="tool-card" onclick="openTool('affidavit')"><span class="tool-icon">✍️</span><div class="tool-name">Affidavit / Oath</div><div class="tool-desc">Sworn affidavits and declarations under the Oaths Act 1873 for court submission</div><span class="tool-tag tg-blue">Documentation</span></div>
+        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">⚖️</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under §200 & §156(3) CrPC before Magistrate — cheating, fraud, harassment, assault</div><span class="tool-tag tg-red">Criminal</span></div>
+        <div class="tool-card" onclick="openTool('legal-opinion')"><span class="tool-icon">🏛️</span><div class="tool-name">Legal Opinion</div><div class="tool-desc">Professional legal opinions on property title, banking, corporate & contractual matters for banks and institutions</div><span class="tool-tag tg-blue">Advisory</span></div>
       </div>
       <div class="sec-head"><h2>Transactional Documents</h2><div class="sec-head-line"></div></div>
       <div class="tools-grid">
@@ -1697,8 +1701,32 @@ const TOOLS = {
     <div class="fld"><label class="fld-lbl">Court / Authority / عدالت</label><input type="text" id="f4" placeholder="e.g. Sessions Court Lahore" /></div></div>
     <div class="fld"><label class="fld-lbl">Content of Oath / حلف کا مضمون <span class="fld-req">*</span></label><textarea id="f5" placeholder="حلف برار کیا بیان دے رہا ہے — واقعات، کردار، جائیداد…"></textarea></div>`
   },
+  complaint:{
+    title:'Criminal Complaint',sub:'Criminal complaints under §200 & §156(3) CrPC before Judicial Magistrate',loadMsg:'Drafting criminal complaint under CrPC §200/156(3)…',
+    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / شکایت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC — Before Magistrate (مجسٹریٹ کے سامنے فوجداری شکایت)</option><option>Application u/s 156(3) CrPC — FIR Registration (ایف آئی آر درج کروانے کی درخواست)</option><option>Complaint of Cheating / Fraud — §420 PPC (دھوکہ دہی)</option><option>Complaint of Forgery — §468/471 PPC (جعلسازی)</option><option>Complaint of Criminal Breach of Trust — §406 PPC (امانت میں خیانت)</option><option>Complaint of Harassment / Stalking — §509 PPC / PECA (ہراسانی)</option><option>Complaint of Assault / Hurt — §337/352 PPC (مار پیٹ)</option><option>Complaint of Wrongful Confinement — §342 PPC (غیر قانونی قید)</option><option>Complaint of Mischief — §427 PPC (نقصان)</option><option>Complaint of Defamation — §499/500 PPC (ہتک عزت)</option><option>Complaint of Trespass — §447 PPC (بے اجازت داخل)</option><option>Complaint of Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Complaint of Domestic Violence (گھریلو تشدد)</option><option>Consumer Complaint — CPPA 2019 (صارفین شکایت)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / شاکی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="شاکی کا مکمل نام ولدیت پتہ — Full name s/o, Address, CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Accused / ملزم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ملزم کا نام پتہ — Name, address of accused" /></div></div>
+    <div class="fld"><label class="fld-lbl">Court / Magistrate / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
+    <div class="fld"><label class="fld-lbl">Offence Sections / دفعات</label><input type="text" id="f4" placeholder="e.g. 420, 468, 471 PPC — خالی چھوڑیں AI خود لگائے گا" /><div class="fld-hint">خالی چھوڑیں — AI automatically selects relevant PPC sections</div></div>
+    <div class="fld"><label class="fld-lbl">Facts of Complaint / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f5" placeholder="مکمل واقعات بیان کریں — تاریخیں، مقام، کیا ہوا، گواہان — What happened, when, where, witnesses…"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Date of Incident / واقعے کی تاریخ</label><input type="text" id="f6" placeholder="e.g. 15-01-2025" /></div>
+    <div class="fld"><label class="fld-lbl">Loss / Damage / نقصان</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000 یا جائیداد کی تفصیل" /></div></div>
+    <div class="fld"><label class="fld-lbl">Evidence Available / دستیاب شواہد</label><textarea id="f8" placeholder="دستاویزات، گواہان، چیک، رسیدیں، ویڈیو — Documents, witnesses, receipts…" style="min-height:72px;"></textarea></div>`
+  },
+  'legal-opinion':{
+    title:'Legal Opinion',sub:'Professional legal opinions on property title, banking, corporate & contractual matters',loadMsg:'Drafting Legal Opinion…',
+    fields:`<div class="fld"><label class="fld-lbl">Opinion Type <span class="fld-req">*</span></label><select id="f0"><option>Property Title / Documents Opinion (جائیداد کی ملکیت رائے)</option><option>Banking / Mortgage / Collateral Opinion (بینکاری رائے)</option><option>Corporate / Company Law Opinion (کمپنی قانون رائے)</option><option>Contractual / Agreement Opinion (معاہدہ رائے)</option><option>Succession / Inheritance Opinion (وراثت رائے)</option><option>General Legal Opinion (عمومی قانونی رائے)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Reference No. / حوالہ نمبر</label><input type="text" id="f1" placeholder="e.g. PRMO/BOP/25/41" /></div>
+    <div class="fld"><label class="fld-lbl">Addressee / مخاطب <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="e.g. The Head RCAD, Bank of Punjab, Multan" /></div></div>
+    <div class="fld"><label class="fld-lbl">Subject / Case Title / عنوان <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. Legal Opinion in respect of M/S Khawar Construction — BOP LMQ Road Branch" /></div>
+    <div class="fld"><label class="fld-lbl">Party / Client / Borrower Details <span class="fld-req">*</span></label><textarea id="f4" placeholder="Name, CNIC, address of borrower/party — e.g. M/S Khawar Construction (Pvt) Ltd, Directors: Khawar Hasnain CNIC 36302-2097079-9"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Property / Matter Details <span class="fld-req">*</span></label><textarea id="f5" placeholder="Describe each property or matter — size, location, mouza, documents (Sale Deed, Fard, Mutation, EC, Mortgage Deed, Valuation), chain of title, any encumbrances…" style="min-height:120px;"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Documents Available / دستیاب دستاویزات</label><textarea id="f6" placeholder="e.g. Sale Deed, Fard Malkiyat, Mutation, NEC, EC, Aks Shajara, Nishandahi Report, Valuation Report, Completion Certificate, Site Plan, Mortgage Deed…" style="min-height:72px;"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Market Value / قیمت</label><input type="text" id="f7" placeholder="e.g. Rs. 13,500,000 / FSV Rs. 11,475,000" /></div>
+    <div class="fld"><label class="fld-lbl">City / شہر</label><input type="text" id="f8" placeholder="e.g. Multan, Lahore, Karachi" /></div></div>
+    <div class="fld"><label class="fld-lbl">Advocate Name & Designation</label><input type="text" id="f9" placeholder="e.g. Hafiz Muhammad Shuaib — Advocate High Court" /></div>`
+  },
   agreement:{
-    title:'Agreement / Contract',sub:'Legally binding agreements — employment, service, tenancy, sale, partnership',loadMsg:'Drafting agreement under Contract Act 1872…',
     fields:`<div class="fld"><label class="fld-lbl">Agreement Type / معاہدے کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Employment Agreement (ملازمت کا معاہدہ)</option><option>Service Agreement (خدمات کا معاہدہ)</option><option>Tenancy / Lease Agreement (کرایہ نامہ)</option><option>Sale Agreement / Bai Nama (بیع نامہ)</option><option>Partnership Agreement (شراکت نامہ)</option><option>Loan Agreement (قرض نامہ)</option><option>Consultancy Agreement (مشاورتی معاہدہ)</option><option>Non-Disclosure Agreement / NDA (رازداری معاہدہ)</option><option>Joint Venture Agreement (مشترکہ کاروبار)</option><option>Franchise Agreement (فرنچائز)</option><option>Supply / Purchase Agreement (خرید و فروخت)</option><option>Construction Agreement (تعمیراتی معاہدہ)</option><option>Settlement / Compromise Agreement (صلح نامہ)</option></select></div>
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 — Name / فریق اول کا نام <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام / کمپنی کا نام" /></div>
     <div class="fld"><label class="fld-lbl">Party 2 — Name / فریق دوم کا نام <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="نام / کمپنی کا نام" /></div></div>
@@ -1849,19 +1877,11 @@ async function generate() {
     first.focus(); return;
   }
 
-  // Check all required textareas have minimum 15 words
+  // Check required textareas are not empty
   const textareas = document.querySelectorAll('#ws-fields textarea');
   for (const ta of textareas) {
     const lbl = ta.closest('.fld')?.querySelector('.fld-lbl');
     const isRequired = lbl && lbl.querySelector('.fld-req');
-    if (isRequired && ta.value.trim()) {
-      const wordCount = ta.value.trim().split(/\s+/).length;
-      if (wordCount < 15) {
-        const fieldName = lbl ? lbl.textContent.replace(/\s*\*\s*$/, '').split('/')[0].trim() : 'Field';
-        showToast(fieldName + ' needs at least 15 words for a quality document (' + wordCount + ' words now)', 'err');
-        ta.focus(); return;
-      }
-    }
     if (isRequired && !ta.value.trim()) {
       const fieldName = lbl ? lbl.textContent.replace(/\s*\*\s*$/, '').split('/')[0].trim() : 'Field';
       showToast('Please fill in: ' + fieldName, 'err');
@@ -2133,8 +2153,8 @@ function buildDoc(tool, f, lang) {
 /* ══════════════════════════════════════
    DOCUMENTS
 ══════════════════════════════════════ */
-const DOC_ICONS = {argument:'⚔️',petition:'📜',writ:'🔏',bail:'🔓',plaint:'📋',appeal:'📣','legal-notice':'✉️',affidavit:'✍️',agreement:'🤝',deed:'🏠',poa:'🪪',application:'📮',mou:'🗒️'};
-const DOC_TAGS  = {argument:'tg-green',petition:'tg-blue',writ:'tg-red',bail:'tg-gold',plaint:'tg-blue',appeal:'tg-green','legal-notice':'tg-gold',affidavit:'tg-blue',agreement:'tg-green',deed:'tg-gold',poa:'tg-blue',application:'tg-gold',mou:'tg-green'};
+const DOC_ICONS = {argument:'⚔️',petition:'📜',writ:'🔏',bail:'🔓',plaint:'📋',appeal:'📣','legal-notice':'✉️',affidavit:'✍️',complaint:'⚖️','legal-opinion':'🏛️',agreement:'🤝',deed:'🏠',poa:'🪪',application:'📮',mou:'🗒️'};
+const DOC_TAGS  = {argument:'tg-green',petition:'tg-blue',writ:'tg-red',bail:'tg-gold',plaint:'tg-blue',appeal:'tg-green','legal-notice':'tg-gold',affidavit:'tg-blue',complaint:'tg-red','legal-opinion':'tg-blue',agreement:'tg-green',deed:'tg-gold',poa:'tg-blue',application:'tg-gold',mou:'tg-green'};
 
 function renderDocCard(doc) {
   const grid   = document.getElementById('docs-grid');
