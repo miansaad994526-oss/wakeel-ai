@@ -318,28 +318,10 @@ module.exports = async function handler(req, res) {
       userPrompt = buildUserPrompt(tool, fields, lang, toolTitle || tool);
     }
 
-    // Build message — include attached files as context if provided
-    const messageContent = [];
-    if (attachedFiles && attachedFiles.length) {
-      for (const file of attachedFiles) {
-        const isImage = /^image\//i.test(file.type);
-        const isPDF = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
-        if (isImage && file.data) {
-          messageContent.push({ type: 'image', source: { type: 'base64', media_type: file.type, data: file.data } });
-        } else if (isPDF && file.data) {
-          messageContent.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: file.data } });
-        }
-      }
-      if (messageContent.length) {
-        messageContent.push({ type: 'text', text: 'The above file(s) are supporting documents provided by the user. Use their content to supplement any missing field details when generating the document.' });
-      }
-    }
-    messageContent.push({ type: 'text', text: userPrompt });
-
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 6000, system: systemPromptFull, messages: [{ role: 'user', content: messageContent }] })
+      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 6000, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
     });
 
     if (!response.ok) {
