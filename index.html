@@ -2921,9 +2921,12 @@ async function extractFromDocument() {
       })
     });
 
-    const data = await response.json().catch(() => null);
-    if (!data || !response.ok) {
-      const errMsg = data?.error || 'Server error — file may be too large. Try a smaller PDF or image (under 2.5MB).';
+    const rawText = await response.text().catch(() => '');
+    let data = null;
+    try { data = JSON.parse(rawText); } catch(_) {}
+    
+    if (!response.ok || !data) {
+      const errMsg = data?.error || data?.details || rawText.substring(0, 150) || 'Server error (status ' + response.status + ')';
       throw new Error(errMsg);
     }
 
