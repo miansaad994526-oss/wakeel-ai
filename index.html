@@ -1269,6 +1269,7 @@ let currentUser = {};
 let docCount = 0;
 let monthlyGenCount = 0;
 let lastAutoSavedDocId = null;
+let isExtracting = false;
 
 /* Plan limits and pricing */
 const PLAN_LIMITS = {
@@ -1877,7 +1878,10 @@ async function generate() {
 
   const t = TOOLS[activeTool];
 
-  /* ── FIELD VALIDATION ── */
+  if (isExtracting) {
+    showToast('Please wait — document extraction is in progress', 'err');
+    return;
+  }
   const hasUploadedDoc = uploadedFiles.some(f => f.data);
   const first = document.getElementById('f0');
   if (first && !first.value.trim() && !hasUploadedDoc) {
@@ -1959,12 +1963,45 @@ async function generate() {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.error || 'API request failed (' + response.status + ')');
+      const errText = await response.text().catch(() => '');
+      let errMsg = 'API request failed (' + response.status + ')';
+      try { errMsg = JSON.parse(errText).error || errMsg; } catch(_) { errMsg = errText.substring(0, 200) || errMsg; }
+      throw new Error(errMsg);
     }
 
-    const data = await response.json();
-    let html = data.html;
+    // Handle both JSON and SSE response formats
+    const contentType = response.headers.get('content-type') || '';
+    let html = '';
+
+    if (contentType.includes('text/event-stream')) {
+      // SSE streaming response — read chunks
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let sseBuffer = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        sseBuffer += decoder.decode(value, { stream: true });
+        const lines = sseBuffer.split('\n');
+        sseBuffer = lines.pop() || '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const raw = line.slice(6).trim();
+          if (!raw) continue;
+          try {
+            const parsed = JSON.parse(raw);
+            if (parsed.error) throw new Error(parsed.error);
+            if (parsed.text) html += parsed.text;
+          } catch (_) {}
+        }
+      }
+      html = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
+    } else {
+      // JSON response
+      const data = await response.json();
+      html = data.html || '';
+    }
+
     if (!html || html.length < 50) throw new Error('AI returned empty response');
 
     document.getElementById('ws-loading').style.display = 'none';
@@ -2351,10 +2388,32 @@ async function aiRefine() {
     });
 
     if (!response.ok) throw new Error('Refine request failed');
-    const data = await response.json();
 
-    if (data.html && data.html.length > 50) {
-      doc.innerHTML = doc.querySelector('.doc-meta-bar')?.outerHTML + data.html || data.html;
+    // Handle both JSON and SSE response formats
+    const ct = response.headers.get('content-type') || '';
+    let html = '';
+    if (ct.includes('text/event-stream')) {
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        const lines = buf.split('\n'); buf = lines.pop() || '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          try { const p = JSON.parse(line.slice(6).trim()); if (p.text) html += p.text; } catch(_) {}
+        }
+      }
+      html = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
+    } else {
+      const data = await response.json();
+      html = data.html || '';
+    }
+
+    if (html && html.length > 50) {
+      doc.innerHTML = (doc.querySelector('.doc-meta-bar')?.outerHTML || '') + html;
       showToast('✅ Document refined by AI!');
     } else {
       showToast('AI returned empty response — try a different instruction', 'err');
@@ -2749,7 +2808,7 @@ function uploadSectionHTML() {
       <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.txt" />
       <div class="upload-zone-icon">📄</div>
       <div class="upload-zone-label">Drag & drop PDF or image here</div>
-      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 4MB each</div>
+      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 2.5MB each</div>
     </div>
     <div class="files-list" id="files-list"></div>
     <div class="upload-count" id="upload-count" style="display:none;"></div>
@@ -2774,7 +2833,7 @@ function initUploadZone() {
 
 function handleFiles(fileList) {
   Array.from(fileList).forEach(file => {
-    if (file.size > 4194304) { showToast('File too large: '+file.name+' (max 4MB for AI reading)', 'err'); return; }
+    if (file.size > 2621440) { showToast('File too large: '+file.name+' (max 2.5MB for AI reading)', 'err'); return; }
     if (uploadedFiles.find(f => f.name === file.name)) { showToast('Already added: '+file.name, 'err'); return; }
     if (uploadedFiles.length >= 5) { showToast('Maximum 5 files per document', 'err'); return; }
     const isReadable = /^image\/|application\/pdf/.test(file.type) || file.name.toLowerCase().endsWith('.pdf');
@@ -2836,6 +2895,7 @@ async function extractFromDocument() {
   const spinner = document.getElementById('extract-spinner');
   const label = document.getElementById('extract-label');
   btn.disabled = true;
+  isExtracting = true;
   if (spinner) spinner.style.display = 'inline-block';
   if (label) label.textContent = 'Extracting…';
 
@@ -2861,8 +2921,11 @@ async function extractFromDocument() {
       })
     });
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Extraction failed');
+    const data = await response.json().catch(() => null);
+    if (!data || !response.ok) {
+      const errMsg = data?.error || 'Server error — file may be too large. Try a smaller PDF or image (under 2.5MB).';
+      throw new Error(errMsg);
+    }
 
     const extracted = data.extracted || {};
 
@@ -2900,6 +2963,7 @@ async function extractFromDocument() {
   } finally {
     if (spinner) spinner.style.display = 'none';
     btn.disabled = false;
+    isExtracting = false;
   }
 }
 
