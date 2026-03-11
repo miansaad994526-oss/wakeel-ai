@@ -2808,7 +2808,7 @@ function uploadSectionHTML() {
       <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.txt" />
       <div class="upload-zone-icon">📄</div>
       <div class="upload-zone-label">Drag & drop PDF or image here</div>
-      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 2.5MB each</div>
+      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 3.1MB each</div>
     </div>
     <div class="files-list" id="files-list"></div>
     <div class="upload-count" id="upload-count" style="display:none;"></div>
@@ -2833,7 +2833,7 @@ function initUploadZone() {
 
 function handleFiles(fileList) {
   Array.from(fileList).forEach(file => {
-    if (file.size > 2621440) { showToast('File too large: '+file.name+' (max 2.5MB for AI reading)', 'err'); return; }
+    if (file.size > 3250585) { showToast('File too large: '+file.name+' (max 3.1MB for AI reading)', 'err'); return; }
     if (uploadedFiles.find(f => f.name === file.name)) { showToast('Already added: '+file.name, 'err'); return; }
     if (uploadedFiles.length >= 5) { showToast('Maximum 5 files per document', 'err'); return; }
     const isReadable = /^image\/|application\/pdf/.test(file.type) || file.name.toLowerCase().endsWith('.pdf');
