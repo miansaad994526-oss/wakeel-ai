@@ -1,5 +1,5 @@
 // Vercel Serverless Function — Wakeel AI Document Generation
-// Calls Claude Sonnet 4.5 — formatting from real filed documents + PLJ Law Site samples
+// Calls Claude Sonnet 4.6 — formatting from real filed documents + PLJ Law Site samples
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
@@ -28,6 +28,9 @@ WRITING QUALITY — CRITICAL:
 18. The test: Would a senior advocate reading this document say "well-drafted and to the point" or "unnecessarily long"? Aim for the former.
 19. Total output target: Main petition 1500-2500 words. Bail application 1500-2000 words. Legal notice 800-1200 words. Affidavit 300-500 words. Simple documents (POA, application) 400-800 words. These are GUIDES not hard limits — go longer only if the facts demand it.
 
+UPLOADED DOCUMENT HANDLING:
+20. If the user provides uploaded document content (OCR text from FIR, legal opinion source docs, etc.), USE that content as your primary source of facts. Extract names, dates, FIR numbers, sections, property details, and all relevant information directly from the uploaded document. Do NOT ask the user to re-provide information that is already in the uploaded document.
+
 REQUIRED CSS CLASSES:
 - doc-court-header > doc-court-name, doc-pet-no — court heading
 - doc-parties > doc-party-row > doc-party-name + doc-party-role, doc-versus — parties
@@ -45,6 +48,7 @@ REQUIRED CSS CLASSES:
 
 COURT HEADERS:
 - Sessions: "BEFORE THE COURT OF LEARNED SESSIONS JUDGE, [CITY]"
+- Magistrate: "BEFORE THE COURT OF LEARNED JUDICIAL MAGISTRATE, [CITY]"
 - High Court: "IN THE LAHORE HIGH COURT [BENCH] AT [CITY]" (bold, underlined, centered)
 - Special Court: "BEFORE THE COURT OF LEARNED SESSIONS JUDGE/ JUDGE SPECIAL COURT [TYPE], [CITY]"
 - Civil: "IN THE COURT OF [DESIGNATION], [CITY]"
@@ -85,15 +89,15 @@ PAGE 4 — INDEX: Same header. "I N D E X" centered bold. HTML table: Sr.# | Des
 
 PAGE 1 — URGENCY APPLICATION: Court header + case title. "To, The Deputy Registrar, [High Court], [Bench] at [City]." "Sir," "Will you kindly treat the accompanying petition as an urgent case in accordance with provision of Rule-9, Chapter 3-A Rules and Orders of the Lahore High Court." "The grounds of urgency is:-" Brief urgency paragraph from facts. "Yours Obedient," Signature. "Dated:________________" "THROUGH:-" advocate.
 
-PAGE 2 — MAIN WRIT PETITION: "IN THE [HIGH COURT] [BENCH] AT [CITY]" bold underlined centered. "W.P.No.__________________/[year]" centered. Petitioner details. "……………………………… (Petitioner)" right bold. "VERSUS" bold underlined centered. Respondent(s) ONLY as provided. ".………………..RESPONDENT(S)" right bold. SUBJECT: "PETITION UNDER ARTICLE 199 OF THE CONSTITUTION OF ISLAMIC REPUBLIC OF PAKISTAN, 1973 FOR [specific relief]" bold underlined. CRITICAL: Do NOT cite CrPC/CPC in subject unless case is specifically criminal/civil. Dotted separator. "Respectfully Sheweth:-" underlined. 10-12 numbered "That..." paragraphs: petitioner background, context, impugned action, illegality, rule violations, remedies exhausted, constitutional violations (Arts 4, 9, 10-A, 14, 25), precedent, no other remedy. "G R O U N D S" — lettered (a-j). "P R A Y E R" bold underlined — numbered (i-v). "HUMBLE PETITIONER" right. "Dated: ________________". "THROUGH:-" advocate. "CERTIFICATE:-".
+PAGE 2 — MAIN WRIT PETITION: "IN THE [HIGH COURT] [BENCH] AT [CITY]" bold underlined centered. "W.P.No.__________________/[year]" centered. Petitioner details. "……………………………… (Petitioner)" right bold. "VERSUS" bold underlined centered. Respondent(s) ONLY as provided. ".………………..RESPONDENT(S)" right bold. SUBJECT: "PETITION UNDER ARTICLE 199 OF THE CONSTITUTION OF ISLAMIC REPUBLIC OF PAKISTAN, 1973 FOR [specific relief]" bold underlined. CRITICAL: Do NOT cite CrPC/CPC in subject unless case is specifically criminal/civil. Dotted separator. "Respectfully Sheweth:-" underlined. 10-12 numbered "That..." paragraphs. "G R O U N D S" — lettered (a-j). "P R A Y E R" bold underlined — numbered (i-v). "HUMBLE PETITIONER" right. "Dated: ________________". "THROUGH:-" advocate. "CERTIFICATE:-".
 
-PAGE 3 — AFFIDAVIT: Same header + case title. "Affidavit of:- [name]" bold underlined. "I, the above named deponent, do hereby solemnly affirm and declare on oath as under:-" 8 sworn paragraphs. Last: "contents true and correct...nothing concealed...no misrepresentation." "……DEPONENT" right. "VERIFICATION:-" "Verified on oath at [city]..." "……DEPONENT" right.
+PAGE 3 — AFFIDAVIT: Same header + case title. "Affidavit of:- [name]" bold underlined. 8 sworn paragraphs. "……DEPONENT" right. "VERIFICATION:-" "Verified on oath at [city]..." "……DEPONENT" right.
 
-PAGE 4 — DISPENSATION APPLICATION: Same header. "APPLICATION FOR DISPENSING WITH THE CERTIFIED COPIES OF ANNEXURES." bold underlined centered. "Respectfully Sheweth:-" "That the petitioner has filed the accompanying Writ Petition without certified copies..." Prayer. Signature.
+PAGE 4 — DISPENSATION APPLICATION: Same header. "APPLICATION FOR DISPENSING WITH THE CERTIFIED COPIES OF ANNEXURES." bold underlined centered. Body. Prayer. Signature.
 
-PAGE 5 — INDEX: Same header. "I N D E X" centered bold. Table: Sr.# | Description | Annex | Date | Page #. Rows: 1. Urgency Form 2. Writ Petition and Affidavit 3. [Annexures from facts — Annex A, B, C] 4. Dispensation Application 5. Power of Attorney. Signature.`,
+PAGE 5 — INDEX: Same header. "I N D E X" centered bold. Table: Sr.# | Description | Annex | Date | Page #. Rows: 1. Urgency Form 2. Writ Petition and Affidavit 3. [Annexures from facts] 4. Dispensation Application 5. Power of Attorney. Signature.`,
 
-  bail: `Generate a COMPLETE BAIL APPLICATION FILING PACKAGE. Verified from real filed petitions + PLJ Law Site samples. All sections separated by <hr class="doc-page-break">.
+  bail: `Generate a COMPLETE BAIL APPLICATION FILING PACKAGE. All sections separated by <hr class="doc-page-break">.
 
 PAGE 1 — MAIN BAIL PETITION:
 Sessions Court: "BEFORE THE COURT OF LEARNED SESSIONS JUDGE, [CITY]" centered bold.
@@ -106,7 +110,7 @@ Para 1: "That an FIR No. [X] was lodged..." narrate facts.
 Para 2: Prior bail history if applicable.
 Para 3: "That the whole story narrated in FIR is false and fabricated..."
 
-"G R O U N D S" centered bold. Select 10-14 RELEVANT grounds from below — ONLY include those that APPLY to this specific case. Do not include all 20 generic grounds:
+"G R O U N D S" centered bold. Select 10-14 RELEVANT grounds — ONLY include those that APPLY to this specific case. Do not include all 20 generic grounds:
 a) Innocence/false implication — only if user claims false case
 b) Delay in FIR — only if delay actually exists in facts
 c) No nexus with alleged story — always applicable
@@ -128,28 +132,24 @@ r) Ready to join investigation — pre-arrest only
 s) No absconding risk — always applicable
 t) Ready to furnish bail bonds — always last ground
 
-"P R A Y E R" bold.
-Post-arrest: "...post-arrest bail may kindly be granted and petitioner released till disposal of main case."
-Pre-arrest: "...pre-arrest bail till final disposal...ad-interim pre-arrest bail during pendency."
+"P R A Y E R" bold. Post-arrest: "...post-arrest bail may kindly be granted and petitioner released till disposal of main case." Pre-arrest: "...pre-arrest bail till final disposal...ad-interim pre-arrest bail during pendency."
 "P E T I T I O N E R" spaced right. "Through:-" advocate. "Dated:________________". "CERTIFICATE:-".
 
-PAGE 2 — AFFIDAVIT: Same header + case title. "AFFIDAVIT" centered. "of [name details]". "I, the above named deponent, do hereby solemnly affirm and declare as under:-" "That contents of the accompanying Bail Application are true to the best of my knowledge and belief and be read as integral part of this affidavit." "……DEPONENT" right. "VERIFICATION" "Verified on oath at [city]..." "……DEPONENT" right.
+PAGE 2 — AFFIDAVIT: Same header + case title. "AFFIDAVIT" centered. "of [name details]". Sworn paragraphs. "……DEPONENT" right. "VERIFICATION" "Verified on oath at [city]..." "……DEPONENT" right.
 
-PAGE 3 — DISPENSATION APPLICATION: Same header. "APPLICATION U/S 561-A Cr.P.C FOR DISPENSATION OF UNCERTIFIED DOCUMENTS." bold underlined. Body requesting dispensation of certified copies. Prayer. Signature.
+PAGE 3 — DISPENSATION APPLICATION: Same header. "APPLICATION U/S 561-A Cr.P.C FOR DISPENSATION OF UNCERTIFIED DOCUMENTS." bold underlined. Body. Prayer. Signature.
 
-PAGE 4 — INDEX: Same header + "(PRE-ARREST BAIL)" or "(POST-ARREST BAIL)" label. "I N D E X" centered. Table: 1. Petition and Affidavit 2. Copy of FIR — Annex A 3. [Other annexures] 4. Dispensation Application 5. Power of Attorney. Signature.`,
+PAGE 4 — INDEX: Same header. "I N D E X" centered. Table. Signature.`,
 
   plaint: `Generate a COMPLETE PLAINT / CIVIL SUIT under Order VII CPC. Real Pakistani civil court format.
-Court header: "IN THE COURT OF [DESIGNATION], [CITY]". "Suit No. ___________/[year]". Plaintiff details → "PLAINTIFF" right. "VERSUS". Defendant → "DEFENDANT(S)" right. SUBJECT: "SUIT FOR [TYPE] [description]" bold underlined.
-Numbered paragraphs: 1. Addresses true and correct. 2-8. Detailed facts chronologically. 9. CAUSE OF ACTION: "cause of action firstly accrued..." 10. LIMITATION: "suit falling under [section] Limitation Act is within time." 11. JURISDICTION. 12. VALUATION: court fee and jurisdiction value.
-"P R A Y E R" — specific reliefs + "Any other relief which this Hon'ble Court deems fit."
-"VERIFICATION:-" "Verified on oath at [city]..." "PLAINTIFF" right. "Through:-" advocate.`,
+Court header: "IN THE COURT OF [DESIGNATION], [CITY]". "Suit No. ___________/[year]". Plaintiff → "PLAINTIFF" right. "VERSUS". Defendant → "DEFENDANT(S)" right. SUBJECT bold underlined.
+Numbered paragraphs: 1. Addresses true and correct. 2-8. Detailed facts. 9. CAUSE OF ACTION. 10. LIMITATION. 11. JURISDICTION. 12. VALUATION.
+"P R A Y E R". "VERIFICATION:-" "Verified on oath at [city]..." "PLAINTIFF" right. "Through:-" advocate.`,
 
   appeal: `Generate a COMPLETE APPEAL / REVISION PETITION with companion affidavit.
-Appellate court header. "Criminal/Civil Appeal No. ___/[year]" or "Revision No. ___/[year]". "IN [original case reference]". Appellant → "APPELLANT" right. "VERSUS". Respondent → "RESPONDENT(S)" right. "MEMORANDUM OF APPEAL" bold underlined centered.
-Para 1: Reference impugned judgment — date, court, case, outcome. Para 2: Brief facts. Para 3: "Being aggrieved, appellant prefers this appeal on following grounds:-"
-"G R O U N D S" — lettered (a-j): misreading evidence, failure to appreciate testimony, error of law, against weight of evidence, perverse findings, case-specific grounds.
-"P R A Y E R" — accept appeal, set aside impugned order, grant relief. Certificate.
+Appellate court header. "Criminal/Civil Appeal No. ___/[year]". Appellant → "APPELLANT" right. "VERSUS". Respondent → "RESPONDENT(S)" right. "MEMORANDUM OF APPEAL" bold underlined centered.
+Para 1: Impugned judgment reference. Para 2: Brief facts. Para 3: "Being aggrieved, appellant prefers this appeal on following grounds:-"
+"G R O U N D S" — lettered (a-j). "P R A Y E R". Certificate.
 <hr class="doc-page-break"> AFFIDAVIT + VERIFICATION.`,
 
   'legal-notice': `Generate a FORMAL LEGAL NOTICE as a LETTER — NOT a court document. No court header, no parties block, no "Respectfully Sheweth".
@@ -165,6 +165,39 @@ If for court: court header + case title. If standalone: "AFFIDAVIT" centered bol
 Numbered "That..." paragraphs (6-8). Second-to-last: "contents true and correct...nothing concealed." Last: "made in good faith and in support of [purpose]."
 "……………… DEPONENT" right bold. "VERIFICATION:-" bold. "Verified on oath at [city] this ___day of ________, [year]..." "…………… DEPONENT" right bold.`,
 
+  complaint: `Generate a COMPLETE CRIMINAL COMPLAINT FILING PACKAGE. All 4 sections separated by <hr class="doc-page-break">.
+
+PAGE 1 — MAIN COMPLAINT:
+Court header: "BEFORE THE COURT OF LEARNED JUDICIAL MAGISTRATE, [CITY]" centered bold. For §156(3): "BEFORE THE COURT OF LEARNED SENIOR CIVIL JUDGE / JUDICIAL MAGISTRATE, [CITY]".
+"Complaint No. ___________/[year]" centered.
+Complainant details → "……………… COMPLAINANT" right bold. "VERSUS" centered bold underlined. Accused details → "……………… ACCUSED" right bold.
+SUBJECT: "CRIMINAL COMPLAINT UNDER SECTION 200 Cr.P.C. READ WITH SECTIONS [PPC] PPC" bold underlined.
+"Respectfully Sheweth:-" Numbered "That..." paragraphs (8-10): complainant intro, accused background, offence narrative, how offence was committed, police refused FIR, PPC offences with section titles, jurisdiction, first complaint, ready to produce evidence.
+"P R A Y E R" — take cognizance, summon accused, direct SHO to register FIR (for §156(3)), specific relief, any other relief.
+"COMPLAINANT" right. "Through:-" advocate. "CERTIFICATE:-".
+
+PAGE 2 — AFFIDAVIT: Same header. 5-6 sworn paragraphs. "……DEPONENT" right. "VERIFICATION". 
+
+PAGE 3 — DISPENSATION: 1 paragraph only. Prayer. Signature.
+
+PAGE 4 — INDEX: Table only. Signature.`,
+
+  'legal-opinion': `Generate a PROFESSIONAL LEGAL OPINION in Pakistani advocate format for banks/institutions.
+
+FORMAT — LETTER STYLE (not court petition):
+Advocate letterhead: Name, "ADVOCATE HIGH COURT", CC No., address, phone/email.
+"Ref No. [ref]" right-aligned. "Dated: [date or ________________]"
+Addressee: "The [designation]," institution, address.
+Case label centered bold underlined (e.g. "SWAP CASE" or "FRESH CASE").
+Title centered bold underlined: "LEGAL OPINION IN RESPECT OF PROPERTY DOCUMENTS A/C [CLIENT NAME] AT YOUR [BRANCH] BRANCH [CITY]."
+
+Introductory paragraphs: nature of matter, borrower details with CNIC.
+PROPERTY SECTIONS — for each property: bold underlined sub-headings for Chain Documents, Fard Malkiyat, Mortgage Deed, Mutation, EC, NEC, Aks Shajara, Nishandahi Report, GPA, Completion Certificate, Site Plan, Valuation Report.
+"MY OPINION" bold underlined centered: professional assessment of title status, encumbrances, deficiencies, recommendation.
+"Thanking You," Signature block.
+
+CRITICAL: Use ALL details from uploaded documents. Extract property descriptions, document numbers, dates, values from source material.`,
+
   agreement: `Generate LEGAL AGREEMENT under Contract Act 1872. Real Pakistani format.
 "[AGREEMENT TYPE]" centered bold underlined. "FOR RS. [amount]/-" if monetary. "This [type] is executed and made at [city], this ___day of ________, [year];"
 "BETWEEN;" Party 1 details with s/o, CNIC, address "(hereinafter called 'THE FIRST PARTY'...)". "AND" bold. Party 2 "(hereinafter called 'THE SECOND PARTY'...)".
@@ -174,7 +207,7 @@ Numbered "That..." paragraphs (6-8). Second-to-last: "contents true and correct.
   deed: `Generate SALE/TRANSFER DEED in real Pakistani registered deed format.
 "[DEED TYPE] FOR RS. [amount]/-" centered bold underlined. "This [type] is executed at [city], this ___day of ________;"
 "BETWEEN;" Seller details with CNIC "(hereinafter 'THE VENDOR')". "AND" bold. Buyer details "(hereinafter 'THE VENDEE')".
-"WHEREAS" clauses (1-3): ownership/title chain, agreement, consideration. "NOW THIS DEED WITNESSETH:-" bold underlined. Numbered clauses (1-10): transfer, consideration, possession, title warranty, encumbrance-free (free from mortgage, lien, gift, will, waqf, dower, acquisition), indemnity, mutation, further assurance.
+"WHEREAS" clauses (1-3). "NOW THIS DEED WITNESSETH:-" bold underlined. Numbered clauses (1-10): transfer, consideration, possession, title warranty, encumbrance-free, indemnity, mutation, further assurance.
 "SCHEDULE OF PROPERTY" bold underlined. Property description. "Bounded as follows:- a) NORTH b) SOUTH c) EAST d) WEST."
 "IN WITNESS WHEREOF..." Signature blocks. "WITNESSES:-" 2 blocks.`,
 
@@ -191,50 +224,6 @@ FOR EARLY HEARING: Court header, "APPLICATION FOR EARLY HEARING" bold underlined
 FOR TRANSFER: "APPLICATION FOR TRANSFER OF CASE", facts, grounds, prayer.
 FOR CONSOLIDATION: Multiple case titles, "APPLICATION FOR CONSOLIDATION", common issues, prayer.`,
 
-
-  'legal-opinion': `Generate a PROFESSIONAL LEGAL OPINION in the exact format used by Pakistani advocates for banks and institutions.
-
-FORMAT — LETTER STYLE (not a court petition):
-
-HEADER: Advocate letterhead: Name, "ADVOCATE HIGH COURT", CC No., address, phone/email.
-"Ref No. [ref]" tab-right "Dated: [date or ________________]"
-
-ADDRESSEE: "The [designation]," → institution name → address. Two blank lines.
-
-CASE LABEL (centered, bold, underlined): e.g. "SWAP CASE" or "FRESH CASE" or case type as applicable.
-
-TITLE (centered, bold, underlined):
-"LEGAL OPINION IN RESPECT OF PROPERTY DOCUMENTS A/C
-[CLIENT NAME] AT YOUR [BRANCH NAME] BRANCH [CITY]."
-
-INTRODUCTORY PARAGRAPH(S): Briefly describe the nature of the matter — who the borrower is, what kind of facility/transaction, general context.
-
-BORROWER DETAILS: "That [Client Name] is a [individual/private limited company/firm] of [directors/partners with CNIC numbers] who applied for [fund-based/non-fund-based] facilities from your branch."
-
-PROPERTY SECTIONS — for each property mentioned:
-"PROPERTY NO.[X] ([size e.g. 01K / 10M / 18.81M])"
-Bold underlined sub-headings for each document type:
-- CHAIN DOCUMENTS: Describe each Sale Deed (document No., date, Sub-Registrar, land description with Khewat/Khatooni/Qita/share/Mouza/Tehsil/District, previous owners, Mutation No. with sanction date)
-- FARD MALKIYAT: Date, what it shows (ownership/mortgage status)
-- MORTGAGE DEED: No., date, in favor of whom
-- MUTATION: Date, what transferred, mutation number
-- EC (Encumbrance Certificate): Date, Sub-Registrar, what it shows
-- NEC: Date, what it shows
-- AKS SHAJARA: Date on record
-- NISHANDAHI REPORT: Date, issued by Tehsildar — North/South/East/West boundaries
-- GENERAL POWER OF ATTORNEY: if applicable
-- COMPLETION CERTIFICATE: date, issued by, in whose name
-- SITE PLAN: building plan No., date, issued by, area, approved date
-- VALUATION REPORT: Report No., date, prepared by (surveyor), market value and FSV
-- Any other documents mentioned by user
-
-MY OPINION (bold underlined centered):
-Professional legal opinion paragraph — advise on title status, encumbrances, whether documents are in order, any deficiencies, and recommendation (e.g. "documents are in order and title is clear" or "following documents need to be obtained"). End with specific advice like: "The Undersigned further advises that the process of [specific action] should be done on war footing basis to secure the Bank's Interest."
-
-CLOSING: "Thanking You,"
-Signature block: Advocate name (caps, bold), designation.
-
-LANGUAGE: Formal English. Property terms in standard Pakistani revenue record format (Khewat, Khatooni, Qita, Mouza, Kanals, Marlas). Do NOT add information the user did not provide — if only partial property details given, structure the opinion around what was provided. Do NOT invent document numbers, dates, or values.`,
   mou: `Generate MOU in Pakistani commercial format.
 "MEMORANDUM OF UNDERSTANDING" centered bold underlined. "This MOU is entered into on this ___day of ________, [year] at [city]."
 "BETWEEN" Party 1 "(First Party)" "AND" Party 2 "(Second Party)". "(collectively 'the Parties')".
@@ -244,7 +233,7 @@ LANGUAGE: Formal English. Property terms in standard Pakistani revenue record fo
 
 function buildUserPrompt(tool, fields, lang, toolTitle) {
   const fieldEntries = Object.entries(fields)
-    .filter(([k, v]) => v && v.trim())
+    .filter(([k, v]) => v && v.trim() && k !== 'uploadedDocContent')
     .map(([k, v]) => `${k}: ${v.trim()}`)
     .join('\n');
 
@@ -255,7 +244,13 @@ function buildUserPrompt(tool, fields, lang, toolTitle) {
     langNote = 'LANGUAGE: Formal Pakistani legal English.';
   }
 
-  return `Generate a ${toolTitle} with these details:\n\n${langNote}\n\nUSER DETAILS:\n${fieldEntries}\n\nREMEMBER: ONLY use facts/names/parties the user provided above. Generate complete document HTML now with full depth and all companion sections.`;
+  // Include uploaded document content if available
+  let docSection = '';
+  if (fields.uploadedDocContent) {
+    docSection = `\n\nUPLOADED DOCUMENT CONTENT (use this as primary source of facts — extract all names, dates, numbers, details from this):\n---\n${fields.uploadedDocContent.substring(0, 8000)}\n---`;
+  }
+
+  return `Generate a ${toolTitle} with these details:\n\n${langNote}\n\nUSER DETAILS:\n${fieldEntries}${docSection}\n\nREMEMBER: ONLY use facts/names/parties the user provided above. Generate complete document HTML now.`;
 }
 
 module.exports = async function handler(req, res) {
@@ -285,12 +280,12 @@ module.exports = async function handler(req, res) {
       } else {
         return res.status(400).json({ error: 'Only PDF and image files support auto-extraction' });
       }
-      msgContent.push({ type: 'text', text: `You are extracting information from a legal document to fill a form for the tool: "${toolTitle || tool}".\n\nExtract all relevant information and return ONLY a JSON object with the following field IDs as keys. Use the label hints to map content correctly:\n\n${fields.fieldSchema}\n\nReturn ONLY valid JSON, no explanation, no markdown fences. If a field cannot be determined, use empty string "".` });
+      msgContent.push({ type: 'text', text: `You are extracting information from a legal document to fill a form for the tool: "${toolTitle || tool}".\n\nExtract all relevant information and return ONLY a JSON object with the following field IDs as keys. Use the label hints to map content correctly:\n\n${fields.fieldSchema}\n\nAlso include a key called "__docText__" containing a plain-text summary (max 3000 chars) of the full document content for use during generation.\n\nReturn ONLY valid JSON, no explanation, no markdown fences. If a field cannot be determined, use empty string "".` });
 
       const extractRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 2000, messages: [{ role: 'user', content: msgContent }] })
+        body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 4000, messages: [{ role: 'user', content: msgContent }] })
       });
       if (!extractRes.ok) {
         const errBody = await extractRes.text();
@@ -301,7 +296,7 @@ module.exports = async function handler(req, res) {
       const clean = rawText.replace(/^```json?\s*/i, '').replace(/```\s*$/i, '').trim();
       try {
         const parsed = JSON.parse(clean);
-        return res.status(200).json({ extracted: parsed });
+        return res.status(200).json({ extracted: parsed, usage: extractData.usage });
       } catch (e) {
         return res.status(200).json({ extracted: {}, raw: rawText });
       }
@@ -321,7 +316,7 @@ module.exports = async function handler(req, res) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5-20250929', max_tokens: 6000, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 8000, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
     });
 
     if (!response.ok) {
