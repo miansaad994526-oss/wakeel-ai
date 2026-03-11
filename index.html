@@ -810,7 +810,7 @@ select option{background:#fff;}
       <div class="sb-item" onclick="openTool('legal-notice',this)"><span class="sb-item-icon">✉️</span>Legal Notice</div>
       <div class="sb-item" onclick="openTool('affidavit',this)"><span class="sb-item-icon">✍️</span>Affidavit / Oath</div>
       <div class="sb-item" onclick="openTool('complaint',this)"><span class="sb-item-icon">⚖️</span>Criminal Complaint</div>
-      <div class="sb-item" onclick="openTool('legal-opinion',this)"><span class="sb-item-icon">📋</span>Legal Opinion</div>
+      <div class="sb-item" onclick="openTool('legal-opinion',this)"><span class="sb-item-icon">🏛️</span>Legal Opinion</div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Transactional Documents</div>
@@ -889,8 +889,8 @@ select option{background:#fff;}
         <div class="tool-card" onclick="openTool('appeal')"><span class="tool-icon">📣</span><div class="tool-name">Appeal / Revision</div><div class="tool-desc">File appeals against trial court decisions with complete legal grounds and prayer</div><span class="tool-tag tg-green">All Courts</span></div>
         <div class="tool-card" onclick="openTool('legal-notice')"><span class="tool-icon">✉️</span><div class="tool-name">Legal Notice</div><div class="tool-desc">Formal legal notices for recovery, breach of contract, cheque dishonour, property</div><span class="tool-tag tg-gold">Formal</span></div>
         <div class="tool-card" onclick="openTool('affidavit')"><span class="tool-icon">✍️</span><div class="tool-name">Affidavit / Oath</div><div class="tool-desc">Sworn affidavits and declarations under the Oaths Act 1873 for court submission</div><span class="tool-tag tg-blue">Documentation</span></div>
-        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">⚖️</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under §200 & §156(3) CrPC before Magistrate — cheating, fraud, harassment, assault</div><span class="tool-tag tg-red">Criminal</span></div>
-        <div class="tool-card" onclick="openTool('legal-opinion')"><span class="tool-icon">🏛️</span><div class="tool-name">Legal Opinion</div><div class="tool-desc">Professional legal opinions on property title, banking, corporate & contractual matters for banks and institutions</div><span class="tool-tag tg-blue">Advisory</span></div>
+        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">⚖️</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under §200 & §156(3) CrPC before Magistrate — cheating, fraud, harassment</div><span class="tool-tag tg-red">Criminal</span></div>
+        <div class="tool-card" onclick="openTool('legal-opinion')"><span class="tool-icon">🏛️</span><div class="tool-name">Legal Opinion</div><div class="tool-desc">Professional legal opinions on property title, banking, corporate & contractual matters</div><span class="tool-tag tg-blue">Advisory</span></div>
       </div>
       <div class="sec-head"><h2>Transactional Documents</h2><div class="sec-head-line"></div></div>
       <div class="tools-grid">
@@ -1013,7 +1013,7 @@ select option{background:#fff;}
           </div>
           <div class="plan-body">
             <ul class="plan-features">
-              <li>5 documents per month</li><li>All 13 legal tools</li><li>Copy & print output</li>
+              <li>5 documents per month</li><li>All 15 legal tools</li><li>Copy & print output</li>
               <li class="no">Save to My Documents</li><li class="no">PDF export</li><li class="no">Priority support</li>
             </ul>
             <button class="plan-btn outline" id="plan-btn-free">Current Plan</button>
@@ -1031,7 +1031,7 @@ select option{background:#fff;}
           </div>
           <div class="plan-body">
             <ul class="plan-features">
-              <li>60 documents per month</li><li>All 13 legal tools</li><li>Save & manage documents</li>
+              <li>60 documents per month</li><li>All 15 legal tools</li><li>Save & manage documents</li>
               <li>Copy, print & PDF export</li><li>Pakistani case law references</li><li>Email support</li>
             </ul>
             <button class="plan-btn gold" id="plan-btn-pro" onclick="openUpgrade(isAnnualBilling ? 'pro-annual' : 'pro')">Upgrade to Pro →</button>
@@ -1595,6 +1595,12 @@ const COURT_OPTIONS = `
   <option>Civil Judge, Faisalabad</option><option>Civil Judge, Multan</option>
   <option>Civil Judge, Peshawar</option><option>Civil Judge, Quetta</option>
 </optgroup>
+<optgroup label="Magistrate Courts">
+  <option>Judicial Magistrate, Lahore</option><option>Judicial Magistrate, Karachi</option>
+  <option>Judicial Magistrate, Islamabad</option><option>Judicial Magistrate, Rawalpindi</option>
+  <option>Judicial Magistrate, Faisalabad</option><option>Judicial Magistrate, Multan</option>
+  <option>Judicial Magistrate, Peshawar</option><option>Judicial Magistrate, Quetta</option>
+</optgroup>
 <optgroup label="Special Courts">
   <option>Anti-Terrorism Court</option><option>Banking Court</option>
   <option>Family Court</option><option>Labour Court</option><option>Consumer Court</option>
@@ -1699,34 +1705,35 @@ const TOOLS = {
     <div class="fld"><label class="fld-lbl">Deponent Address / پتہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="مکمل رہائشی پتہ — Full address" /></div>
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Relation to Case / مقدمے سے تعلق</label><input type="text" id="f3" placeholder="e.g. ملزم کا والد — Father of accused" /></div>
     <div class="fld"><label class="fld-lbl">Court / Authority / عدالت</label><input type="text" id="f4" placeholder="e.g. Sessions Court Lahore" /></div></div>
-    <div class="fld"><label class="fld-lbl">Content of Oath / حلف کا مضمون <span class="fld-req">*</span></label><textarea id="f5" placeholder="حلف برار کیا بیان دے رہا ہے — واقعات، کردار، جائیداد…"></textarea></div>`
+    <div class="fld"><label class="fld-lbl">Content of Oath / حلف کا مضمون <span class="fld-req">*</span></label><textarea id="f5" placeholder="حلف برار کیا بیان دے رہا ہے — واقعات، کردار، جائیداد…"></textarea></div><div id="lang-row"></div>`
   },
   complaint:{
     title:'Criminal Complaint',sub:'Criminal complaints under §200 & §156(3) CrPC before Judicial Magistrate',loadMsg:'Drafting criminal complaint under CrPC §200/156(3)…',
-    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / شکایت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC — Before Magistrate (مجسٹریٹ کے سامنے فوجداری شکایت)</option><option>Application u/s 156(3) CrPC — FIR Registration (ایف آئی آر درج کروانے کی درخواست)</option><option>Complaint of Cheating / Fraud — §420 PPC (دھوکہ دہی)</option><option>Complaint of Forgery — §468/471 PPC (جعلسازی)</option><option>Complaint of Criminal Breach of Trust — §406 PPC (امانت میں خیانت)</option><option>Complaint of Harassment / Stalking — §509 PPC / PECA (ہراسانی)</option><option>Complaint of Assault / Hurt — §337/352 PPC (مار پیٹ)</option><option>Complaint of Wrongful Confinement — §342 PPC (غیر قانونی قید)</option><option>Complaint of Mischief — §427 PPC (نقصان)</option><option>Complaint of Defamation — §499/500 PPC (ہتک عزت)</option><option>Complaint of Trespass — §447 PPC (بے اجازت داخل)</option><option>Complaint of Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Complaint of Domestic Violence (گھریلو تشدد)</option><option>Consumer Complaint — CPPA 2019 (صارفین شکایت)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / شاکی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="شاکی کا مکمل نام ولدیت پتہ — Full name s/o, Address, CNIC" /></div>
-    <div class="fld"><label class="fld-lbl">Accused / ملزم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ملزم کا نام پتہ — Name, address of accused" /></div></div>
+    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / شکایت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC (مجسٹریٹ کے سامنے فوجداری شکایت)</option><option>Application u/s 156(3) CrPC — FIR Registration (ایف آئی آر درج کروانا)</option><option>Complaint of Cheating / Fraud — §420 PPC (دھوکہ دہی)</option><option>Complaint of Forgery — §468/471 PPC (جعلسازی)</option><option>Complaint of Criminal Breach of Trust — §406 PPC (امانت میں خیانت)</option><option>Complaint of Harassment — §509 PPC / PECA (ہراسانی)</option><option>Complaint of Assault / Hurt — §337/352 PPC (مار پیٹ)</option><option>Complaint of Wrongful Confinement — §342 PPC (غیر قانونی قید)</option><option>Complaint of Defamation — §499/500 PPC (ہتک عزت)</option><option>Complaint of Trespass — §447 PPC (بے اجازت داخل)</option><option>Complaint of Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Complaint of Domestic Violence (گھریلو تشدد)</option><option>Consumer Complaint — CPPA 2019 (صارفین شکایت)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / شاکی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="شاکی کا مکمل نام ولدیت پتہ CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Accused / ملزم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ملزم کا نام پتہ" /></div></div>
     <div class="fld"><label class="fld-lbl">Court / Magistrate / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
     <div class="fld"><label class="fld-lbl">Offence Sections / دفعات</label><input type="text" id="f4" placeholder="e.g. 420, 468, 471 PPC — خالی چھوڑیں AI خود لگائے گا" /><div class="fld-hint">خالی چھوڑیں — AI automatically selects relevant PPC sections</div></div>
-    <div class="fld"><label class="fld-lbl">Facts of Complaint / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f5" placeholder="مکمل واقعات بیان کریں — تاریخیں، مقام، کیا ہوا، گواہان — What happened, when, where, witnesses…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Facts of Complaint / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f5" placeholder="مکمل واقعات — تاریخیں، مقام، کیا ہوا، گواہان"></textarea></div>
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Date of Incident / واقعے کی تاریخ</label><input type="text" id="f6" placeholder="e.g. 15-01-2025" /></div>
-    <div class="fld"><label class="fld-lbl">Loss / Damage / نقصان</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000 یا جائیداد کی تفصیل" /></div></div>
-    <div class="fld"><label class="fld-lbl">Evidence Available / دستیاب شواہد</label><textarea id="f8" placeholder="دستاویزات، گواہان، چیک، رسیدیں، ویڈیو — Documents, witnesses, receipts…" style="min-height:72px;"></textarea></div>`
+    <div class="fld"><label class="fld-lbl">Loss / Damage / نقصان</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000" /></div></div>
+    <div class="fld"><label class="fld-lbl">Evidence Available / دستیاب شواہد</label><textarea id="f8" placeholder="دستاویزات، گواہان، چیک، رسیدیں" style="min-height:72px;"></textarea></div><div id="lang-row"></div>`
   },
   'legal-opinion':{
     title:'Legal Opinion',sub:'Professional legal opinions on property title, banking, corporate & contractual matters',loadMsg:'Drafting Legal Opinion…',
     fields:`<div class="fld"><label class="fld-lbl">Opinion Type <span class="fld-req">*</span></label><select id="f0"><option>Property Title / Documents Opinion (جائیداد کی ملکیت رائے)</option><option>Banking / Mortgage / Collateral Opinion (بینکاری رائے)</option><option>Corporate / Company Law Opinion (کمپنی قانون رائے)</option><option>Contractual / Agreement Opinion (معاہدہ رائے)</option><option>Succession / Inheritance Opinion (وراثت رائے)</option><option>General Legal Opinion (عمومی قانونی رائے)</option></select></div>
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Reference No. / حوالہ نمبر</label><input type="text" id="f1" placeholder="e.g. PRMO/BOP/25/41" /></div>
     <div class="fld"><label class="fld-lbl">Addressee / مخاطب <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="e.g. The Head RCAD, Bank of Punjab, Multan" /></div></div>
-    <div class="fld"><label class="fld-lbl">Subject / Case Title / عنوان <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. Legal Opinion in respect of M/S Khawar Construction — BOP LMQ Road Branch" /></div>
-    <div class="fld"><label class="fld-lbl">Party / Client / Borrower Details <span class="fld-req">*</span></label><textarea id="f4" placeholder="Name, CNIC, address of borrower/party — e.g. M/S Khawar Construction (Pvt) Ltd, Directors: Khawar Hasnain CNIC 36302-2097079-9"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Property / Matter Details <span class="fld-req">*</span></label><textarea id="f5" placeholder="Describe each property or matter — size, location, mouza, documents (Sale Deed, Fard, Mutation, EC, Mortgage Deed, Valuation), chain of title, any encumbrances…" style="min-height:120px;"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Documents Available / دستیاب دستاویزات</label><textarea id="f6" placeholder="e.g. Sale Deed, Fard Malkiyat, Mutation, NEC, EC, Aks Shajara, Nishandahi Report, Valuation Report, Completion Certificate, Site Plan, Mortgage Deed…" style="min-height:72px;"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Market Value / قیمت</label><input type="text" id="f7" placeholder="e.g. Rs. 13,500,000 / FSV Rs. 11,475,000" /></div>
-    <div class="fld"><label class="fld-lbl">City / شہر</label><input type="text" id="f8" placeholder="e.g. Multan, Lahore, Karachi" /></div></div>
-    <div class="fld"><label class="fld-lbl">Advocate Name & Designation</label><input type="text" id="f9" placeholder="e.g. Hafiz Muhammad Shuaib — Advocate High Court" /></div>`
+    <div class="fld"><label class="fld-lbl">Subject / Case Title / عنوان <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. Legal Opinion in respect of M/S Khawar Construction" /></div>
+    <div class="fld"><label class="fld-lbl">Party / Client / Borrower Details <span class="fld-req">*</span></label><textarea id="f4" placeholder="Name, CNIC, address of borrower/party"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Property / Matter Details <span class="fld-req">*</span></label><textarea id="f5" placeholder="Property details, documents, chain of title, encumbrances…" style="min-height:120px;"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Documents Available / دستیاب دستاویزات</label><textarea id="f6" placeholder="Sale Deed, Fard, Mutation, EC, Mortgage Deed, Valuation…" style="min-height:72px;"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Market Value / قیمت</label><input type="text" id="f7" placeholder="e.g. Rs. 13,500,000" /></div>
+    <div class="fld"><label class="fld-lbl">City / شہر</label><input type="text" id="f8" placeholder="e.g. Multan" /></div></div>
+    <div class="fld"><label class="fld-lbl">Advocate Name & Designation</label><input type="text" id="f9" placeholder="e.g. Hafiz Muhammad Shuaib — Advocate High Court" /></div><div id="lang-row"></div>`
   },
   agreement:{
+    title:'Agreement / Contract',sub:'Legally binding agreements — employment, service, tenancy, sale, partnership',loadMsg:'Drafting agreement under Contract Act 1872…',
     fields:`<div class="fld"><label class="fld-lbl">Agreement Type / معاہدے کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Employment Agreement (ملازمت کا معاہدہ)</option><option>Service Agreement (خدمات کا معاہدہ)</option><option>Tenancy / Lease Agreement (کرایہ نامہ)</option><option>Sale Agreement / Bai Nama (بیع نامہ)</option><option>Partnership Agreement (شراکت نامہ)</option><option>Loan Agreement (قرض نامہ)</option><option>Consultancy Agreement (مشاورتی معاہدہ)</option><option>Non-Disclosure Agreement / NDA (رازداری معاہدہ)</option><option>Joint Venture Agreement (مشترکہ کاروبار)</option><option>Franchise Agreement (فرنچائز)</option><option>Supply / Purchase Agreement (خرید و فروخت)</option><option>Construction Agreement (تعمیراتی معاہدہ)</option><option>Settlement / Compromise Agreement (صلح نامہ)</option></select></div>
     <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 — Name / فریق اول کا نام <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام / کمپنی کا نام" /></div>
     <div class="fld"><label class="fld-lbl">Party 2 — Name / فریق دوم کا نام <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="نام / کمپنی کا نام" /></div></div>
@@ -1870,22 +1877,34 @@ async function generate() {
 
   const t = TOOLS[activeTool];
 
-  /* ── FIELD VALIDATION (skipped if document uploaded) ── */
+  /* ── FIELD VALIDATION ── */
   const hasUploadedDoc = uploadedFiles.some(f => f.data);
+  const first = document.getElementById('f0');
+  if (first && !first.value.trim() && !hasUploadedDoc) {
+    showToast('Please fill in the required fields — or upload a document', 'err');
+    first.focus(); return;
+  }
+
+  // Check required textareas — detail fields need 15+ words, others just non-empty
   if (!hasUploadedDoc) {
-    const first = document.getElementById('f0');
-    if (first && !first.value.trim()) {
-      showToast('Please fill in the required fields — or upload a document to auto-fill', 'err');
-      first.focus(); return;
-    }
     const textareas = document.querySelectorAll('#ws-fields textarea');
     for (const ta of textareas) {
       const lbl = ta.closest('.fld')?.querySelector('.fld-lbl');
       const isRequired = lbl && lbl.querySelector('.fld-req');
-      if (isRequired && !ta.value.trim()) {
-        const fieldName = lbl ? lbl.textContent.replace(/\s*\*\s*$/, '').split('/')[0].trim() : 'Field';
-        showToast('Please fill in: ' + fieldName + ' — or upload a document to auto-fill', 'err');
+      if (!isRequired) continue;
+      const fieldName = lbl ? lbl.textContent.replace(/\s*\*\s*$/, '').split('/')[0].trim() : 'Field';
+      if (!ta.value.trim()) {
+        showToast('Please fill in: ' + fieldName, 'err');
         ta.focus(); return;
+      }
+      // Only detail fields need minimum 15 words
+      const isDetailField = /fact|detail|circumstance|ground|grievance|content|purpose|scope|subject|background|obligation|property|matter/i.test(fieldName);
+      if (isDetailField) {
+        const wordCount = ta.value.trim().split(/\s+/).length;
+        if (wordCount < 15) {
+          showToast(fieldName + ' needs at least 15 words for a quality document (' + wordCount + ' words now)', 'err');
+          ta.focus(); return;
+        }
       }
     }
   }
@@ -1923,6 +1942,10 @@ async function generate() {
   const lang = document.getElementById('lang-ur') && document.getElementById('lang-ur').classList.contains('active') ? 'ur' : 'en';
 
   try {
+    // Include uploaded document text for AI to use during generation
+    const docWithData = uploadedFiles.find(uf => uf.extractedText);
+    if (docWithData) f['uploadedDocContent'] = docWithData.extractedText;
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 45000);
 
@@ -2086,6 +2109,7 @@ function buildDoc(tool, f, lang) {
     ${arg('rebuttal','Rebuttal to Objection','That the said contention is without merit and is hereby respectfully refuted. The evidence is consistent throughout. There is no motive for false implication. The case of the '+side+' is fully established on record.')}
     </div>
     ${prayer(['Pass an order in favour of the '+pos+' in the above-captioned matter;','Such other relief as this Hon\'ble Court deems just, equitable and proper in the circumstances;'])}
+    ${attachedFilesHTML()}
     ${advocateSig('','','')}`;
   }
 
@@ -2120,6 +2144,7 @@ function buildDoc(tool, f, lang) {
     ${para('','That reliance is respectfully placed on <em>Tariq Bashir v. The State (PLD 1995 SC 34)</em>, <em>Muhammad Yousaf v. The State (PLD 2021 SC 194)</em> and <em>Zulfiqar Ali v. The State (2022 SCMR 765)</em> wherein the superior courts held that bail is the rule and jail is the exception.')}
     ${para('','That further arguments shall be advanced at the time of hearing of this petition.')}
     ${prayer(['The titled petition may kindly be allowed and the petitioner/accused <strong>'+accused+'</strong> may be admitted to bail pending final decision of the case;','Ad-interim bail may also be granted to the petitioner till the disposal of the instant petition;'])}
+    ${attachedFilesHTML()}
     ${indexTable([['Grounds of Bail Petition + Affidavit','',''],['Copy of FIR','A',''],['Copy of bail petition before lower court (if any)','B',''],['Power of Attorney / Wakalat Nama','',''],['Necessary documents','',' ']])}
     ${certificate('Certified that as per instructions received from the petitioner, this is the first bail petition on behalf of the petitioner before this Hon\'ble Court and no such petition has been filed before any other Court.')}
     ${advocateSig('','','')}`;
@@ -2145,6 +2170,7 @@ function buildDoc(tool, f, lang) {
     ${arg('claim','Primary Submission','Based on the facts stated herein and the applicable provisions of Pakistani law, the applicant is entitled to the relief sought. The matter is covered under the relevant statutory provisions and settled jurisprudence of the superior courts of Pakistan.')}
     ${arg('support','Supporting Ground','The documentary evidence on record, together with the available oral testimony, establishes the applicant\'s case to the requisite standard of proof. This evidence is consistent, reliable and has not been controverted.')}
     ${prayer([relief || 'Pass such order as is just and proper in the circumstances of this case, in the interest of justice.','Any other relief as this Hon\'ble Court may deem fit and proper.'])}
+    ${attachedFilesHTML()}
     ${advocateSig('','','')}`;
 }
 
@@ -2324,41 +2350,11 @@ async function aiRefine() {
       })
     });
 
-    if (!response.ok) throw new Error('Refine request failed (' + response.status + ')');
+    if (!response.ok) throw new Error('Refine request failed');
+    const data = await response.json();
 
-    // Read SSE stream (same as generate())
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-    let html = '';
-    let sseBuffer = '';
-    let streamError = null;
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      sseBuffer += decoder.decode(value, { stream: true });
-      const lines = sseBuffer.split('\n');
-      sseBuffer = lines.pop() || '';
-      for (const line of lines) {
-        if (!line.startsWith('data: ')) continue;
-        const raw = line.slice(6).trim();
-        if (!raw) continue;
-        try {
-          const parsed = JSON.parse(raw);
-          if (parsed.error) { streamError = parsed.error; break; }
-          if (parsed.text) { html += parsed.text; }
-          if (parsed.done) break;
-        } catch (_) { /* skip malformed SSE chunk */ }
-      }
-      if (streamError) break;
-    }
-
-    if (streamError) throw new Error(streamError);
-    html = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
-
-    if (html && html.length > 50) {
-      const metaBar = doc.querySelector('.doc-meta-bar')?.outerHTML || '';
-      doc.innerHTML = metaBar + html;
+    if (data.html && data.html.length > 50) {
+      doc.innerHTML = doc.querySelector('.doc-meta-bar')?.outerHTML + data.html || data.html;
       showToast('✅ Document refined by AI!');
     } else {
       showToast('AI returned empty response — try a different instruction', 'err');
@@ -2439,88 +2435,23 @@ function exportPDF() {
 function exportWord() {
   const docEl = document.getElementById('ws-doc');
   if (!docEl || !docEl.innerHTML.trim()) { showToast('Generate a document first','err'); return; }
-
+  if (currentUser.plan === 'Free Trial') { showToast('Word export is available on Professional plan. Use Copy Text or Print instead.','err'); return; }
   const isUrdu = docEl.classList.contains('urdu');
   const toolTitle = TOOLS[activeTool]?.title || 'Legal Document';
-
-  // Get visible content (exclude meta bar)
   const clone = docEl.cloneNode(true);
   const metaBar = clone.querySelector('.doc-meta-bar');
   if (metaBar) metaBar.remove();
   const bodyContent = clone.innerHTML;
-
-  const wordStyles = `
-    body {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 12pt;
-      line-height: 2;
-      color: #000;
-      margin: 0;
-      ${isUrdu ? 'direction: rtl; font-size: 14pt; line-height: 2.4;' : ''}
-    }
-    .doc-court-header { text-align: center; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #000; }
-    .doc-court-name { font-size: 13pt; font-weight: bold; text-transform: uppercase; text-decoration: underline; letter-spacing: .5px; margin-bottom: 8px; }
-    .doc-pet-no { font-size: 12pt; font-style: italic; }
-    .doc-parties { margin: 24px 0; font-size: 12pt; line-height: 2.2; }
-    .doc-party-row { display: flex; justify-content: space-between; align-items: baseline; }
-    .doc-party-name { max-width: 65%; }
-    .doc-party-role { font-style: italic; font-size: 11pt; }
-    .doc-versus { text-align: center; font-weight: bold; letter-spacing: 3px; font-size: 12pt; margin: 4px 0; }
-    .doc-subject { text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline; font-size: 12pt; line-height: 1.7; margin: 20px 0; }
-    .doc-sheweth { font-weight: bold; text-transform: uppercase; margin: 20px 0 12px; font-size: 12pt; }
-    .doc-para { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12pt; line-height: 2; text-align: justify; }
-    .doc-para-n { min-width: 24px; font-weight: bold; }
-    .doc-section-head { font-weight: bold; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin: 20px 0 14px; font-size: 12pt; text-decoration: underline; }
-    .doc-prayer-head { font-weight: bold; text-transform: uppercase; margin: 24px 0 10px; font-size: 12pt; }
-    .doc-prayer-intro { margin-bottom: 10px; font-size: 12pt; line-height: 2; text-align: justify; }
-    .doc-prayer-item { display: flex; gap: 12px; margin-bottom: 8px; font-size: 12pt; line-height: 2; }
-    .doc-certificate { margin: 24px 0; padding: 14px 18px; border: 1px solid #000; font-size: 11pt; font-style: italic; line-height: 1.9; }
-    .doc-cert-head { font-weight: bold; font-style: normal; text-transform: uppercase; margin-bottom: 6px; font-size: 11pt; }
-    .doc-index { margin: 24px 0; }
-    .doc-index-title { text-align: center; font-weight: bold; text-decoration: underline; text-transform: uppercase; margin-bottom: 12px; font-size: 14pt; }
-    table { width: 100%; border-collapse: collapse; font-size: 11pt; }
-    td, th { border: 1px solid #000; padding: 6px 10px; text-align: left; line-height: 1.6; }
-    th { font-weight: bold; text-align: center; }
-    .doc-sig-block { margin-top: 48px; }
-    .doc-sig-line { height: 1px; background: #000; width: 100%; margin-bottom: 6px; }
-    .doc-sig-name { font-size: 11pt; font-weight: bold; text-transform: uppercase; }
-    .doc-sig-role { font-size: 10pt; font-style: italic; margin-top: 2px; }
-    .doc-verification { margin-top: 24px; padding: 12px 16px; border: 1px solid #000; font-size: 11pt; font-style: italic; line-height: 1.9; }
-    .ri { display: flex; gap: 14px; margin-bottom: 10px; font-size: 12pt; line-height: 2; text-align: justify; }
-    .ri-n { min-width: 22px; font-weight: bold; }
-    .arg { margin-bottom: 10px; font-size: 12pt; line-height: 2; padding: 8px 12px; border-left: 3px solid #000; }
-    .arg-lbl { font-weight: bold; text-transform: uppercase; font-size: 10pt; letter-spacing: 1px; margin-bottom: 4px; }
-    .doc-meta-bar, .print-hide { display: none !important; }
-  `;
-
-  const wordHtml = `
-    <html xmlns:o="urn:schemas-microsoft-com:office:office"
-          xmlns:w="urn:schemas-microsoft-com:office:word"
-          xmlns="http://www.w3.org/TR/REC-html40">
-    <head>
-      <meta charset="utf-8">
-      <title>${toolTitle}</title>
-      <!--[if gte mso 9]>
-      <xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom>
-        <w:DoNotOptimizeForBrowser/>
-      </w:WordDocument></xml>
-      <![endif]-->
-      <style>${wordStyles}</style>
-    </head>
-    <body>${bodyContent}</body>
-    </html>`;
-
+  const wordStyles = `body{font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:2;color:#000;margin:0;${isUrdu?'direction:rtl;font-size:14pt;line-height:2.4;':''}} .doc-court-header{text-align:center;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #000;} .doc-court-name{font-size:13pt;font-weight:bold;text-transform:uppercase;text-decoration:underline;} .doc-pet-no{font-size:12pt;font-style:italic;} .doc-parties{margin:24px 0;} .doc-party-row{display:flex;justify-content:space-between;} .doc-party-role{font-style:italic;} .doc-versus{text-align:center;font-weight:bold;letter-spacing:3px;margin:4px 0;} .doc-subject{text-align:center;font-weight:bold;text-transform:uppercase;text-decoration:underline;margin:20px 0;} .doc-sheweth{font-weight:bold;text-transform:uppercase;margin:20px 0 12px;} .doc-para{display:flex;gap:16px;margin-bottom:12px;text-align:justify;} .doc-para-n{min-width:24px;font-weight:bold;} .doc-section-head{font-weight:bold;text-transform:uppercase;letter-spacing:2px;text-align:center;margin:20px 0 14px;text-decoration:underline;} .doc-prayer-head{font-weight:bold;text-transform:uppercase;margin:24px 0 10px;} .doc-prayer-intro{margin-bottom:10px;text-align:justify;} .doc-prayer-item{display:flex;gap:12px;margin-bottom:8px;} .doc-certificate{margin:24px 0;padding:14px 18px;border:1px solid #000;font-style:italic;} .doc-cert-head{font-weight:bold;font-style:normal;text-transform:uppercase;margin-bottom:6px;} table{width:100%;border-collapse:collapse;} td,th{border:1px solid #000;padding:6px 10px;} th{font-weight:bold;text-align:center;} .doc-sig-block{margin-top:48px;} .doc-sig-line{height:1px;background:#000;width:100%;margin-bottom:6px;} .doc-sig-name{font-weight:bold;text-transform:uppercase;} .doc-sig-role{font-style:italic;margin-top:2px;} .doc-verification{margin-top:24px;padding:12px 16px;border:1px solid #000;font-style:italic;} .ri{display:flex;gap:14px;margin-bottom:10px;text-align:justify;} .ri-n{min-width:22px;font-weight:bold;} .doc-meta-bar,.print-hide{display:none!important;}`;
+  const wordHtml = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${toolTitle}</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]--><style>${wordStyles}</style></head><body>${bodyContent}</body></html>`;
   const blob = new Blob(['\ufeff' + wordHtml], { type: 'application/msword' });
   const url = URL.createObjectURL(blob);
   const filename = toolTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_') + '_WakeelAI.doc';
   const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  showToast('📝 Word document downloaded!');
+  showToast('Word document downloaded!');
 }
 
 function openPrintWindow() {
@@ -2813,7 +2744,7 @@ function formatSize(b) { if (b<1024) return b+' B'; if (b<1048576) return (b/102
 
 function uploadSectionHTML() {
   return `<div class="upload-section">
-    <div class="upload-sec-label">Upload Documents — AI will read & fill fields automatically</div>
+    <div class="upload-sec-label">Upload Documents — AI reads & fills fields automatically</div>
     <div class="upload-zone" id="upload-zone">
       <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.txt" />
       <div class="upload-zone-icon">📄</div>
@@ -2859,7 +2790,7 @@ function handleFiles(fileList) {
     } else {
       uploadedFiles.push({ name: file.name, size: file.size, type: file.type, data: null });
       renderFileList();
-      showToast('📎 '+file.name+' added (reference only — AI reads PDF/images)');
+      showToast(file.name+' added (reference only — AI reads PDF/images)');
     }
   });
 }
@@ -2899,7 +2830,7 @@ function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); showExtrac
 
 async function extractFromDocument() {
   const readable = uploadedFiles.filter(f => f.data);
-  if (!readable.length) { showToast('No readable file found — upload a PDF or image', 'err'); return; }
+  if (!readable.length) { showToast('No readable file — upload a PDF or image', 'err'); return; }
 
   const btn = document.getElementById('extract-btn');
   const spinner = document.getElementById('extract-spinner');
@@ -2908,7 +2839,6 @@ async function extractFromDocument() {
   if (spinner) spinner.style.display = 'inline-block';
   if (label) label.textContent = 'Extracting…';
 
-  // Build field schema: { id: label } pairs from current form
   const fieldSchema = {};
   document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea').forEach(el => {
     if (!el.id || !el.id.startsWith('f')) return;
@@ -2918,15 +2848,14 @@ async function extractFromDocument() {
 
   try {
     const t = TOOLS[activeTool];
-    // Send to Supabase Edge Function — no Vercel 4.5MB body limit
     const fileToExtract = readable[0];
-    const EXTRACT_URL = 'https://ininmjjxnemjyvqhrhup.supabase.co/functions/v1/extract-doc';
-    const response = await fetch(EXTRACT_URL, {
+    const response = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         tool: activeTool,
         toolTitle: t.title,
+        mode: 'extract',
         fields: { fieldSchema: JSON.stringify(fieldSchema) },
         attachedFiles: [{ name: fileToExtract.name, type: fileToExtract.type, data: fileToExtract.data }]
       })
@@ -2936,13 +2865,19 @@ async function extractFromDocument() {
     if (!response.ok) throw new Error(data.error || 'Extraction failed');
 
     const extracted = data.extracted || {};
+
+    // Store extracted doc text for AI to use during generation
+    if (extracted.__docText__) {
+      const docFile = uploadedFiles.find(uf => uf.data);
+      if (docFile) docFile.extractedText = extracted.__docText__;
+    }
+
     let filled = 0;
     Object.entries(extracted).forEach(([id, value]) => {
-      if (!value) return;
+      if (!value || id === '__docText__') return;
       const el = document.getElementById(id);
       if (!el) return;
       if (el.tagName === 'SELECT') {
-        // Try to find closest matching option
         const opts = Array.from(el.options);
         const match = opts.find(o => o.value.toLowerCase().includes(value.toLowerCase()) || value.toLowerCase().includes(o.value.toLowerCase()));
         if (match) { el.value = match.value; filled++; }
@@ -2953,8 +2888,8 @@ async function extractFromDocument() {
     });
 
     if (filled > 0) {
-      showToast('✓ Extracted ' + filled + ' field' + (filled>1?'s':'') + ' from document');
-      if (label) label.textContent = '✓ Fields Filled — Re-extract';
+      showToast('Extracted ' + filled + ' field' + (filled>1?'s':'') + ' — doc content will be used during generation');
+      if (label) label.textContent = '✓ Fields Filled — Ready to Generate';
     } else {
       showToast('Document read — no matching fields found', 'err');
       if (label) label.textContent = '✦ Extract & Fill Fields from Document';
@@ -3104,7 +3039,7 @@ document.getElementById('profile-modal').addEventListener('click', e => {
 /* ══════════════════════════════════════
    LANGUAGE TOGGLE
 ══════════════════════════════════════ */
-const LANG_DEFAULTS = { argument:'en', petition:'en', writ:'en', bail:'en', plaint:'en', appeal:'en', 'legal-notice':'en', affidavit:'ur', agreement:'en', deed:'ur', poa:'en', application:'ur', mou:'en' };
+const LANG_DEFAULTS = { argument:'en', petition:'en', writ:'en', bail:'en', plaint:'en', appeal:'en', 'legal-notice':'en', affidavit:'ur', complaint:'en', 'legal-opinion':'en', agreement:'en', deed:'ur', poa:'en', application:'ur', mou:'en' };
 
 function injectLangToggle(tool) {
   const def = LANG_DEFAULTS[tool] || 'en';
