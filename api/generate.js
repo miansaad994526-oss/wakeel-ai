@@ -1,7 +1,11 @@
-// Vercel Serverless Function — Wakeel AI Document Generation
-// Calls Claude Sonnet 4.6 — formatting from real filed documents + PLJ Law Site samples
+// Wakeel AI — Edge Runtime (NO timeout on Vercel Hobby)
+export const config = { runtime: 'edge' };
 
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
 
 const SYSTEM_PROMPT = `You are Wakeel AI, an expert Pakistani legal document drafting assistant. You generate court-ready legal documents that follow the EXACT formatting Pakistani courts accept.
 
@@ -253,22 +257,27 @@ function buildUserPrompt(tool, fields, lang, toolTitle) {
   return `Generate a ${toolTitle} with these details:\n\n${langNote}\n\nUSER DETAILS:\n${fieldEntries}${docSection}\n\nREMEMBER: ONLY use facts/names/parties the user provided above. Generate complete document HTML now.`;
 }
 
-module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+export default async function handler(req) {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { status: 200, headers: CORS_HEADERS });
+  }
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
+  }
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-  if (!ANTHROPIC_API_KEY) return res.status(500).json({ error: 'API key not configured.' });
+  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+  if (!ANTHROPIC_API_KEY) {
+    return new Response(JSON.stringify({ error: 'API key not configured.' }), { status: 500, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
+  }
 
   try {
-    const { tool, fields, lang, toolTitle, attachedFiles, mode } = req.body;
-    if (!tool || !fields) return res.status(400).json({ error: 'Missing tool or fields' });
+    const body = await req.json();
+    const { tool, fields, lang, toolTitle, attachedFiles, mode } = body;
+    if (!tool || !fields) return new Response(JSON.stringify({ error: 'Missing tool or fields' }), { status: 400, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
 
     // ── EXTRACT MODE: read uploaded doc and return JSON field values ──
     if (mode === 'extract') {
-      if (!attachedFiles || !attachedFiles.length) return res.status(400).json({ error: 'No files provided for extraction' });
+      if (!attachedFiles || !attachedFiles.length) return new Response(JSON.stringify({ error: 'No files provided for extraction' }), { status: 400, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
       const file = attachedFiles[0];
       const msgContent = [];
       const isImage = /^image\//i.test(file.type);
@@ -278,7 +287,7 @@ module.exports = async function handler(req, res) {
       } else if (isPDF) {
         msgContent.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: file.data } });
       } else {
-        return res.status(400).json({ error: 'Only PDF and image files support auto-extraction' });
+        return new Response(JSON.stringify({ error: 'Only PDF and image files support auto-extraction' }), { status: 400, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
       }
       msgContent.push({ type: 'text', text: `You are extracting information from a legal document to fill a form for the tool: "${toolTitle || tool}".\n\nExtract all relevant information and return ONLY a JSON object with the following field IDs as keys. Use the label hints to map content correctly:\n\n${fields.fieldSchema}\n\nAlso include a key called "__docText__" containing a plain-text summary (max 3000 chars) of the full document content for use during generation.\n\nReturn ONLY valid JSON, no explanation, no markdown fences. If a field cannot be determined, use empty string "".` });
 
@@ -289,16 +298,16 @@ module.exports = async function handler(req, res) {
       });
       if (!extractRes.ok) {
         const errBody = await extractRes.text();
-        return res.status(extractRes.status).json({ error: `Extraction API error (${extractRes.status})`, details: errBody });
+        return new Response(JSON.stringify({ error: `Extraction API error (${extractRes.status})`, details: errBody }), { status: extractRes.status, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
       }
       const extractData = await extractRes.json();
       const rawText = extractData.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
       const clean = rawText.replace(/^```json?\s*/i, '').replace(/```\s*$/i, '').trim();
       try {
         const parsed = JSON.parse(clean);
-        return res.status(200).json({ extracted: parsed, usage: extractData.usage });
+        return new Response(JSON.stringify({ extracted: parsed, usage: extractData.usage }), { status: 200, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
       } catch (e) {
-        return res.status(200).json({ extracted: {}, raw: rawText });
+        return new Response(JSON.stringify({ extracted: {}, raw: rawText }), { status: 200, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
       }
     }
 
@@ -321,15 +330,15 @@ module.exports = async function handler(req, res) {
 
     if (!response.ok) {
       const errBody = await response.text();
-      return res.status(response.status).json({ error: `API error (${response.status})`, details: errBody });
+      return new Response(JSON.stringify({ error: `API error (${response.status})`, details: errBody }), { status: response.status, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
     }
 
     const data = await response.json();
     const html = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
     const cleanHtml = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
 
-    return res.status(200).json({ html: cleanHtml, usage: data.usage, model: data.model });
+    return new Response(JSON.stringify({ html: cleanHtml, usage: data.usage, model: data.model }), { status: 200, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
   } catch (error) {
-    return res.status(500).json({ error: 'Server error: ' + error.message });
+    return new Response(JSON.stringify({ error: 'Server error: ' + error.message }), { status: 500, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
   }
 }
