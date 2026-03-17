@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wakeel AI — Pakistan's Legal Intelligence Platform</title>
+<title>Pleader AI — Pakistan's Legal Intelligence Platform</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -707,7 +707,7 @@ select option{background:#fff;}
 <div id="auth-screen">
   <div class="auth-box">
     <div class="auth-header">
-      <div class="auth-logo">Wakeel<span>AI</span></div>
+      <div class="auth-logo">Pleader<span>AI</span></div>
       <div class="auth-tagline">Pakistan's Legal Intelligence Platform</div>
     </div>
     <div class="auth-body">
@@ -727,7 +727,7 @@ select option{background:#fff;}
           <input class="auth-input" type="password" placeholder="••••••••" id="login-pass" />
         </div>
         <div class="auth-btn-err" id="login-err"></div>
-        <button class="auth-btn" id="login-btn" onclick="doLogin()">Sign In to Wakeel AI</button>
+        <button class="auth-btn" id="login-btn" onclick="doLogin()">Sign In to Pleader AI</button>
 
         <div class="auth-divider"><span>or continue with</span></div>
 
@@ -791,7 +791,7 @@ select option{background:#fff;}
 <aside class="sidebar">
   <div class="sb-logo">
     <div class="sb-logo-icon">و</div>
-    <div class="sb-logo-text">Wakeel<span>AI</span></div>
+    <div class="sb-logo-text">Pleader<span>AI</span></div>
   </div>
   <div class="sb-scroll">
     <div class="sb-section">
@@ -1229,7 +1229,7 @@ select option{background:#fff;}
         </div>
         <p style="font-size:12px;color:var(--muted);line-height:1.6;">Online payments coming soon. For now, contact us on WhatsApp to upgrade your plan instantly.</p>
       </div>
-      <a href="https://wa.me/923000000000?text=I%20want%20to%20upgrade%20my%20Wakeel%20AI%20plan" target="_blank" id="safepay-pay-btn" style="width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+      <a href="https://wa.me/923000000000?text=I%20want%20to%20upgrade%20my%20Pleader%20AI%20plan" target="_blank" id="safepay-pay-btn" style="width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
         📱 Contact on WhatsApp to Upgrade
       </a>
       <div id="upgrade-loading" style="display:none;">
@@ -1314,7 +1314,7 @@ async function doLogin() {
   const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
 
   btn.classList.remove('loading');
-  btn.textContent = 'Sign In to Wakeel AI';
+  btn.textContent = 'Sign In to Pleader AI';
 
   if (error) {
     errEl.textContent = (error.message.includes('Invalid login credentials') || error.message.includes('invalid_credentials'))
@@ -1521,7 +1521,7 @@ function nav(view, el) {
     el.classList.add('active');
   }
   const titles = { home:'Dashboard', docs:'My Documents', workspace:'Legal Workspace', pricing:'Plans & Billing' };
-  document.getElementById('topbar-title').textContent = titles[view] || 'Wakeel AI';
+  document.getElementById('topbar-title').textContent = titles[view] || 'Pleader AI';
   // Close mobile sidebar on navigation
   closeMobileSidebar();
 }
@@ -2490,7 +2490,7 @@ function exportWord() {
   const wordHtml = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${toolTitle}</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]--><style>${wordStyles}</style></head><body>${bodyContent}</body></html>`;
   const blob = new Blob(['\ufeff' + wordHtml], { type: 'application/msword' });
   const url = URL.createObjectURL(blob);
-  const filename = toolTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_') + '_WakeelAI.doc';
+  const filename = toolTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_') + '_PleaderAI.doc';
   const a = document.createElement('a');
   a.href = url; a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
@@ -2624,7 +2624,7 @@ function handlePaymentRedirect() {
     if (!plan) return;
 
     // Upgrade will happen after auth loads — store intent
-    sessionStorage.setItem('wakeel_complete_upgrade', JSON.stringify({
+    sessionStorage.setItem('pleader_complete_upgrade', JSON.stringify({
       planKey: planKey,
       planName: plan.name
     }));
@@ -2636,11 +2636,11 @@ function handlePaymentRedirect() {
 async function completeUpgradeAfterPayment() {
   let upgradeData = null;
   try {
-    const raw = sessionStorage.getItem('wakeel_complete_upgrade');
+    const raw = sessionStorage.getItem('pleader_complete_upgrade');
     if (!raw) return;
     upgradeData = JSON.parse(raw);
-    sessionStorage.removeItem('wakeel_complete_upgrade');
-    sessionStorage.removeItem('wakeel_pending_payment');
+    sessionStorage.removeItem('pleader_complete_upgrade');
+    sessionStorage.removeItem('pleader_pending_payment');
   } catch(e) { return; }
 
   if (!upgradeData || !currentUser.id) return;
