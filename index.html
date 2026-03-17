@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<style>h
 :root {
   --bg:       #f5f2eb;
   --bg2:      #ede8dc;
@@ -1993,7 +1993,7 @@ async function generate() {
     doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
     const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
     const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">AI Generated \u2014 Review before filing</span></div>';
-    doc.innerHTML = metaBar + html;
+    html = html.replace(/<\/?(?:html|head|body|meta|link|script|style)[^>]*>/gi,''); doc.innerHTML = metaBar + html;
     doc.style.display = 'block';
     // Scroll document panel to top
     const wsRightBody = document.querySelector('.ws-right-body');
@@ -2025,7 +2025,7 @@ async function generate() {
       doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
       const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
       const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">Template \u2014 AI unavailable</span></div>';
-      doc.innerHTML = metaBar + html;
+      html = html.replace(/<\/?(?:html|head|body|meta|link|script|style)[^>]*>/gi,''); doc.innerHTML = metaBar + html;
       doc.style.display = 'block';
       docCount++; monthlyGenCount++; updateDocCount(); updateUsageDisplay();
       showToast('\u26a0\ufe0f AI unavailable \u2014 used template. ' + (err.message || ''), 'err');
