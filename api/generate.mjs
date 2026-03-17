@@ -206,7 +206,7 @@ export default async function handler(req) {
       }
     }
 
-    // ── GENERATE / REFINE MODE ──
+    // ── GENERATE / REFINE MODE (STREAMING) ──
     let systemPromptFull, userPrompt;
 
     if (tool === '__refine__') {
@@ -218,22 +218,69 @@ export default async function handler(req) {
       userPrompt = buildUserPrompt(tool, fields, lang, toolTitle || tool);
     }
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 8000, system: systemPromptFull, messages: [{ role: 'user', content: userPrompt }] })
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 8000,
+        system: systemPromptFull,
+        messages: [{ role: 'user', content: userPrompt }],
+        stream: true
+      })
     });
 
-    if (!response.ok) {
-      const errBody = await response.text();
-      return new Response(JSON.stringify({ error: `API error (${response.status})`, details: errBody }), { status: response.status, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
+    if (!anthropicRes.ok) {
+      const errBody = await anthropicRes.text();
+      return new Response(JSON.stringify({ error: `API error (${anthropicRes.status})`, details: errBody }), {
+        status: anthropicRes.status,
+        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+      });
     }
 
-    const data = await response.json();
-    const html = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
-    const cleanHtml = html.replace(/^```html?\s*/i, '').replace(/```\s*$/i, '').trim();
+    const { readable, writable } = new TransformStream();
+    const writer = writable.getWriter();
+    const encoder = new TextEncoder();
 
-    return new Response(JSON.stringify({ html: cleanHtml, usage: data.usage, model: data.model }), { status: 200, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
+    (async () => {
+      const reader = anthropicRes.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = '';
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          const lines = buf.split('\n');
+          buf = lines.pop() || '';
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            const raw = line.slice(6).trim();
+            if (!raw || raw === '[DONE]') continue;
+            try {
+              const evt = JSON.parse(raw);
+              if (evt.type === 'content_block_delta' && evt.delta?.type === 'text_delta') {
+                await writer.write(encoder.encode(`data: ${JSON.stringify({ text: evt.delta.text })}\n\n`));
+              }
+            } catch (_) {}
+          }
+        }
+      } catch (e) {
+        try { await writer.write(encoder.encode(`data: ${JSON.stringify({ error: e.message })}\n\n`)); } catch (_) {}
+      } finally {
+        try { await writer.close(); } catch (_) {}
+      }
+    })();
+
+    return new Response(readable, {
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+        ...CORS_HEADERS
+      }
+    });
+
   } catch (error) {
     return new Response(JSON.stringify({ error: 'Server error: ' + error.message }), { status: 500, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' } });
   }
