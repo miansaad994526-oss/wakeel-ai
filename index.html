@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wakeel AI â Pakistan's Legal Intelligence Platform</title>
+<title>Wakeel AI — Pakistan's Legal Intelligence Platform</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,9 +38,9 @@
 html{scroll-behavior:smooth;height:100%;overflow:hidden;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14.5px;line-height:1.65;height:100%;overflow:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-0.01em;margin:0;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    AUTH SCREEN
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 #auth-screen{
   position:fixed;inset:0;background:var(--green);
   display:flex;align-items:flex-start;justify-content:center;
@@ -92,7 +92,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .auth-note{font-size:11px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.6;}
 .auth-note a{color:var(--green3);cursor:pointer;text-decoration:none;}
 
-/* ââ DIVIDER ââ */
+/* ── DIVIDER ── */
 .auth-divider{
   display:flex;align-items:center;gap:12px;
   margin:18px 0;
@@ -106,7 +106,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
   white-space:nowrap;
 }
 
-/* ââ GOOGLE BUTTON ââ */
+/* ── GOOGLE BUTTON ── */
 .auth-btn-google{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:12px;
@@ -124,13 +124,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .auth-btn-google:active{transform:scale(.99);}
 .auth-btn-google.loading{opacity:.6;cursor:not-allowed;pointer-events:none;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    APP LAYOUT
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 #app{display:none;height:100%;overflow:hidden;}
 .layout{display:flex;height:100%;overflow:hidden;}
 
-/* ââ SIDEBAR ââ */
+/* ── SIDEBAR ── */
 .sidebar{
   width:240px;background:var(--green);
   display:flex;flex-direction:column;
@@ -192,10 +192,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .sb-user-plan{font-size:10px;color:var(--gold3);text-transform:uppercase;letter-spacing:1px;margin-top:1px;}
 .sb-user-caret{margin-left:auto;color:rgba(255,255,255,.35);font-size:12px;}
 
-/* ââ MAIN ââ */
+/* ── MAIN ── */
 .main{margin-left:240px;flex:1;display:flex;flex-direction:column;height:100%;overflow:hidden;}
 
-/* ââ TOPBAR ââ */
+/* ── TOPBAR ── */
 .topbar{
   height:58px;min-height:58px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--border);
   display:flex;align-items:center;padding:0 28px;gap:14px;
@@ -215,16 +215,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .api-dot{width:6px;height:6px;border-radius:50%;background:#3dbc78;box-shadow:0 0 5px #3dbc78;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    VIEWS
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .view{display:none;}
 .view.active{display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto;}
 #view-workspace.active{overflow:hidden !important;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    DASHBOARD
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .dashboard{padding:32px;}
 .dash-welcome{
   background:var(--green);border-radius:14px;
@@ -234,7 +234,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
   position:relative;overflow:hidden;
 }
 .dash-welcome::before{
-  content:'Ù';
+  content:'و';
   position:absolute;right:32px;top:50%;transform:translateY(-50%);
   font-family:'Playfair Display',Georgia,serif;font-size:120px;font-weight:700;
   color:rgba(255,255,255,.04);line-height:1;pointer-events:none;
@@ -289,9 +289,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple
 .rc-status.draft{background:var(--gold-bg);color:var(--gold);}
 .rc-status.saved{background:rgba(22,45,32,.08);color:var(--green3);}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    WORKSPACE
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .workspace{display:flex;flex:1;min-height:0;overflow:hidden;}
 .ws-left{width:380px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;min-height:0;}
 .ws-left-head{padding:20px 24px 18px;border-bottom:1px solid var(--border);background:var(--green);}
@@ -329,7 +329,7 @@ select option{background:#fff;}
 .gen-btn .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ââ RIGHT OUTPUT ââ */
+/* ── RIGHT OUTPUT ── */
 .ws-right{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;}
 .ws-right-head{padding:14px 24px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .ws-right-title{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:600;color:var(--green);}
@@ -350,7 +350,7 @@ select option{background:#fff;}
 .ld-title{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:var(--green);}
 .ld-sub{font-size:12px;color:var(--muted);}
 
-/* ââ OUTPUT DOCUMENT ââ */
+/* ── OUTPUT DOCUMENT ── */
 .out-doc{
   display:none;
   max-width:720px;margin:0 auto;
@@ -418,7 +418,7 @@ select option{background:#fff;}
 .out-doc .doc-fir-table td:first-child{font-weight:700;min-width:90px;}
 @media print{.out-doc .doc-page-break{page-break-after:always;border:none;margin:0;}}
 
-/* ââ LANGUAGE TOGGLE ââ */
+/* ── LANGUAGE TOGGLE ── */
 .lang-toggle-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;}
 .lang-label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;}
 .lang-toggle{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-left:auto;}
@@ -428,9 +428,9 @@ select option{background:#fff;}
 
 .doc-meta-bar{display:flex;align-items:center;gap:16px;padding:8px 14px;background:var(--bg2);border:1px solid var(--border);border-bottom:none;font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:0;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    DOCUMENTS VIEW
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .docs-view{padding:32px;}
 .docs-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
 .docs-search{flex:1;max-width:320px;padding:9px 13px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:13px;outline:none;}
@@ -447,9 +447,9 @@ select option{background:#fff;}
 .doc-card:hover .dc-del{opacity:1;color:var(--red);}
 .dc-del:hover{background:rgba(139,32,32,.08);}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    PRICING VIEW
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .pricing-view{padding:32px;max-width:1000px;}
 .pricing-intro{margin-bottom:32px;}
 .pricing-intro h2{font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:600;color:var(--green);margin-bottom:6px;}
@@ -477,9 +477,9 @@ select option{background:#fff;}
 .plan-body{padding:22px 24px;}
 .plan-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;}
 .plan-features li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--text2);line-height:1.5;}
-.plan-features li::before{content:'â';color:var(--green3);font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.plan-features li::before{content:'✓';color:var(--green3);font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
 .plan-features li.no{color:var(--dim);}
-.plan-features li.no::before{content:'â';color:var(--dim);}
+.plan-features li.no::before{content:'—';color:var(--dim);}
 .plan-btn{width:100%;padding:11px;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
 .plan-btn.outline{background:transparent;border:1.5px solid var(--green);color:var(--green);}
 .plan-btn.outline:hover{background:var(--green);color:#fff;}
@@ -496,14 +496,14 @@ select option{background:#fff;}
 .api-note{font-size:11px;color:var(--dim);margin-top:2px;}
 .api-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--green);text-align:right;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    TOAST
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .toast{position:fixed;bottom:22px;right:22px;background:var(--green);color:#fff;padding:11px 18px;border-radius:8px;font-size:13px;z-index:9999;box-shadow:var(--sh2);animation:slideUp .25s ease;display:flex;align-items:center;gap:8px;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    MODAL
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .modal-ov{display:none;position:fixed;inset:0;background:rgba(22,45,32,.5);backdrop-filter:blur(2px);z-index:2000;align-items:center;justify-content:center;}
 .modal-ov.open{display:flex;}
 .modal{background:var(--surface);border-radius:14px;width:440px;max-width:95vw;overflow:hidden;box-shadow:var(--sh3);animation:slideUp .25s ease;}
@@ -514,9 +514,9 @@ select option{background:#fff;}
 .modal-bd{padding:24px 26px;}
 .modal-ft{padding:16px 26px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    PROFILE MODAL
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .profile-modal{width:520px;}
 .profile-avatar-section{display:flex;align-items:center;gap:20px;padding:24px 26px;background:var(--green);}
 .profile-avatar-lg{width:64px;height:64px;border-radius:50%;background:var(--gold2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:var(--green);flex-shrink:0;cursor:pointer;position:relative;transition:opacity .2s;}
@@ -553,9 +553,9 @@ select option{background:#fff;}
 .pf-danger-btn:hover{background:var(--red);color:#fff;}
 .pf-save-row{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    FILE UPLOAD
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 .upload-section{margin-top:20px;}
 .upload-sec-label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
 .upload-sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
@@ -581,9 +581,9 @@ select option{background:#fff;}
 .fi-remove:hover{color:var(--red);}
 .upload-count{font-size:11px;color:var(--muted);margin-top:7px;text-align:center;}
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    PRINT
-ââââââââââââââââââââââââââââ */
+════════════════════════════ */
 @page{size:A4 portrait;margin:25mm 20mm 25mm 25mm;}
 @media print{
   .sidebar,.topbar,.ws-left,.ws-right-head,.auth-screen,.lang-toggle-row,.upload-section,.modal-ov,#app>.layout>.main>.topbar,.empty-st,#ws-loading,.gen-btn-row,.toast,.print-hide{display:none !important;}
@@ -601,10 +601,10 @@ select option{background:#fff;}
   .out-doc .doc-sig-block{page-break-inside:avoid;}
 }
 
-/* ââââââââââââââââââââââââââââ
+/* ════════════════════════════
    RESPONSIVE
-ââââââââââââââââââââââââââââ */
-/* Hamburger â hidden on desktop */
+════════════════════════════ */
+/* Hamburger — hidden on desktop */
 .mob-menu-btn{display:none;background:none;border:none;font-size:22px;cursor:pointer;padding:4px 8px;color:var(--green);font-family:inherit;line-height:1;}
 /* Mobile sidebar overlay */
 .mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:499;backdrop-filter:blur(2px);}
@@ -629,7 +629,7 @@ select option{background:#fff;}
   .dash-welcome h1{font-size:20px;}
   .pricing-view{padding:16px;}
 
-  /* Workspace â stack vertically and allow scroll */
+  /* Workspace — stack vertically and allow scroll */
   .workspace{flex-direction:column;overflow-y:auto !important;overflow-x:hidden;height:auto !important;min-height:0;flex:1;}
   .ws-left{width:100% !important;height:auto !important;flex-shrink:0;overflow:visible;border-right:none;border-bottom:1px solid var(--border);}
   .ws-left-head{padding:14px 16px 12px;}
@@ -689,21 +689,21 @@ select option{background:#fff;}
   .ws-tool-title{font-size:18px;}
 }
 
-/* ââ USAGE BAR ââ */
+/* ── USAGE BAR ── */
 .usage-bar-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;}
 .usage-bar-header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-bottom:8px;}
 .usage-bar{height:8px;background:var(--bg2);border-radius:4px;overflow:hidden;}
 .usage-bar-fill{height:100%;background:var(--green3);border-radius:4px;transition:width .4s ease,background .3s;}
 .usage-bar-footer{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:6px;}
 
-/* ââ LIMIT MODAL ââ */
+/* ── LIMIT MODAL ── */
 #limit-modal .modal{max-width:420px;}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- ââ AUTH SCREEN ââ -->
+<!-- ══ AUTH SCREEN ══ -->
 <div id="auth-screen">
   <div class="auth-box">
     <div class="auth-header">
@@ -716,7 +716,7 @@ select option{background:#fff;}
         <div class="auth-tab" onclick="switchAuthTab('register',this)">Create Account</div>
       </div>
 
-      <!-- ââ LOGIN FORM ââ -->
+      <!-- ── LOGIN FORM ── -->
       <div id="login-form">
         <div class="auth-field">
           <label class="auth-label">Email Address</label>
@@ -724,7 +724,7 @@ select option{background:#fff;}
         </div>
         <div class="auth-field">
           <label class="auth-label">Password</label>
-          <input class="auth-input" type="password" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢" id="login-pass" />
+          <input class="auth-input" type="password" placeholder="••••••••" id="login-pass" />
         </div>
         <div class="auth-btn-err" id="login-err"></div>
         <button class="auth-btn" id="login-btn" onclick="doLogin()">Sign In to Wakeel AI</button>
@@ -744,7 +744,7 @@ select option{background:#fff;}
         <p class="auth-note">Don't have an account? <a onclick="switchAuthTab('register',document.querySelectorAll('.auth-tab')[1])">Create one free</a><br>Forgot password? <a onclick="doForgotPassword()">Reset here</a></p>
       </div>
 
-      <!-- ââ REGISTER FORM ââ -->
+      <!-- ── REGISTER FORM ── -->
       <div id="register-form" style="display:none;">
         <div class="auth-field">
           <label class="auth-label">Full Name</label>
@@ -783,47 +783,47 @@ select option{background:#fff;}
   </div>
 </div>
 
-<!-- ââ APP ââ -->
+<!-- ══ APP ══ -->
 <div id="app">
 <div class="layout">
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-logo">
-    <div class="sb-logo-icon">Ù</div>
+    <div class="sb-logo-icon">و</div>
     <div class="sb-logo-text">Wakeel<span>AI</span></div>
   </div>
   <div class="sb-scroll">
     <div class="sb-section">
       <div class="sb-label">Workspace</div>
-      <div class="sb-item active" onclick="nav('home',this)"><span class="sb-item-icon">ð</span>Dashboard</div>
-      <div class="sb-item" onclick="nav('docs',this)"><span class="sb-item-icon">ð</span>My Documents<span class="sb-badge" id="docs-badge"></span></div>
+      <div class="sb-item active" onclick="nav('home',this)"><span class="sb-item-icon">🏛</span>Dashboard</div>
+      <div class="sb-item" onclick="nav('docs',this)"><span class="sb-item-icon">📁</span>My Documents<span class="sb-badge" id="docs-badge"></span></div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Litigation Tools</div>
-      <div class="sb-item" onclick="openTool('argument',this)"><span class="sb-item-icon">âï¸</span>Argument Builder</div>
-      <div class="sb-item" onclick="openTool('petition',this)"><span class="sb-item-icon">ð</span>Petition Drafting</div>
-      <div class="sb-item" onclick="openTool('writ',this)"><span class="sb-item-icon">ð</span>Writ Petition</div>
-      <div class="sb-item" onclick="openTool('bail',this)"><span class="sb-item-icon">ð</span>Bail Application</div>
-      <div class="sb-item" onclick="openTool('plaint',this)"><span class="sb-item-icon">ð</span>Plaint / Civil Suit</div>
-      <div class="sb-item" onclick="openTool('appeal',this)"><span class="sb-item-icon">ð£</span>Appeal / Revision</div>
-      <div class="sb-item" onclick="openTool('legal-notice',this)"><span class="sb-item-icon">âï¸</span>Legal Notice</div>
-      <div class="sb-item" onclick="openTool('affidavit',this)"><span class="sb-item-icon">âï¸</span>Affidavit / Oath</div>
-      <div class="sb-item" onclick="openTool('complaint',this)"><span class="sb-item-icon">âï¸</span>Criminal Complaint</div>
-      <div class="sb-item" onclick="openTool('legal-opinion',this)"><span class="sb-item-icon">ðï¸</span>Legal Opinion</div>
+      <div class="sb-item" onclick="openTool('argument',this)"><span class="sb-item-icon">⚔️</span>Argument Builder</div>
+      <div class="sb-item" onclick="openTool('petition',this)"><span class="sb-item-icon">📜</span>Petition Drafting</div>
+      <div class="sb-item" onclick="openTool('writ',this)"><span class="sb-item-icon">🔏</span>Writ Petition</div>
+      <div class="sb-item" onclick="openTool('bail',this)"><span class="sb-item-icon">🔓</span>Bail Application</div>
+      <div class="sb-item" onclick="openTool('plaint',this)"><span class="sb-item-icon">📋</span>Plaint / Civil Suit</div>
+      <div class="sb-item" onclick="openTool('appeal',this)"><span class="sb-item-icon">📣</span>Appeal / Revision</div>
+      <div class="sb-item" onclick="openTool('legal-notice',this)"><span class="sb-item-icon">✉️</span>Legal Notice</div>
+      <div class="sb-item" onclick="openTool('affidavit',this)"><span class="sb-item-icon">✍️</span>Affidavit / Oath</div>
+      <div class="sb-item" onclick="openTool('complaint',this)"><span class="sb-item-icon">⚖️</span>Criminal Complaint</div>
+      <div class="sb-item" onclick="openTool('legal-opinion',this)"><span class="sb-item-icon">🏛️</span>Legal Opinion</div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Transactional Documents</div>
-      <div class="sb-item" onclick="openTool('agreement',this)"><span class="sb-item-icon">ð¤</span>Agreement / Contract</div>
-      <div class="sb-item" onclick="openTool('deed',this)"><span class="sb-item-icon">ð </span>Sale / Transfer Deed</div>
-      <div class="sb-item" onclick="openTool('poa',this)"><span class="sb-item-icon">ðªª</span>Power of Attorney</div>
-      <div class="sb-item" onclick="openTool('application',this)"><span class="sb-item-icon">ð®</span>Formal Application</div>
-      <div class="sb-item" onclick="openTool('mou',this)"><span class="sb-item-icon">ðï¸</span>MOU / Treaty</div>
+      <div class="sb-item" onclick="openTool('agreement',this)"><span class="sb-item-icon">🤝</span>Agreement / Contract</div>
+      <div class="sb-item" onclick="openTool('deed',this)"><span class="sb-item-icon">🏠</span>Sale / Transfer Deed</div>
+      <div class="sb-item" onclick="openTool('poa',this)"><span class="sb-item-icon">🪪</span>Power of Attorney</div>
+      <div class="sb-item" onclick="openTool('application',this)"><span class="sb-item-icon">📮</span>Formal Application</div>
+      <div class="sb-item" onclick="openTool('mou',this)"><span class="sb-item-icon">🗒️</span>MOU / Treaty</div>
     </div>
     <div class="sb-section">
       <div class="sb-label">Account</div>
-      <div class="sb-item" onclick="nav('pricing',this)"><span class="sb-item-icon">ð³</span>Plans & Billing</div>
-      <div class="sb-item" onclick="showToast('âï¸ Settings coming soon')"><span class="sb-item-icon">âï¸</span>Settings</div>
+      <div class="sb-item" onclick="nav('pricing',this)"><span class="sb-item-icon">💳</span>Plans & Billing</div>
+      <div class="sb-item" onclick="showToast('⚙️ Settings coming soon')"><span class="sb-item-icon">⚙️</span>Settings</div>
     </div>
   </div>
   <div class="sb-footer">
@@ -838,7 +838,7 @@ select option{background:#fff;}
         <div class="sb-user-name" id="sb-username">Advocate Khan</div>
         <div class="sb-user-plan" id="sb-plan">Free Trial</div>
       </div>
-      <div class="sb-user-caret">â¾</div>
+      <div class="sb-user-caret">▾</div>
     </div>
   </div>
 </aside>
@@ -847,20 +847,20 @@ select option{background:#fff;}
 <!-- MAIN -->
 <div class="main">
   <div class="topbar">
-    <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleMobileSidebar()">â°</button>
+    <button class="mob-menu-btn" id="mob-menu-btn" onclick="toggleMobileSidebar()">☰</button>
     <div class="topbar-title" id="topbar-title">Dashboard</div>
     <div class="topbar-actions">
-      <div class="api-status"><div class="api-dot"></div>AI Â· Active</div>
+      <div class="api-status"><div class="api-dot"></div>AI · Active</div>
     </div>
   </div>
 
-  <!-- ââ DASHBOARD ââ -->
+  <!-- ══ DASHBOARD ══ -->
   <div id="view-home" class="view active">
     <div class="dashboard">
       <div class="dash-welcome">
         <div>
-          <h1>Ø¢Ù¾ Ú©Ø§ Ø§Ø³ØªÙØ¨Ø§Ù ÛÛØ <span id="welcome-name">Advocate Khan</span></h1>
-          <p>Pakistan's first AI-powered legal workspace â draft in minutes, not hours.</p>
+          <h1>آپ کا استقبال ہے، <span id="welcome-name">Advocate Khan</span></h1>
+          <p>Pakistan's first AI-powered legal workspace — draft in minutes, not hours.</p>
         </div>
         <div class="dash-stats">
           <div class="dash-stat"><div class="dash-stat-num" id="dash-doc-count">0</div><div class="dash-stat-lbl">Documents</div></div>
@@ -870,52 +870,52 @@ select option{background:#fff;}
       <!-- USAGE BAR -->
       <div class="usage-bar-wrap">
         <div class="usage-bar-header">
-          <span>ð Monthly Usage</span>
+          <span>📊 Monthly Usage</span>
           <span id="usage-bar-text" style="font-weight:600;">0 / 5 this month</span>
         </div>
         <div class="usage-bar"><div class="usage-bar-fill" id="usage-bar-fill" style="width:0%;"></div></div>
         <div class="usage-bar-footer">
           <span>Resets on 1st of each month</span>
-          <span style="cursor:pointer;color:var(--green3);" onclick="nav('pricing')">Upgrade plan â</span>
+          <span style="cursor:pointer;color:var(--green3);" onclick="nav('pricing')">Upgrade plan →</span>
         </div>
       </div>
       <div class="sec-head"><h2>Legal Tools</h2><div class="sec-head-line"></div></div>
       <div class="tools-grid">
-        <div class="tool-card" onclick="openTool('argument')"><span class="tool-icon">âï¸</span><div class="tool-name">Argument Builder</div><div class="tool-desc">Build structured legal arguments with claims, evidence, counters and rebuttals for any court</div><span class="tool-tag tg-green">Most Used</span></div>
-        <div class="tool-card" onclick="openTool('petition')"><span class="tool-icon">ð</span><div class="tool-name">Petition Drafting</div><div class="tool-desc">Draft civil & criminal petitions for Sessions Court, High Court or Supreme Court</div><span class="tool-tag tg-blue">Civil / Criminal</span></div>
-        <div class="tool-card" onclick="openTool('writ')"><span class="tool-icon">ð</span><div class="tool-name">Writ Petition</div><div class="tool-desc">Constitutional writs â Habeas Corpus, Mandamus, Certiorari under Article 199</div><span class="tool-tag tg-red">Constitutional</span></div>
-        <div class="tool-card" onclick="openTool('bail')"><span class="tool-icon">ð</span><div class="tool-name">Bail Application</div><div class="tool-desc">Pre-arrest Â§498 and post-arrest Â§497 CrPC bail applications with full legal reasoning</div><span class="tool-tag tg-gold">Criminal</span></div>
-        <div class="tool-card" onclick="openTool('plaint')"><span class="tool-icon">ð</span><div class="tool-name">Plaint / Civil Suit</div><div class="tool-desc">Civil suits â property disputes, recovery of money, injunctions, family matters</div><span class="tool-tag tg-blue">Civil</span></div>
-        <div class="tool-card" onclick="openTool('appeal')"><span class="tool-icon">ð£</span><div class="tool-name">Appeal / Revision</div><div class="tool-desc">File appeals against trial court decisions with complete legal grounds and prayer</div><span class="tool-tag tg-green">All Courts</span></div>
-        <div class="tool-card" onclick="openTool('legal-notice')"><span class="tool-icon">âï¸</span><div class="tool-name">Legal Notice</div><div class="tool-desc">Formal legal notices for recovery, breach of contract, cheque dishonour, property</div><span class="tool-tag tg-gold">Formal</span></div>
-        <div class="tool-card" onclick="openTool('affidavit')"><span class="tool-icon">âï¸</span><div class="tool-name">Affidavit / Oath</div><div class="tool-desc">Sworn affidavits and declarations under the Oaths Act 1873 for court submission</div><span class="tool-tag tg-blue">Documentation</span></div>
-        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">âï¸</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under Â§200 & Â§156(3) CrPC before Magistrate â cheating, fraud, harassment</div><span class="tool-tag tg-red">Criminal</span></div>
-        <div class="tool-card" onclick="openTool('legal-opinion')"><span class="tool-icon">ðï¸</span><div class="tool-name">Legal Opinion</div><div class="tool-desc">Professional legal opinions on property title, banking, corporate & contractual matters</div><span class="tool-tag tg-blue">Advisory</span></div>
+        <div class="tool-card" onclick="openTool('argument')"><span class="tool-icon">⚔️</span><div class="tool-name">Argument Builder</div><div class="tool-desc">Build structured legal arguments with claims, evidence, counters and rebuttals for any court</div><span class="tool-tag tg-green">Most Used</span></div>
+        <div class="tool-card" onclick="openTool('petition')"><span class="tool-icon">📜</span><div class="tool-name">Petition Drafting</div><div class="tool-desc">Draft civil & criminal petitions for Sessions Court, High Court or Supreme Court</div><span class="tool-tag tg-blue">Civil / Criminal</span></div>
+        <div class="tool-card" onclick="openTool('writ')"><span class="tool-icon">🔏</span><div class="tool-name">Writ Petition</div><div class="tool-desc">Constitutional writs — Habeas Corpus, Mandamus, Certiorari under Article 199</div><span class="tool-tag tg-red">Constitutional</span></div>
+        <div class="tool-card" onclick="openTool('bail')"><span class="tool-icon">🔓</span><div class="tool-name">Bail Application</div><div class="tool-desc">Pre-arrest §498 and post-arrest §497 CrPC bail applications with full legal reasoning</div><span class="tool-tag tg-gold">Criminal</span></div>
+        <div class="tool-card" onclick="openTool('plaint')"><span class="tool-icon">📋</span><div class="tool-name">Plaint / Civil Suit</div><div class="tool-desc">Civil suits — property disputes, recovery of money, injunctions, family matters</div><span class="tool-tag tg-blue">Civil</span></div>
+        <div class="tool-card" onclick="openTool('appeal')"><span class="tool-icon">📣</span><div class="tool-name">Appeal / Revision</div><div class="tool-desc">File appeals against trial court decisions with complete legal grounds and prayer</div><span class="tool-tag tg-green">All Courts</span></div>
+        <div class="tool-card" onclick="openTool('legal-notice')"><span class="tool-icon">✉️</span><div class="tool-name">Legal Notice</div><div class="tool-desc">Formal legal notices for recovery, breach of contract, cheque dishonour, property</div><span class="tool-tag tg-gold">Formal</span></div>
+        <div class="tool-card" onclick="openTool('affidavit')"><span class="tool-icon">✍️</span><div class="tool-name">Affidavit / Oath</div><div class="tool-desc">Sworn affidavits and declarations under the Oaths Act 1873 for court submission</div><span class="tool-tag tg-blue">Documentation</span></div>
+        <div class="tool-card" onclick="openTool('complaint')"><span class="tool-icon">⚖️</span><div class="tool-name">Criminal Complaint</div><div class="tool-desc">Criminal complaints under §200 & §156(3) CrPC before Magistrate — cheating, fraud, harassment</div><span class="tool-tag tg-red">Criminal</span></div>
+        <div class="tool-card" onclick="openTool('legal-opinion')"><span class="tool-icon">🏛️</span><div class="tool-name">Legal Opinion</div><div class="tool-desc">Professional legal opinions on property title, banking, corporate & contractual matters</div><span class="tool-tag tg-blue">Advisory</span></div>
       </div>
       <div class="sec-head"><h2>Transactional Documents</h2><div class="sec-head-line"></div></div>
       <div class="tools-grid">
-        <div class="tool-card" onclick="openTool('agreement')"><span class="tool-icon">ð¤</span><div class="tool-name">Agreement / Contract</div><div class="tool-desc">Draft legally binding agreements â employment, service, tenancy, sale, partnership</div><span class="tool-tag tg-green">Contract Law</span></div>
-        <div class="tool-card" onclick="openTool('deed')"><span class="tool-icon">ð </span><div class="tool-name">Sale / Transfer Deed</div><div class="tool-desc">Property sale deeds, gift deeds, transfer deeds under Transfer of Property Act 1882</div><span class="tool-tag tg-gold">Property Law</span></div>
-        <div class="tool-card" onclick="openTool('poa')"><span class="tool-icon">ðªª</span><div class="tool-name">Power of Attorney</div><div class="tool-desc">General and special power of attorney â for property, court, banking, business matters</div><span class="tool-tag tg-blue">Authorization</span></div>
-        <div class="tool-card" onclick="openTool('application')"><span class="tool-icon">ð®</span><div class="tool-name">Formal Application</div><div class="tool-desc">Applications to government departments, courts, authorities â RTI, service matters, complaints</div><span class="tool-tag tg-green">Administrative</span></div>
-        <div class="tool-card" onclick="openTool('mou')"><span class="tool-icon">ðï¸</span><div class="tool-name">MOU / Treaty</div><div class="tool-desc">Memoranda of Understanding between parties, institutions or organizations</div><span class="tool-tag tg-blue">Corporate</span></div>
+        <div class="tool-card" onclick="openTool('agreement')"><span class="tool-icon">🤝</span><div class="tool-name">Agreement / Contract</div><div class="tool-desc">Draft legally binding agreements — employment, service, tenancy, sale, partnership</div><span class="tool-tag tg-green">Contract Law</span></div>
+        <div class="tool-card" onclick="openTool('deed')"><span class="tool-icon">🏠</span><div class="tool-name">Sale / Transfer Deed</div><div class="tool-desc">Property sale deeds, gift deeds, transfer deeds under Transfer of Property Act 1882</div><span class="tool-tag tg-gold">Property Law</span></div>
+        <div class="tool-card" onclick="openTool('poa')"><span class="tool-icon">🪪</span><div class="tool-name">Power of Attorney</div><div class="tool-desc">General and special power of attorney — for property, court, banking, business matters</div><span class="tool-tag tg-blue">Authorization</span></div>
+        <div class="tool-card" onclick="openTool('application')"><span class="tool-icon">📮</span><div class="tool-name">Formal Application</div><div class="tool-desc">Applications to government departments, courts, authorities — RTI, service matters, complaints</div><span class="tool-tag tg-green">Administrative</span></div>
+        <div class="tool-card" onclick="openTool('mou')"><span class="tool-icon">🗒️</span><div class="tool-name">MOU / Treaty</div><div class="tool-desc">Memoranda of Understanding between parties, institutions or organizations</div><span class="tool-tag tg-blue">Corporate</span></div>
       </div>
-      <div class="sec-head"><h2>Recent Documents</h2><div class="sec-head-line"></div><a class="sec-head-action" onclick="nav('docs')">View all â</a></div>
+      <div class="sec-head"><h2>Recent Documents</h2><div class="sec-head-line"></div><a class="sec-head-action" onclick="nav('docs')">View all →</a></div>
       <div class="recent-grid" id="recent-list">
         <div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);" id="recent-empty">
-          <div style="font-size:32px;margin-bottom:10px;opacity:.3;">ð</div>
-          <div style="font-size:13px;">No documents yet â generate one to see it here.</div>
+          <div style="font-size:32px;margin-bottom:10px;opacity:.3;">📄</div>
+          <div style="font-size:13px;">No documents yet — generate one to see it here.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ââ WORKSPACE ââ -->
+  <!-- ══ WORKSPACE ══ -->
   <div id="view-workspace" class="view">
     <div class="workspace">
       <div class="ws-left">
         <div class="ws-left-head">
-          <button class="ws-back" onclick="nav('home')">â Back to Dashboard</button>
+          <button class="ws-back" onclick="nav('home')">← Back to Dashboard</button>
           <div class="ws-tool-title" id="ws-title">Tool</div>
           <div class="ws-tool-sub" id="ws-sub">Description</div>
         </div>
@@ -923,7 +923,7 @@ select option{background:#fff;}
         <div class="ws-left-foot">
           <button class="gen-btn" id="gen-btn" onclick="generate()">
             <span class="spinner" id="gen-spinner"></span>
-            <span id="gen-label">â¦ Generate Document</span>
+            <span id="gen-label">✦ Generate Document</span>
           </button>
         </div>
       </div>
@@ -931,42 +931,42 @@ select option{background:#fff;}
         <div class="ws-right-head">
           <div class="ws-right-title" id="ws-out-title">Generated Document</div>
           <div class="out-actions">
-            <button class="btn-out print-hide" id="edit-btn" onclick="toggleEdit()">âï¸ Edit</button>
-            <button class="btn-out print-hide" onclick="copyDoc()">ð Copy Text</button>
-            <button class="btn-out print-hide" onclick="saveDoc()">ð¾ Save</button>
-            <button class="btn-out print-hide" onclick="printDoc()">ð¨ Print</button>
-            <button class="btn-out print-hide" onclick="exportWord()">ð Export Word</button>
-            <button class="btn-out prim print-hide" onclick="exportPDF()">â¬ Export PDF</button>
+            <button class="btn-out print-hide" id="edit-btn" onclick="toggleEdit()">✏️ Edit</button>
+            <button class="btn-out print-hide" onclick="copyDoc()">📋 Copy Text</button>
+            <button class="btn-out print-hide" onclick="saveDoc()">💾 Save</button>
+            <button class="btn-out print-hide" onclick="printDoc()">🖨 Print</button>
+            <button class="btn-out print-hide" onclick="exportWord()">📝 Export Word</button>
+            <button class="btn-out prim print-hide" onclick="exportPDF()">⬇ Export PDF</button>
           </div>
         </div>
         <div class="ws-right-body">
           <div class="empty-st" id="ws-empty">
-            <div class="empty-st-icon">âï¸</div>
+            <div class="empty-st-icon">⚖️</div>
             <div class="empty-st-title">Your document will appear here</div>
             <div class="empty-st-sub">Fill in the required fields on the left, then click Generate Document.</div>
           </div>
           <div class="loading-st" id="ws-loading">
             <div class="ld-ring"></div>
-            <div class="ld-title">Drafting your documentâ¦</div>
+            <div class="ld-title">Drafting your document…</div>
             <div class="ld-sub" id="ws-ld-sub">Applying PPC & CrPC references</div>
           </div>
           <div class="out-doc" id="ws-doc"></div>
-          <!-- AI Refine Bar â appears in edit mode -->
+          <!-- AI Refine Bar — appears in edit mode -->
           <div id="ai-refine-bar" style="display:none;padding:12px 16px;background:var(--bg2);border-top:1px solid var(--border);gap:8px;align-items:center;flex-wrap:wrap;">
             <input type="text" id="refine-input" placeholder="e.g. Add stronger case law / Remove respondent / Translate to Urdu" style="flex:1;min-width:200px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:13px;background:#fff;" onkeydown="if(event.key==='Enter')aiRefine()" />
-            <button id="refine-btn" onclick="aiRefine()" style="padding:10px 18px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">â¦ Refine with AI</button>
+            <button id="refine-btn" onclick="aiRefine()" style="padding:10px 18px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">✦ Refine with AI</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ââ DOCUMENTS ââ -->
+  <!-- ══ DOCUMENTS ══ -->
   <div id="view-docs" class="view">
     <div class="docs-view">
       <div class="sec-head" style="margin-bottom:20px;"><h2>My Documents</h2><div class="sec-head-line"></div></div>
       <div class="docs-toolbar">
-        <input class="docs-search" placeholder="Search documentsâ¦" oninput="filterDocs(this.value)" />
+        <input class="docs-search" placeholder="Search documents…" oninput="filterDocs(this.value)" />
         <select class="docs-filter" onchange="filterDocs('')">
           <option value="">All Types</option>
           <option>Argument</option><option>Bail Application</option><option>Writ Petition</option>
@@ -974,24 +974,24 @@ select option{background:#fff;}
         </select>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-        <div id="doc-count" style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">Loadingâ¦</div>
+        <div id="doc-count" style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">Loading…</div>
       </div>
       <div class="docs-grid" id="docs-grid">
         <div id="docs-empty" style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);">
-          <div style="font-size:40px;margin-bottom:12px;">ð</div>
+          <div style="font-size:40px;margin-bottom:12px;">📁</div>
           <div style="font-size:15px;font-weight:600;margin-bottom:6px;">No documents yet</div>
-          <div style="font-size:13px;">Generate a document and click Save â it will appear here.</div>
+          <div style="font-size:13px;">Generate a document and click Save — it will appear here.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ââ PRICING ââ -->
+  <!-- ══ PRICING ══ -->
   <div id="view-pricing" class="view">
     <div class="pricing-view">
       <div class="pricing-intro">
         <h2>Plans & Subscription</h2>
-        <p>Choose the plan that fits your practice. All plans include access to Pakistan-specific legal AI â PPC, CrPC, Constitution of Pakistan, and all superior court formats.</p>
+        <p>Choose the plan that fits your practice. All plans include access to Pakistan-specific legal AI — PPC, CrPC, Constitution of Pakistan, and all superior court formats.</p>
       </div>
       <!-- Billing toggle -->
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px;">
@@ -1026,7 +1026,7 @@ select option{background:#fff;}
             <div class="plan-tagline">For practicing advocates</div>
             <div class="plan-price">
               <div class="plan-pkr" id="pro-price-display">PKR 3,000</div>
-              <div class="plan-per" id="pro-price-sub">per month Â· billed monthly</div>
+              <div class="plan-per" id="pro-price-sub">per month · billed monthly</div>
             </div>
           </div>
           <div class="plan-body">
@@ -1034,7 +1034,7 @@ select option{background:#fff;}
               <li>60 documents per month</li><li>All 15 legal tools</li><li>Save & manage documents</li>
               <li>Copy, print & PDF export</li><li>Pakistani case law references</li><li>Email support</li>
             </ul>
-            <button class="plan-btn gold" id="plan-btn-pro" onclick="openUpgrade(isAnnualBilling ? 'pro-annual' : 'pro')">Upgrade to Pro â</button>
+            <button class="plan-btn gold" id="plan-btn-pro" onclick="openUpgrade(isAnnualBilling ? 'pro-annual' : 'pro')">Upgrade to Pro →</button>
           </div>
         </div>
         <div class="plan">
@@ -1044,7 +1044,7 @@ select option{background:#fff;}
             <div class="plan-tagline">For teams and law firms</div>
             <div class="plan-price">
               <div class="plan-pkr" id="firm-price-display">PKR 9,000</div>
-              <div class="plan-per" id="firm-price-sub">per month Â· up to 3 advocates</div>
+              <div class="plan-per" id="firm-price-sub">per month · up to 3 advocates</div>
             </div>
           </div>
           <div class="plan-body">
@@ -1052,16 +1052,16 @@ select option{background:#fff;}
               <li>150 documents per month</li><li>Everything in Professional</li><li>Up to 3 advocate accounts</li>
               <li>Shared document library</li><li>Priority WhatsApp support</li><li>Monthly usage report</li>
             </ul>
-            <button class="plan-btn outline" id="plan-btn-firm" onclick="openUpgrade(isAnnualBilling ? 'firm-annual' : 'firm')">Upgrade to Firm â</button>
+            <button class="plan-btn outline" id="plan-btn-firm" onclick="openUpgrade(isAnnualBilling ? 'firm-annual' : 'firm')">Upgrade to Firm →</button>
           </div>
         </div>
       </div>
       <div class="api-section">
         <div class="sec-head" style="margin-bottom:16px;"><h3 style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:600;color:var(--green);margin:0;">Payment Methods</h3><div class="sec-head-line"></div></div>
         <div class="api-table">
-          <div class="api-table-row"><div><div class="api-key">JazzCash</div><div class="api-note">Mobile wallet â 40M+ users in Pakistan</div></div><div class="api-val">â Supported</div></div>
-          <div class="api-table-row"><div><div class="api-key">Easypaisa</div><div class="api-note">Mobile wallet payment</div></div><div class="api-val">â Supported</div></div>
-          <div class="api-table-row"><div><div class="api-key">Bank Transfer (IBFT)</div><div class="api-note">Direct bank transfer via any Pakistani bank</div></div><div class="api-val">â Supported</div></div>
+          <div class="api-table-row"><div><div class="api-key">JazzCash</div><div class="api-note">Mobile wallet — 40M+ users in Pakistan</div></div><div class="api-val">✓ Supported</div></div>
+          <div class="api-table-row"><div><div class="api-key">Easypaisa</div><div class="api-note">Mobile wallet payment</div></div><div class="api-val">✓ Supported</div></div>
+          <div class="api-table-row"><div><div class="api-key">Bank Transfer (IBFT)</div><div class="api-note">Direct bank transfer via any Pakistani bank</div></div><div class="api-val">✓ Supported</div></div>
         </div>
       </div>
     </div>
@@ -1077,14 +1077,14 @@ select option{background:#fff;}
     <div class="profile-avatar-section">
       <div class="profile-avatar-lg" id="pm-avatar" onclick="triggerAvatarColor()">
         <span id="pm-avatar-text">AK</span>
-        <div class="profile-avatar-edit">â</div>
+        <div class="profile-avatar-edit">✎</div>
       </div>
       <div class="profile-name-block">
         <div class="profile-name-big" id="pm-name">Advocate Khan</div>
         <div class="profile-email-sm" id="pm-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a1b1e0c15191b0e1f3a1f021b170a161f54191517">[email&#160;protected]</a></div>
-        <div class="profile-plan-tag">â­ <span id="pm-plan">Free Trial</span></div>
+        <div class="profile-plan-tag">⭐ <span id="pm-plan">Free Trial</span></div>
       </div>
-      <button class="modal-close" onclick="closeModal('profile-modal')" style="align-self:flex-start;">â</button>
+      <button class="modal-close" onclick="closeModal('profile-modal')" style="align-self:flex-start;">✕</button>
     </div>
     <div class="profile-tabs">
       <div class="profile-tab active" onclick="switchProfileTab('account',this)">My Account</div>
@@ -1150,7 +1150,7 @@ select option{background:#fff;}
         <div class="pf-row">
           <div class="pf-label">Years of Practice</div>
           <select style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 13px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:13px;color:var(--text);outline:none;" id="pf-exp">
-            <option>Less than 1 year</option><option>1â3 years</option><option>3â5 years</option><option>5â10 years</option><option>10â20 years</option><option>20+ years</option>
+            <option>Less than 1 year</option><option>1–3 years</option><option>3–5 years</option><option>5–10 years</option><option>10–20 years</option><option>20+ years</option>
           </select>
         </div>
       </div>
@@ -1178,13 +1178,13 @@ select option{background:#fff;}
       <div class="pf-plan-current">
         <div>
           <div class="pf-plan-name" id="pm-plan-name">Free Trial</div>
-          <div class="pf-plan-detail" id="pm-plan-detail">14 days remaining Â· 5 documents/month</div>
+          <div class="pf-plan-detail" id="pm-plan-detail">14 days remaining · 5 documents/month</div>
         </div>
         <div class="pf-plan-price" id="pm-plan-price">PKR 0</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-        <button class="plan-btn gold" style="padding:11px;" onclick="closeModal('profile-modal');nav('pricing')">â­ View Plans & Upgrade</button>
-        <button class="plan-btn outline" style="padding:10px;" onclick="closeModal('profile-modal');nav('pricing')">View all plans â</button>
+        <button class="plan-btn gold" style="padding:11px;" onclick="closeModal('profile-modal');nav('pricing')">⭐ View Plans & Upgrade</button>
+        <button class="plan-btn outline" style="padding:10px;" onclick="closeModal('profile-modal');nav('pricing')">View all plans →</button>
       </div>
     </div>
     <div class="profile-panel" id="pp-security">
@@ -1219,18 +1219,18 @@ select option{background:#fff;}
   <div class="modal" style="max-width:440px;">
     <div class="modal-hd">
       <div class="modal-hd-title" id="upgrade-title">Upgrade to Professional</div>
-      <button class="modal-close" onclick="closeModal('upgrade-modal')">â</button>
+      <button class="modal-close" onclick="closeModal('upgrade-modal')">✕</button>
     </div>
     <div class="modal-bd">
       <div id="upgrade-info" style="margin-bottom:18px;">
         <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--gold-bg);border-radius:8px;margin-bottom:14px;">
-          <div><strong id="upgrade-plan-name">Professional</strong><br><span style="font-size:11px;color:var(--muted);" id="upgrade-plan-detail">60 documents/month Â· All tools</span></div>
+          <div><strong id="upgrade-plan-name">Professional</strong><br><span style="font-size:11px;color:var(--muted);" id="upgrade-plan-detail">60 documents/month · All tools</span></div>
           <div style="text-align:right;"><strong style="font-size:20px;color:var(--green);" id="upgrade-plan-price">PKR 3,000</strong><br><span style="font-size:10px;color:var(--muted);">/month</span></div>
         </div>
         <p style="font-size:12px;color:var(--muted);line-height:1.6;">Online payments coming soon. For now, contact us on WhatsApp to upgrade your plan instantly.</p>
       </div>
       <a href="https://wa.me/923000000000?text=I%20want%20to%20upgrade%20my%20Wakeel%20AI%20plan" target="_blank" id="safepay-pay-btn" style="width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
-        ð± Contact on WhatsApp to Upgrade
+        📱 Contact on WhatsApp to Upgrade
       </a>
       <div id="upgrade-loading" style="display:none;">
     </div>
@@ -1245,21 +1245,21 @@ select option{background:#fff;}
   <div class="modal" style="max-width:420px;">
     <div class="modal-hd" style="background:var(--red);"><div class="modal-hd-title" style="color:#fff;">Document Limit Reached</div></div>
     <div class="modal-bd" style="text-align:center;padding:28px 24px;">
-      <div style="font-size:48px;margin-bottom:12px;">â ï¸</div>
+      <div style="font-size:48px;margin-bottom:12px;">⚠️</div>
       <h3 style="margin-bottom:8px;" id="limit-msg">You have used all 5 free documents this month</h3>
       <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">Upgrade your plan to continue generating documents. Your limit resets on the 1st of each month.</p>
-      <button class="plan-btn gold" style="width:100%;padding:14px;margin-bottom:8px;" onclick="closeModal('limit-modal');openUpgrade('pro')">â­ Professional â PKR 3,000/month (60 docs)</button>
-      <button class="plan-btn outline" style="width:100%;padding:12px;" onclick="closeModal('limit-modal');openUpgrade('firm')">ð¢ Firm â PKR 9,000/month (150 docs)</button>
+      <button class="plan-btn gold" style="width:100%;padding:14px;margin-bottom:8px;" onclick="closeModal('limit-modal');openUpgrade('pro')">⭐ Professional — PKR 3,000/month (60 docs)</button>
+      <button class="plan-btn outline" style="width:100%;padding:12px;" onclick="closeModal('limit-modal');openUpgrade('firm')">🏢 Firm — PKR 9,000/month (150 docs)</button>
       <p style="font-size:11px;color:var(--dim);margin-top:14px;">Or <span style="cursor:pointer;color:var(--green3);text-decoration:underline;" onclick="closeModal('limit-modal');nav('pricing')">view all plans</span> including annual discounts</p>
     </div>
   </div>
 </div>
 
 <script>
-/* ââââââââââââââââââââââââââââââââââââââ
-   GLOBALS â defined first so all onclick
+/* ══════════════════════════════════════
+   GLOBALS — defined first so all onclick
    handlers always find these variables
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 let sb = null;
 let currentUser = {};
 let docCount = 0;
@@ -1274,17 +1274,17 @@ const PLAN_LIMITS = {
   'Firm':          150
 };
 const PLAN_PRICES = {
-  'pro':           { name: 'Professional', amount: 3000, docs: 60, detail: '60 documents/month Â· All tools', annual: 2499, annualTotal: 29988 },
-  'pro-annual':    { name: 'Professional (Annual)', amount: 29988, docs: 60, detail: '60 documents/month Â· All tools Â· Billed yearly', monthly: 2499 },
-  'firm':          { name: 'Firm', amount: 9000, docs: 150, detail: '150 docs/month Â· 3 advocates Â· Priority support', annual: 8099, annualTotal: 97188 },
-  'firm-annual':   { name: 'Firm (Annual)', amount: 97188, docs: 150, detail: '150 docs/month Â· 3 advocates Â· Billed yearly', monthly: 8099 }
+  'pro':           { name: 'Professional', amount: 3000, docs: 60, detail: '60 documents/month · All tools', annual: 2499, annualTotal: 29988 },
+  'pro-annual':    { name: 'Professional (Annual)', amount: 29988, docs: 60, detail: '60 documents/month · All tools · Billed yearly', monthly: 2499 },
+  'firm':          { name: 'Firm', amount: 9000, docs: 150, detail: '150 docs/month · 3 advocates · Priority support', annual: 8099, annualTotal: 97188 },
+  'firm-annual':   { name: 'Firm (Annual)', amount: 97188, docs: 150, detail: '150 docs/month · 3 advocates · Billed yearly', monthly: 8099 }
 };
-// Safepay integration disabled â secret key moved server-side before launch
+// Safepay integration disabled — secret key moved server-side before launch
 const SAFEPAY_CONFIG = { env: 'disabled' };
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    AUTH TAB SWITCH
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 function switchAuthTab(tab, el) {
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
@@ -1294,9 +1294,9 @@ function switchAuthTab(tab, el) {
   document.getElementById('reg-err').textContent   = '';
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    EMAIL LOGIN
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 async function doLogin() {
   const email  = document.getElementById('login-email').value.trim();
   const pass   = document.getElementById('login-pass').value;
@@ -1309,7 +1309,7 @@ async function doLogin() {
   if (!pass)  { errEl.textContent = 'Please enter your password.'; return; }
 
   btn.classList.add('loading');
-  btn.textContent = 'Signing inâ¦';
+  btn.textContent = 'Signing in…';
 
   const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
 
@@ -1327,9 +1327,9 @@ async function doLogin() {
   enterApp(true);
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    EMAIL REGISTER
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 async function doRegister() {
   const name   = document.getElementById('reg-name').value.trim();
   const email  = document.getElementById('reg-email').value.trim();
@@ -1347,7 +1347,7 @@ async function doRegister() {
   if (pass.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; return; }
 
   btn.classList.add('loading');
-  btn.textContent = 'Creating accountâ¦';
+  btn.textContent = 'Creating account…';
 
   const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
 
@@ -1383,7 +1383,7 @@ async function doRegister() {
   // Email confirmation required
   if (data.user && !data.session) {
     errEl.style.color = 'var(--green3)';
-    errEl.textContent = 'â Account created! Check your email to confirm, then sign in.';
+    errEl.textContent = '✅ Account created! Check your email to confirm, then sign in.';
     return;
   }
 
@@ -1400,15 +1400,15 @@ async function doRegister() {
   }
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    GOOGLE LOGIN
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 async function doGoogleLogin() {
   if (!sb) { showToast('Connection error. Please refresh the page.', 'err'); return; }
   // Disable both Google buttons to prevent double-click
   ['google-login-btn','google-reg-btn'].forEach(id => {
     const btn = document.getElementById(id);
-    if (btn) { btn.classList.add('loading'); btn.textContent = 'Redirecting to Googleâ¦'; }
+    if (btn) { btn.classList.add('loading'); btn.textContent = 'Redirecting to Google…'; }
   });
 
   const { error } = await sb.auth.signInWithOAuth({
@@ -1429,16 +1429,16 @@ async function doGoogleLogin() {
     document.getElementById('google-login-btn').innerHTML = googleBtnHTML('Continue with Google');
     document.getElementById('google-reg-btn').innerHTML   = googleBtnHTML('Sign up with Google');
   }
-  // On success, browser redirects â no further code runs here
+  // On success, browser redirects — no further code runs here
 }
 
 function googleBtnHTML(label) {
   return `<svg width="18" height="18" viewBox="0 0 48 48" style="flex-shrink:0;"><path fill="#EA4335" d="M24 9.5c3.14 0 5.95 1.08 8.17 2.86l6.08-6.08C34.64 3.1 29.64 1 24 1 14.82 1 7.02 6.48 3.58 14.18l7.07 5.49C12.38 13.36 17.72 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.64-.15-3.22-.42-4.75H24v9h12.7c-.55 2.96-2.2 5.47-4.67 7.15l7.18 5.57C43.44 37.27 46.5 31.32 46.5 24.5z"/><path fill="#FBBC05" d="M10.65 28.33A14.6 14.6 0 0 1 9.5 24c0-1.5.26-2.95.71-4.33l-7.07-5.49A23.94 23.94 0 0 0 0 24c0 3.86.92 7.5 2.55 10.72l8.1-6.39z"/><path fill="#34A853" d="M24 47c5.56 0 10.23-1.84 13.64-5l-7.18-5.57c-1.9 1.28-4.33 2.04-6.46 2.04-6.28 0-11.62-3.86-13.35-9.14l-8.1 6.39C7.02 41.52 14.82 47 24 47z"/></svg>${label}`;
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    FORGOT PASSWORD
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 async function doForgotPassword() {
   const email = document.getElementById('login-email').value.trim();
   if (!email) {
@@ -1451,13 +1451,13 @@ async function doForgotPassword() {
   if (error) {
     showToast('Error: ' + error.message, 'err');
   } else {
-    showToast('â Password reset email sent â check your inbox');
+    showToast('✅ Password reset email sent — check your inbox');
   }
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    LOAD USER PROFILE
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 async function loadUserProfile(user) {
   const meta = user.user_metadata || {};
   let profile = null;
@@ -1488,9 +1488,9 @@ async function loadUserProfile(user) {
   };
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    ENTER APP
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 function enterApp(showWelcome) {
   document.getElementById('auth-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
@@ -1498,7 +1498,7 @@ function enterApp(showWelcome) {
   document.getElementById('sb-plan').textContent     = currentUser.plan;
   document.getElementById('sb-avatar').textContent   = currentUser.initials || 'AK';
   document.getElementById('welcome-name').textContent = currentUser.name;
-  if (showWelcome) showToast('Welcome, ' + currentUser.name.split(' ')[0] + '! ð');
+  if (showWelcome) showToast('Welcome, ' + currentUser.name.split(' ')[0] + '! 👋');
   loadDocuments();
   // Load monthly usage count
   getMonthlyGenCount().then(count => {
@@ -1510,9 +1510,9 @@ function enterApp(showWelcome) {
   completeUpgradeAfterPayment();
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    NAVIGATION
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 function nav(view, el) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + view).classList.add('active');
@@ -1546,26 +1546,26 @@ function closeMobileSidebar() {
   document.body.style.overflow = '';
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    TOOLS CONFIG
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 const COURT_OPTIONS = `
 <optgroup label="Supreme Court"><option>Supreme Court of Pakistan</option></optgroup>
 <optgroup label="Lahore High Court">
   <option>Lahore High Court (Principal Seat)</option>
-  <option>Lahore High Court â Rawalpindi Bench</option>
-  <option>Lahore High Court â Multan Bench</option>
-  <option>Lahore High Court â Bahawalpur Bench</option>
+  <option>Lahore High Court — Rawalpindi Bench</option>
+  <option>Lahore High Court — Multan Bench</option>
+  <option>Lahore High Court — Bahawalpur Bench</option>
 </optgroup>
 <optgroup label="Sindh High Court">
   <option>Sindh High Court (Karachi)</option>
-  <option>Sindh High Court â Sukkur Bench</option>
-  <option>Sindh High Court â Larkana Bench</option>
+  <option>Sindh High Court — Sukkur Bench</option>
+  <option>Sindh High Court — Larkana Bench</option>
 </optgroup>
 <optgroup label="Peshawar High Court">
   <option>Peshawar High Court (Peshawar)</option>
-  <option>Peshawar High Court â Mingora Bench</option>
-  <option>Peshawar High Court â Abbottabad Bench</option>
+  <option>Peshawar High Court — Mingora Bench</option>
+  <option>Peshawar High Court — Abbottabad Bench</option>
 </optgroup>
 <optgroup label="Other High Courts">
   <option>Islamabad High Court</option>
@@ -1600,22 +1600,22 @@ const COURT_OPTIONS = `
 </optgroup>`;
 
 const HC_OPTIONS = `
-<option value="">â Select High Court â</option>
+<option value="">— Select High Court —</option>
 <optgroup label="Lahore High Court">
   <option>Lahore High Court (Principal Seat, Lahore)</option>
-  <option>Lahore High Court â Rawalpindi Bench</option>
-  <option>Lahore High Court â Multan Bench</option>
-  <option>Lahore High Court â Bahawalpur Bench</option>
+  <option>Lahore High Court — Rawalpindi Bench</option>
+  <option>Lahore High Court — Multan Bench</option>
+  <option>Lahore High Court — Bahawalpur Bench</option>
 </optgroup>
 <optgroup label="Sindh High Court">
   <option>Sindh High Court (Principal Seat, Karachi)</option>
-  <option>Sindh High Court â Sukkur Bench</option>
-  <option>Sindh High Court â Larkana Bench</option>
+  <option>Sindh High Court — Sukkur Bench</option>
+  <option>Sindh High Court — Larkana Bench</option>
 </optgroup>
 <optgroup label="Peshawar High Court">
   <option>Peshawar High Court (Principal Seat, Peshawar)</option>
-  <option>Peshawar High Court â Mingora Bench</option>
-  <option>Peshawar High Court â Abbottabad Bench</option>
+  <option>Peshawar High Court — Mingora Bench</option>
+  <option>Peshawar High Court — Abbottabad Bench</option>
 </optgroup>
 <optgroup label="Other High Courts">
   <option>Islamabad High Court</option>
@@ -1624,160 +1624,160 @@ const HC_OPTIONS = `
 
 const TOOLS = {
   argument:{
-    title:'Argument Builder',sub:'Build structured legal arguments â claims, evidence, counters & rebuttals',loadMsg:'Structuring arguments under PPC & CrPCâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Case Title / ÙÙØ¯ÙÛ Ú©Ø§ Ø¹ÙÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f0" placeholder="e.g. State v. Muhammad Asif, 2025" /></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Your Client / Ø¢Ù¾ Ú©Ø§ ÙÙÚ©Ù <span class="fld-req">*</span></label><select id="f1"><option value="">Selectâ¦</option><option>Prosecution / Plaintiff (Ø§Ø³ØªØºØ§Ø«Û / ÙØ¯Ø¹Û)</option><option>Defense / Defendant (Ø¯ÙØ§Ø¹ / ÙØ¯Ø¹Ø§ Ø¹ÙÛÛ)</option></select></div>
-    <div class="fld"><label class="fld-lbl">Case Type / ÙÙØ¯ÙÛ Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f2"><option value="">Selectâ¦</option><option>Criminal â PPC (ÙÙØ¬Ø¯Ø§Ø±Û)</option><option>Civil Suit (Ø¯ÛÙØ§ÙÛ)</option><option>Constitutional / Writ (Ø¢Ø¦ÛÙÛ)</option><option>Family Law â MFLO (Ø®Ø§ÙØ¯Ø§ÙÛ)</option><option>Land / Property (Ø²ÙÛÙ / Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯)</option><option>Contract / Commercial (ÙØ¹Ø§ÛØ¯Û / ØªØ¬Ø§Ø±ØªÛ)</option><option>Labour / Employment (ÙØ²Ø¯ÙØ± / ÙÙØ§Ø²ÙØª)</option><option>Banking / Financial (Ø¨ÛÙÚ©ÙÚ¯ / ÙØ§ÙÛØ§ØªÛ)</option><option>Tax / Revenue (Ù¹ÛÚ©Ø³ / ÙØ­ØµÙÙ)</option><option>Consumer Protection (ØµØ§Ø±Ù ØªØ­ÙØ¸)</option><option>Cyber Crime / PECA (Ø³Ø§Ø¦Ø¨Ø± Ú©Ø±Ø§Ø¦Ù)</option><option>Anti-Terrorism (Ø¯ÛØ´Øª Ú¯Ø±Ø¯Û)</option></select></div></div>
-    <div class="fld"><label class="fld-lbl">Key Facts / ÙØ§ÙØ¹Ø§Øª Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f3" placeholder="ÙØ§ÙØ¹Ø§Øª Ø¨ÛØ§Ù Ú©Ø±ÛÚº â ØªØ§Ø±ÛØ®ÛÚºØ ÙØ§ÙØ¹Ø§ØªØ ÙØ±ÛÙÛÙ Ú©Û ØªÙØµÛÙØ§Øª"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Available Evidence / Ø¯Ø³ØªÛØ§Ø¨ Ø«Ø¨ÙØª</label><textarea id="f4" placeholder="Ø¯Ø³ØªØ§ÙÛØ²Ø§ØªØ Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± ÙÙØ¨Ø±Ø Ú¯ÙØ§ÛØ§ÙØ Ø·Ø¨Û Ø±Ù¾ÙØ±Ù¹â¦" style="min-height:72px;"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Law Sections / ÙØ§ÙÙÙÛ Ø¯ÙØ¹Ø§Øª</label><input type="text" id="f5" placeholder="e.g. PPC Â§302, CrPC Â§497" /><div class="fld-hint">Ø®Ø§ÙÛ ÚÚ¾ÙÚÛÚº â AI Ø®ÙØ¯ ÙØªØ¹ÙÙÛ Ø¯ÙØ¹Ø§Øª ØªØ¬ÙÛØ² Ú©Ø±Û Ú¯Ø§</div></div>
-    <div class="fld"><label class="fld-lbl">Court / Ø¹Ø¯Ø§ÙØª</label><select id="f6">${COURT_OPTIONS}</select></div><div id="lang-row"></div>`
+    title:'Argument Builder',sub:'Build structured legal arguments — claims, evidence, counters & rebuttals',loadMsg:'Structuring arguments under PPC & CrPC…',
+    fields:`<div class="fld"><label class="fld-lbl">Case Title / مقدمہ کا عنوان <span class="fld-req">*</span></label><input type="text" id="f0" placeholder="e.g. State v. Muhammad Asif, 2025" /></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Your Client / آپ کا موکل <span class="fld-req">*</span></label><select id="f1"><option value="">Select…</option><option>Prosecution / Plaintiff (استغاثہ / مدعی)</option><option>Defense / Defendant (دفاع / مدعا علیہ)</option></select></div>
+    <div class="fld"><label class="fld-lbl">Case Type / مقدمے کی قسم <span class="fld-req">*</span></label><select id="f2"><option value="">Select…</option><option>Criminal — PPC (فوجداری)</option><option>Civil Suit (دیوانی)</option><option>Constitutional / Writ (آئینی)</option><option>Family Law — MFLO (خاندانی)</option><option>Land / Property (زمین / جائیداد)</option><option>Contract / Commercial (معاہدہ / تجارتی)</option><option>Labour / Employment (مزدور / ملازمت)</option><option>Banking / Financial (بینکنگ / مالیاتی)</option><option>Tax / Revenue (ٹیکس / محصول)</option><option>Consumer Protection (صارف تحفظ)</option><option>Cyber Crime / PECA (سائبر کرائم)</option><option>Anti-Terrorism (دہشت گردی)</option></select></div></div>
+    <div class="fld"><label class="fld-lbl">Key Facts / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f3" placeholder="واقعات بیان کریں — تاریخیں، واقعات، فریقین کی تفصیلات"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Available Evidence / دستیاب ثبوت</label><textarea id="f4" placeholder="دستاویزات، ایف آئی آر نمبر، گواہان، طبی رپورٹ…" style="min-height:72px;"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Law Sections / قانونی دفعات</label><input type="text" id="f5" placeholder="e.g. PPC §302, CrPC §497" /><div class="fld-hint">خالی چھوڑیں — AI خود متعلقہ دفعات تجویز کرے گا</div></div>
+    <div class="fld"><label class="fld-lbl">Court / عدالت</label><select id="f6">${COURT_OPTIONS}</select></div><div id="lang-row"></div>`
   },
   petition:{
-    title:'Petition Drafting',sub:'Draft formal petitions for Sessions, High Court or Supreme Court of Pakistan',loadMsg:'Drafting petition per CPC requirementsâ¦',
-    fields:`<div class="fld-row"><div class="fld"><label class="fld-lbl">Petitioner / Ø¯Ø±Ø®ÙØ§Ø³Øª Ú¯Ø²Ø§Ø± <span class="fld-req">*</span></label><input type="text" id="f0" placeholder="ÙØ§Ù ÙÙØ¯ÛØª Ù¾ØªÛ â Name s/o Father, Address" /></div>
-    <div class="fld"><label class="fld-lbl">Respondent / ÙØ³Ø¦ÙÙ Ø¹ÙÛÛ <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ³Ø¦ÙÙ Ø¹ÙÛÛ Ú©Ø§ ÙØ§Ù â Name & details" /></div></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Type / ÙØ³Ù <span class="fld-req">*</span></label><select id="f2"><option>Criminal Petition (ÙÙØ¬Ø¯Ø§Ø±Û)</option><option>Civil Petition (Ø¯ÛÙØ§ÙÛ)</option><option>Constitutional Petition (Ø¢Ø¦ÛÙÛ)</option><option>Revision Petition (ÙØ¸Ø±Ø«Ø§ÙÛ)</option><option>Leave to Appeal (Ø§Ø¬Ø§Ø²Øª Ø§Ù¾ÛÙ)</option><option>Contempt of Court Petition (ØªÙÛÛÙ Ø¹Ø¯Ø§ÙØª)</option><option>Execution Petition (ØªØ¹ÙÛÙ ÚÚ¯Ø±Û)</option><option>Transfer Petition (ÙÙØªÙÙÛ)</option><option>Petition u/s 22-A/22-B CrPC (Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± Ø¯Ø±Ø¬ Ú©Ø±ÙØ§ÙØ§)</option><option>Petition u/s 491 CrPC â Recovery of Detenu (Ø¨Ø§Ø²ÛØ§Ø¨Û)</option><option>Superdari Petition â Release of Vehicle/Property (Ø³Ù¾Ø±Ø¯Ø§Ø±Û)</option></select></div>
-    <div class="fld"><label class="fld-lbl">Court / Ø¹Ø¯Ø§ÙØª <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div></div>
-    <div class="fld"><label class="fld-lbl">Background Facts / ÙØ§ÙØ¹Ø§Øª Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f4" placeholder="ÙÚ©ÙÙ ÙØ§ÙØ¹Ø§Øª Ø¨ÛØ§Ù Ú©Ø±ÛÚº â Ú©ÛØ§ ÛÙØ§ Ø§ÙØ± Ú©Ø¨"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Grounds for Petition / Ø¯Ø±Ø®ÙØ§Ø³Øª Ú©Û Ø¨ÙÛØ§Ø¯ÛÚº <span class="fld-req">*</span></label><textarea id="f5" placeholder="Ø¢Ø¦ÛÙÛ Ø®ÙØ§Ù ÙØ±Ø²ÛØ ØºÛØ± ÙØ§ÙÙÙÛ Ø­Ú©ÙØ Ø¯Ø§Ø¦Ø±Û Ø§Ø®ØªÛØ§Ø±â¦"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Relief Sought / ÙØ·ÙÙØ¨Û Ø±ÛÙÛÙ</label><textarea id="f6" placeholder="Ø¹Ø¯Ø§ÙØª Ø³Û Ú©ÛØ§ Ø­Ú©Ù ÚØ§ÛØªÛ ÛÛÚºØ" style="min-height:72px;"></textarea></div>`
+    title:'Petition Drafting',sub:'Draft formal petitions for Sessions, High Court or Supreme Court of Pakistan',loadMsg:'Drafting petition per CPC requirements…',
+    fields:`<div class="fld-row"><div class="fld"><label class="fld-lbl">Petitioner / درخواست گزار <span class="fld-req">*</span></label><input type="text" id="f0" placeholder="نام ولدیت پتہ — Name s/o Father, Address" /></div>
+    <div class="fld"><label class="fld-lbl">Respondent / مسئول علیہ <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="مسئول علیہ کا نام — Name & details" /></div></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Type / قسم <span class="fld-req">*</span></label><select id="f2"><option>Criminal Petition (فوجداری)</option><option>Civil Petition (دیوانی)</option><option>Constitutional Petition (آئینی)</option><option>Revision Petition (نظرثانی)</option><option>Leave to Appeal (اجازت اپیل)</option><option>Contempt of Court Petition (توہین عدالت)</option><option>Execution Petition (تعمیل ڈگری)</option><option>Transfer Petition (منتقلی)</option><option>Petition u/s 22-A/22-B CrPC (ایف آئی آر درج کروانا)</option><option>Petition u/s 491 CrPC — Recovery of Detenu (بازیابی)</option><option>Superdari Petition — Release of Vehicle/Property (سپرداری)</option></select></div>
+    <div class="fld"><label class="fld-lbl">Court / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div></div>
+    <div class="fld"><label class="fld-lbl">Background Facts / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f4" placeholder="مکمل واقعات بیان کریں — کیا ہوا اور کب"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Grounds for Petition / درخواست کی بنیادیں <span class="fld-req">*</span></label><textarea id="f5" placeholder="آئینی خلاف ورزی، غیر قانونی حکم، دائرہ اختیار…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Relief Sought / مطلوبہ ریلیف</label><textarea id="f6" placeholder="عدالت سے کیا حکم چاہتے ہیں؟" style="min-height:72px;"></textarea></div>`
   },
   writ:{
-    title:'Writ Petition',sub:'Constitutional writs under Article 199 â Habeas Corpus, Mandamus, Certiorari',loadMsg:'Drafting writ under Constitution of Pakistan, Art. 199â¦',
-    fields:`<div class="fld"><label class="fld-lbl">Type of Writ / Ø±Ù¹ Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Habeas Corpus â Illegal Detention (ØºÛØ± ÙØ§ÙÙÙÛ Ø­Ø±Ø§Ø³Øª)</option><option>Mandamus â Compel Public Authority (Ø­Ú©Ù Ø¹Ø¯Ø§ÙØª)</option><option>Certiorari â Quash Lower Court Order (ÙÚÙÛ Ø¹Ø¯Ø§ÙØª Ú©Ø§ Ø­Ú©Ù ÙÙØ³ÙØ®)</option><option>Prohibition â Stop Proceedings (Ú©Ø§Ø±Ø±ÙØ§Ø¦Û Ø±ÙÚ©ÙÛ Ú©Ø§ Ø­Ú©Ù)</option><option>Quo Warranto â Challenge to Office (Ø¹ÛØ¯Û Ú©Ø§ ÚÛÙÙØ¬)</option><option>Quashing of FIR â Art. 199 r/w Â§561-A (Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± ÙÙØ³ÙØ®Û)</option><option>Service Matter â Transfer / Termination (Ø³Ø±ÙØ³ ÙØ¹Ø§ÙÙÛ)</option><option>Tax / Revenue Matter (Ù¹ÛÚ©Ø³ / Ø±ÛÙÙÛÙ)</option><option>Education / Examination Matter (ØªØ¹ÙÛÙÛ ÙØ¹Ø§ÙÙÛ)</option><option>Municipal / Local Authority Matter (Ø¨ÙØ¯ÛØ§ØªÛ ÙØ¹Ø§ÙÙÛ)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Petitioner / Ø¯Ø±Ø®ÙØ§Ø³Øª Ú¯Ø²Ø§Ø± <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§Ù ÙÙØ¯ÛØª Ù¾ØªÛ â Name s/o Father, Address" /></div>
-    <div class="fld"><label class="fld-lbl">Respondent Authority / ÙØ³Ø¦ÙÙ Ø¹ÙÛÛ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙØ­Ú©ÙÛ / Ø§ÙØ³Ø± â e.g. EDO Education Multan" /></div></div>
-    <div class="fld"><label class="fld-lbl">High Court / ÛØ§Ø¦Û Ú©ÙØ±Ù¹ <span class="fld-req">*</span></label><select id="f3">${HC_OPTIONS}</select></div>
-    <div class="fld"><label class="fld-lbl">Circumstances / ÙØ§ÙØ¹Ø§Øª Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f4" placeholder="ØºÛØ± ÙØ§ÙÙÙÛ Ø­Ø±Ø§Ø³Øª ÛØ§ ØºÛØ± ÙØ§ÙÙÙÛ Ú©Ø§Ø±Ø±ÙØ§Ø¦Û Ú©Û ØªÙØµÛÙ Ø¨ÛØ§Ù Ú©Ø±ÛÚº"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Constitutional Grounds / Ø¢Ø¦ÛÙÛ Ø¨ÙÛØ§Ø¯ÛÚº</label><textarea id="f5" placeholder="Art. 4, Art. 9, Art. 10-A, Art. 25â¦" style="min-height:72px;"></textarea><div class="fld-hint">Ø®Ø§ÙÛ ÚÚ¾ÙÚÛÚº â AI Ø®ÙØ¯ Ø¢Ø¦ÛÙÛ Ø­ÙØ§ÙÛ Ø´Ø§ÙÙ Ú©Ø±Û Ú¯Ø§</div></div>`
+    title:'Writ Petition',sub:'Constitutional writs under Article 199 — Habeas Corpus, Mandamus, Certiorari',loadMsg:'Drafting writ under Constitution of Pakistan, Art. 199…',
+    fields:`<div class="fld"><label class="fld-lbl">Type of Writ / رٹ کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Habeas Corpus — Illegal Detention (غیر قانونی حراست)</option><option>Mandamus — Compel Public Authority (حکم عدالت)</option><option>Certiorari — Quash Lower Court Order (نچلی عدالت کا حکم منسوخ)</option><option>Prohibition — Stop Proceedings (کارروائی روکنے کا حکم)</option><option>Quo Warranto — Challenge to Office (عہدے کا چیلنج)</option><option>Quashing of FIR — Art. 199 r/w §561-A (ایف آئی آر منسوخی)</option><option>Service Matter — Transfer / Termination (سروس معاملہ)</option><option>Tax / Revenue Matter (ٹیکس / ریونیو)</option><option>Education / Examination Matter (تعلیمی معاملہ)</option><option>Municipal / Local Authority Matter (بلدیاتی معاملہ)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Petitioner / درخواست گزار <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام ولدیت پتہ — Name s/o Father, Address" /></div>
+    <div class="fld"><label class="fld-lbl">Respondent Authority / مسئول علیہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="محکمہ / افسر — e.g. EDO Education Multan" /></div></div>
+    <div class="fld"><label class="fld-lbl">High Court / ہائی کورٹ <span class="fld-req">*</span></label><select id="f3">${HC_OPTIONS}</select></div>
+    <div class="fld"><label class="fld-lbl">Circumstances / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f4" placeholder="غیر قانونی حراست یا غیر قانونی کارروائی کی تفصیل بیان کریں"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Constitutional Grounds / آئینی بنیادیں</label><textarea id="f5" placeholder="Art. 4, Art. 9, Art. 10-A, Art. 25…" style="min-height:72px;"></textarea><div class="fld-hint">خالی چھوڑیں — AI خود آئینی حوالے شامل کرے گا</div></div>`
   },
   bail:{
-    title:'Bail Application',sub:'Pre-arrest Â§498 and post-arrest Â§497 CrPC bail applications',loadMsg:'Drafting bail application under CrPCâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Type of Bail / Ø¶ÙØ§ÙØª Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Post-Arrest Bail â Â§497 CrPC (Ú¯Ø±ÙØªØ§Ø±Û Ú©Û Ø¨Ø¹Ø¯ Ø¶ÙØ§ÙØª)</option><option>Pre-Arrest Bail â Â§498 CrPC (Ú¯Ø±ÙØªØ§Ø±Û Ø³Û Ù¾ÛÙÛ Ø¶ÙØ§ÙØª)</option><option>Bail After Conviction (Ø³Ø²Ø§ Ú©Û Ø¨Ø¹Ø¯ Ø¶ÙØ§ÙØª)</option><option>Interim / Ad-Interim Bail (Ø¹Ø¨ÙØ±Û Ø¶ÙØ§ÙØª)</option><option>Cancellation of Bail â Â§497(5) CrPC (Ø¶ÙØ§ÙØª ÙÙØ³ÙØ®Û)</option><option>Bail in Anti-Terrorism Case (Ø¯ÛØ´Øª Ú¯Ø±Ø¯Û ÙÙØ¯ÙÛ)</option><option>Bail in NAB / Corruption Case (ÙÛØ¨ / Ú©Ø±Ù¾Ø´Ù)</option><option>Bail in Narcotics Case â CNSA (ÙÙØ´ÛØ§Øª)</option><option>Bail in Cyber Crime / PECA (Ø³Ø§Ø¦Ø¨Ø± Ú©Ø±Ø§Ø¦Ù)</option></select></div>
-    <div class="fld"><label class="fld-lbl">Accused / Petitioner Name / ÙÙØ²Ù Ú©Ø§ ÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙÙØ²Ù Ú©Ø§ ÙÚ©ÙÙ ÙØ§Ù ÙÙØ¯ÛØª Ù¾ØªÛ â Ø¬Ø³ Ú©Û Ø¶ÙØ§ÙØª ÚØ§ÛÛÛ" /><div class="fld-hint">ÙÛ Ø´Ø®Øµ Ø¬Ø³ Ú©Û Ø¶ÙØ§ÙØª Ø¯Ø±Ú©Ø§Ø± ÛÛ â The person who needs bail</div></div>
-    <div class="fld"><label class="fld-lbl">Complainant Name / ÙØ³ØªØºÛØ« Ú©Ø§ ÙØ§Ù</label><input type="text" id="f7" placeholder="ÙØ³ØªØºÛØ« Ú©Ø§ ÙØ§Ù ÙÙØ¯ÛØª â Ø¬Ø³ ÙÛ Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± Ø¯Ø±Ø¬ Ú©Ø±Ø§Ø¦Û" /><div class="fld-hint">Ø¬Ø³ ÙÛ Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± Ú©Ø±ÙØ§Ø¦Û â The person who filed the FIR</div></div>
-    <div class="fld"><label class="fld-lbl">FIR No. & Police Station / Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± ÙÙØ¨Ø± Ø§ÙØ± ØªÚ¾Ø§ÙÛ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="e.g. FIR No. 123/2024, PS Gulberg, Lahore" /></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Offence / Section / Ø¯ÙØ¹Ø§Øª <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. 420, 468, 471 PPC" /></div>
-    <div class="fld"><label class="fld-lbl">Court / Ø¹Ø¯Ø§ÙØª <span class="fld-req">*</span></label><select id="f4">${COURT_OPTIONS}</select></div></div>
-    <div class="fld"><label class="fld-lbl">Grounds for Bail / Ø¶ÙØ§ÙØª Ú©Û Ø¨ÙÛØ§Ø¯ÛÚº <span class="fld-req">*</span></label><textarea id="f5" placeholder="Ø¬Ú¾ÙÙ¹Ø§ ÙÙØ¯ÙÛØ Ú©ÙØ¦Û Ø³Ø§Ø¨ÙÛ Ø±ÛÚ©Ø§Ø±Ú ÙÛÛÚºØ ÙØ²ÛØ¯ ØªØ­ÙÛÙØ§Øª Ú©Ø§ ÙØ¹Ø§ÙÙÛØ Ø¶Ø§ÙÙ Ø¯Ø³ØªÛØ§Ø¨â¦"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Accused Background / ÙÙØ²Ù Ú©Ø§ Ù¾Ø³ ÙÙØ¸Ø±</label><textarea id="f6" placeholder="Ù¾ÛØ´ÛØ Ø®Ø§ÙØ¯Ø§ÙÛ Ø­ÛØ«ÛØªØ ØµØ­ØªØ ÙØ¹Ø§Ø´Ø±ØªÛ Ø­ÛØ«ÛØªâ¦" style="min-height:72px;"></textarea></div>`
+    title:'Bail Application',sub:'Pre-arrest §498 and post-arrest §497 CrPC bail applications',loadMsg:'Drafting bail application under CrPC…',
+    fields:`<div class="fld"><label class="fld-lbl">Type of Bail / ضمانت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Post-Arrest Bail — §497 CrPC (گرفتاری کے بعد ضمانت)</option><option>Pre-Arrest Bail — §498 CrPC (گرفتاری سے پہلے ضمانت)</option><option>Bail After Conviction (سزا کے بعد ضمانت)</option><option>Interim / Ad-Interim Bail (عبوری ضمانت)</option><option>Cancellation of Bail — §497(5) CrPC (ضمانت منسوخی)</option><option>Bail in Anti-Terrorism Case (دہشت گردی مقدمہ)</option><option>Bail in NAB / Corruption Case (نیب / کرپشن)</option><option>Bail in Narcotics Case — CNSA (منشیات)</option><option>Bail in Cyber Crime / PECA (سائبر کرائم)</option></select></div>
+    <div class="fld"><label class="fld-lbl">Accused / Petitioner Name / ملزم کا نام <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ملزم کا مکمل نام ولدیت پتہ — جس کی ضمانت چاہیے" /><div class="fld-hint">وہ شخص جس کی ضمانت درکار ہے — The person who needs bail</div></div>
+    <div class="fld"><label class="fld-lbl">Complainant Name / مستغیث کا نام</label><input type="text" id="f7" placeholder="مستغیث کا نام ولدیت — جس نے ایف آئی آر درج کرائی" /><div class="fld-hint">جس نے ایف آئی آر کروائی — The person who filed the FIR</div></div>
+    <div class="fld"><label class="fld-lbl">FIR No. & Police Station / ایف آئی آر نمبر اور تھانہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="e.g. FIR No. 123/2024, PS Gulberg, Lahore" /></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Offence / Section / دفعات <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. 420, 468, 471 PPC" /></div>
+    <div class="fld"><label class="fld-lbl">Court / عدالت <span class="fld-req">*</span></label><select id="f4">${COURT_OPTIONS}</select></div></div>
+    <div class="fld"><label class="fld-lbl">Grounds for Bail / ضمانت کی بنیادیں <span class="fld-req">*</span></label><textarea id="f5" placeholder="جھوٹا مقدمہ، کوئی سابقہ ریکارڈ نہیں، مزید تحقیقات کا معاملہ، ضامن دستیاب…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Accused Background / ملزم کا پس منظر</label><textarea id="f6" placeholder="پیشہ، خاندانی حیثیت، صحت، معاشرتی حیثیت…" style="min-height:72px;"></textarea></div>`
   },
   plaint:{
-    title:'Plaint / Civil Suit',sub:'Civil suits â property, recovery of money, injunctions, family matters',loadMsg:'Drafting plaint under CPC Order VIIâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Type of Suit / Ø¯Ø¹ÙÛÙ° Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Recovery of Money (Ø±ÙÙ Ú©Û ÙØµÙÙÛ)</option><option>Declaration (Ø§Ø¹ÙØ§Ù)</option><option>Declaration with Consequential Relief (Ø§Ø¹ÙØ§Ù Ø¨ÙØ¹Û ÙØªÛØ¬ØªØ§Ù Ø±ÛÙÛÙ)</option><option>Specific Performance of Contract (ÙØ¹Ø§ÛØ¯Û Ú©Û ØªØ¹ÙÛÙ)</option><option>Specific Performance with Permanent Injunction (ØªØ¹ÙÛÙ ÙØ¹Ø§ÛØ¯Û Ø¨ÙØ¹Û ÙØ³ØªÙÙ Ø­Ú©Ù Ø§ÙØªÙØ§Ø¹Û)</option><option>Permanent Injunction (ÙØ³ØªÙÙ Ø­Ú©Ù Ø§ÙØªÙØ§Ø¹Û)</option><option>Declaration with Permanent Injunction (Ø§Ø¹ÙØ§Ù Ø¨ÙØ¹Û Ø­Ú©Ù Ø§ÙØªÙØ§Ø¹Û)</option><option>Possession of Property (ÙØ¨Ø¶Û Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯)</option><option>Ejectment â Punjab Rented Premises Act 2009 (Ø¨Û Ø¯Ø®ÙÛ)</option><option>Dissolution of Marriage / Khula (Ø®ÙØ¹ / ØªÙØ³ÛØ® ÙÚ©Ø§Ø­)</option><option>Recovery of Maintenance (ÙØ§Ù Ù ÙÙÙÛ Ú©Û ÙØµÙÙÛ)</option><option>Recovery of Dowry Articles (Ø¬ÛÛØ² Ú©Û ÙØ§Ù¾Ø³Û)</option><option>Guardianship â Guardian & Wards Act (Ø³Ø±Ù¾Ø±Ø³ØªÛ)</option><option>Dissolution of Partnership (Ø´Ø±Ø§Ú©Øª Ú©Û ØªØ­ÙÛÙ)</option><option>Damages / Compensation (ÛØ±Ø¬Ø§ÙÛ)</option><option>Suit for Accounts (Ø­Ø³Ø§Ø¨ Ú©ØªØ§Ø¨)</option><option>Consumer Court Complaint (ØµØ§Ø±ÙÛÙ Ø¹Ø¯Ø§ÙØª)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Plaintiff / ÙØ¯Ø¹Û <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§Ù ÙÙØ¯ÛØª Ù¾ØªÛ â Name s/o, Address" /></div>
-    <div class="fld"><label class="fld-lbl">Defendant / ÙØ¯Ø¹Ø§ Ø¹ÙÛÛ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙØ¯Ø¹Ø§ Ø¹ÙÛÛ Ú©Ø§ ÙØ§Ù Ù¾ØªÛ â Name & Address" /></div></div>
-    <div class="fld"><label class="fld-lbl">Court / Ø¹Ø¯Ø§ÙØª <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
-    <div class="fld"><label class="fld-lbl">Facts of the Case / ÙØ§ÙØ¹Ø§Øª Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f4" placeholder="ØªÙØ§Ø²Ø¹Û Ú©Û ØªÙØµÛÙ â ØªØ§Ø±ÛØ®ÛÚºØ Ø±ÙÙØ ÙØ¹Ø§ÛØ¯ÛØ Ú©ÛØ§ ÛÙØ§â¦"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Amount / Property Involved / Ø±ÙÙ ÛØ§ Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯</label><input type="text" id="f5" placeholder="e.g. PKR 25,00,000 or Plot No. 123, DHA Lahore" /></div>
-    <div class="fld"><label class="fld-lbl">Relief Sought / ÙØ·ÙÙØ¨Û Ø±ÛÙÛÙ</label><textarea id="f6" placeholder="Ø¹Ø¯Ø§ÙØª Ø³Û ÙØ·ÙÙØ¨Û Ø§Ø­Ú©Ø§ÙØ§Øªâ¦" style="min-height:72px;"></textarea></div>`
+    title:'Plaint / Civil Suit',sub:'Civil suits — property, recovery of money, injunctions, family matters',loadMsg:'Drafting plaint under CPC Order VII…',
+    fields:`<div class="fld"><label class="fld-lbl">Type of Suit / دعویٰ کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Recovery of Money (رقم کی وصولی)</option><option>Declaration (اعلان)</option><option>Declaration with Consequential Relief (اعلان بمعہ نتیجتاً ریلیف)</option><option>Specific Performance of Contract (معاہدے کی تعمیل)</option><option>Specific Performance with Permanent Injunction (تعمیل معاہدہ بمعہ مستقل حکم امتناعی)</option><option>Permanent Injunction (مستقل حکم امتناعی)</option><option>Declaration with Permanent Injunction (اعلان بمعہ حکم امتناعی)</option><option>Possession of Property (قبضہ جائیداد)</option><option>Ejectment — Punjab Rented Premises Act 2009 (بے دخلی)</option><option>Dissolution of Marriage / Khula (خلع / تنسیخ نکاح)</option><option>Recovery of Maintenance (نان و نفقہ کی وصولی)</option><option>Recovery of Dowry Articles (جہیز کی واپسی)</option><option>Guardianship — Guardian & Wards Act (سرپرستی)</option><option>Dissolution of Partnership (شراکت کی تحلیل)</option><option>Damages / Compensation (ہرجانہ)</option><option>Suit for Accounts (حساب کتاب)</option><option>Consumer Court Complaint (صارفین عدالت)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Plaintiff / مدعی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام ولدیت پتہ — Name s/o, Address" /></div>
+    <div class="fld"><label class="fld-lbl">Defendant / مدعا علیہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="مدعا علیہ کا نام پتہ — Name & Address" /></div></div>
+    <div class="fld"><label class="fld-lbl">Court / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
+    <div class="fld"><label class="fld-lbl">Facts of the Case / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f4" placeholder="تنازعہ کی تفصیل — تاریخیں، رقم، معاہدے، کیا ہوا…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Amount / Property Involved / رقم یا جائیداد</label><input type="text" id="f5" placeholder="e.g. PKR 25,00,000 or Plot No. 123, DHA Lahore" /></div>
+    <div class="fld"><label class="fld-lbl">Relief Sought / مطلوبہ ریلیف</label><textarea id="f6" placeholder="عدالت سے مطلوبہ احکامات…" style="min-height:72px;"></textarea></div>`
   },
   appeal:{
-    title:'Appeal / Revision',sub:'Appeals against trial court decisions with complete legal grounds',loadMsg:'Drafting appeal under CPC/CrPC appellate provisionsâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Type / ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Criminal Appeal (ÙÙØ¬Ø¯Ø§Ø±Û Ø§Ù¾ÛÙ)</option><option>Civil Appeal (Ø¯ÛÙØ§ÙÛ Ø§Ù¾ÛÙ)</option><option>Criminal Revision (ÙÙØ¬Ø¯Ø§Ø±Û ÙØ¸Ø±Ø«Ø§ÙÛ)</option><option>Civil Revision (Ø¯ÛÙØ§ÙÛ ÙØ¸Ø±Ø«Ø§ÙÛ)</option><option>Leave to Appeal â Supreme Court (Ø§Ø¬Ø§Ø²Øª Ø§Ù¾ÛÙ)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Appellant / Ø§Ù¾ÛÙ Ú©ÙÙØ¯Û <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="Ø§Ù¾ÛÙ Ú©ÙÙØ¯Û Ú©Ø§ ÙØ§Ù â Name of appellant" /></div>
-    <div class="fld"><label class="fld-lbl">Respondent / ÙØ³Ø¦ÙÙ Ø¹ÙÛÛ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="Ø¯ÙØ³Ø±Ø§ ÙØ±ÛÙ / Ø±ÛØ§Ø³Øª â Other party / State" /></div></div>
-    <div class="fld"><label class="fld-lbl">Impugned Judgment / ÚÛÙÙØ¬ Ø´Ø¯Û ÙÛØµÙÛ <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. ÙÛØµÙÛ ÙÙØ±Ø®Û 15 Ø¬ÙÙØ±Û 2025 Ø³ÛØ´Ù Ø¬Ø¬ ÙØ§ÛÙØ±" /></div>
-    <div class="fld"><label class="fld-lbl">Grounds of Appeal / Ø§Ù¾ÛÙ Ú©Û Ø¨ÙÛØ§Ø¯ÛÚº <span class="fld-req">*</span></label><textarea id="f4" placeholder="ÙØ§ÙÙÙÛ ØºÙØ·ÛØ Ø´ÛØ§Ø¯Øª Ú©Û ØºÙØ· ØªØ´Ø±ÛØ­Ø Ø·Ø±ÛÙÛ Ú©Ø§Ø± Ú©Û Ø®ÙØ§Ù ÙØ±Ø²Ûâ¦"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Relief Sought / ÙØ·ÙÙØ¨Û Ø±ÛÙÛÙ</label><textarea id="f5" placeholder="Ø³Ø²Ø§ ÙÙØ³ÙØ®Ø ÙÛØµÙÛ ØªØ¨Ø¯ÛÙØ Ø¯ÙØ¨Ø§Ø±Û Ø³ÙØ§Ø¹Øªâ¦" style="min-height:72px;"></textarea></div>`
+    title:'Appeal / Revision',sub:'Appeals against trial court decisions with complete legal grounds',loadMsg:'Drafting appeal under CPC/CrPC appellate provisions…',
+    fields:`<div class="fld"><label class="fld-lbl">Type / قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Appeal (فوجداری اپیل)</option><option>Civil Appeal (دیوانی اپیل)</option><option>Criminal Revision (فوجداری نظرثانی)</option><option>Civil Revision (دیوانی نظرثانی)</option><option>Leave to Appeal — Supreme Court (اجازت اپیل)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Appellant / اپیل کنندہ <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="اپیل کنندہ کا نام — Name of appellant" /></div>
+    <div class="fld"><label class="fld-lbl">Respondent / مسئول علیہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="دوسرا فریق / ریاست — Other party / State" /></div></div>
+    <div class="fld"><label class="fld-lbl">Impugned Judgment / چیلنج شدہ فیصلہ <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. فیصلہ مورخہ 15 جنوری 2025 سیشن جج لاہور" /></div>
+    <div class="fld"><label class="fld-lbl">Grounds of Appeal / اپیل کی بنیادیں <span class="fld-req">*</span></label><textarea id="f4" placeholder="قانونی غلطی، شہادت کی غلط تشریح، طریقہ کار کی خلاف ورزی…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Relief Sought / مطلوبہ ریلیف</label><textarea id="f5" placeholder="سزا منسوخ، فیصلہ تبدیل، دوبارہ سماعت…" style="min-height:72px;"></textarea></div>`
   },
   'legal-notice':{
-    title:'Legal Notice',sub:'Formal legal notices for recovery, breach of contract, cheque dishonour',loadMsg:'Drafting formal legal noticeâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Notice Type / ÙÙÙ¹Ø³ Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Recovery of Money (Ø±ÙÙ Ú©Û ÙØµÙÙÛ)</option><option>Breach of Contract (Ø®ÙØ§Ù ÙØ±Ø²Û ÙØ¹Ø§ÛØ¯Û)</option><option>Vacation of Property (Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ Ø®Ø§ÙÛ Ú©Ø±ÙØ§ÙØ§)</option><option>Defamation (ÛØªÚ© Ø¹Ø²Øª)</option><option>Employment Dispute (ÙÙØ§Ø²ÙØª Ú©Ø§ ØªÙØ§Ø²Ø¹Û)</option><option>Cheque Dishonour â Â§489-F PPC (ÚÛÚ© Ú©Û ÙØ§Ù¾Ø³Û)</option><option>Recovery of Professional Fee (ÙÚ©ÛÙ ÙÛØ³ Ú©Û ÙØµÙÙÛ)</option><option>Property Dispute (Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ ØªÙØ§Ø²Ø¹Û)</option><option>Domestic Violence (Ú¯Ú¾Ø±ÛÙÙ ØªØ´Ø¯Ø¯)</option><option>Tenant Eviction (Ú©Ø±Ø§ÛÛ Ø¯Ø§Ø± Ø¨Û Ø¯Ø®ÙÛ)</option><option>Insurance Claim (Ø§ÙØ´ÙØ±ÙØ³ Ø¯Ø¹ÙÛÙ°)</option><option>Noise / Nuisance Complaint (Ø´ÙØ± / Ù¾Ø±ÛØ´Ø§ÙÛ)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Sender (Client) / Ø¨Ú¾ÛØ¬ÙÛ ÙØ§ÙØ§ (ÙÙÚ©Ù) <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙÙÚ©Ù Ú©Ø§ ÙØ§Ù Ù¾ØªÛ â Client name & address" /></div>
-    <div class="fld"><label class="fld-lbl">Recipient / ÙØµÙÙ Ú©ÙÙØ¯Û <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="Ø¬Ø³Û ÙÙÙ¹Ø³ Ø¨Ú¾ÛØ¬ÙØ§ ÛÛ â Name & address" /></div></div>
-    <div class="fld"><label class="fld-lbl">Details of Grievance / Ø´Ú©Ø§ÛØª Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f3" placeholder="Ú©ÛØ§ ÛÙØ§Ø Ú©Ø¨Ø Ú©ØªÙÛ Ø±ÙÙØ Ú©ÛØ§ ÙØ¹Ø§ÛØ¯Û ØªÚ¾Ø§ â dates, amounts, breachâ¦"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Amount / Demand / Ø±ÙÙ ÛØ§ ÙØ·Ø§ÙØ¨Û</label><input type="text" id="f4" placeholder="e.g. PKR 5,00,000" /></div>
-    <div class="fld"><label class="fld-lbl">Time to Comply / ÙÛÙØª</label><select id="f5"><option>7 days (7 Ø¯Ù)</option><option>15 days (15 Ø¯Ù)</option><option>30 days (30 Ø¯Ù)</option></select></div></div>`
+    title:'Legal Notice',sub:'Formal legal notices for recovery, breach of contract, cheque dishonour',loadMsg:'Drafting formal legal notice…',
+    fields:`<div class="fld"><label class="fld-lbl">Notice Type / نوٹس کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Recovery of Money (رقم کی وصولی)</option><option>Breach of Contract (خلاف ورزی معاہدہ)</option><option>Vacation of Property (جائیداد خالی کروانا)</option><option>Defamation (ہتک عزت)</option><option>Employment Dispute (ملازمت کا تنازعہ)</option><option>Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Recovery of Professional Fee (وکیل فیس کی وصولی)</option><option>Property Dispute (جائیداد تنازعہ)</option><option>Domestic Violence (گھریلو تشدد)</option><option>Tenant Eviction (کرایہ دار بے دخلی)</option><option>Insurance Claim (انشورنس دعویٰ)</option><option>Noise / Nuisance Complaint (شور / پریشانی)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Sender (Client) / بھیجنے والا (موکل) <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="موکل کا نام پتہ — Client name & address" /></div>
+    <div class="fld"><label class="fld-lbl">Recipient / وصول کنندہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="جسے نوٹس بھیجنا ہے — Name & address" /></div></div>
+    <div class="fld"><label class="fld-lbl">Details of Grievance / شکایت کی تفصیل <span class="fld-req">*</span></label><textarea id="f3" placeholder="کیا ہوا، کب، کتنی رقم، کیا معاہدہ تھا — dates, amounts, breach…"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Amount / Demand / رقم یا مطالبہ</label><input type="text" id="f4" placeholder="e.g. PKR 5,00,000" /></div>
+    <div class="fld"><label class="fld-lbl">Time to Comply / مہلت</label><select id="f5"><option>7 days (7 دن)</option><option>15 days (15 دن)</option><option>30 days (30 دن)</option></select></div></div>`
   },
   affidavit:{
-    title:'Affidavit / Oath',sub:'Sworn affidavits and declarations under the Oaths Act 1873',loadMsg:'Drafting affidavit per Oaths Act 1873â¦',
-    fields:`<div class="fld"><label class="fld-lbl">Purpose / ÙÙØµØ¯ <span class="fld-req">*</span></label><select id="f0"><option>Support of Bail Application (Ø¶ÙØ§ÙØª Ú©Û Ø­ÙØ§ÛØª)</option><option>Support of Petition (Ø¯Ø±Ø®ÙØ§Ø³Øª Ú©Û Ø­ÙØ§ÛØª)</option><option>Character Affidavit (Ú©Ø±Ø¯Ø§Ø± Ø­ÙÙ ÙØ§ÙÛ)</option><option>Property / Asset Declaration (Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ Ú©Ø§ Ø§Ø¹ÙØ§Ù)</option><option>Identity Affidavit (Ø´ÙØ§Ø®Øª Ø­ÙÙ ÙØ§ÙÛ)</option><option>Surety Affidavit (Ø¶Ø§ÙÙ Ø­ÙÙ ÙØ§ÙÛ)</option><option>General Affidavit (Ø¹ÙÙÙÛ Ø­ÙÙ ÙØ§ÙÛ)</option></select></div>
-    <div class="fld"><label class="fld-lbl">Deponent Name / Ø­ÙÙ Ø¨Ø±Ø§Ø± Ú©Ø§ ÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§ÙØ Ø¹ÙØ±Ø Ø´ÙØ§Ø®ØªÛ Ú©Ø§Ø±Ú ÙÙØ¨Ø± â Name, age, CNIC" /></div>
-    <div class="fld"><label class="fld-lbl">Deponent Address / Ù¾ØªÛ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙÚ©ÙÙ Ø±ÛØ§Ø¦Ø´Û Ù¾ØªÛ â Full address" /></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Relation to Case / ÙÙØ¯ÙÛ Ø³Û ØªØ¹ÙÙ</label><input type="text" id="f3" placeholder="e.g. ÙÙØ²Ù Ú©Ø§ ÙØ§ÙØ¯ â Father of accused" /></div>
-    <div class="fld"><label class="fld-lbl">Court / Authority / Ø¹Ø¯Ø§ÙØª</label><input type="text" id="f4" placeholder="e.g. Sessions Court Lahore" /></div></div>
-    <div class="fld"><label class="fld-lbl">Content of Oath / Ø­ÙÙ Ú©Ø§ ÙØ¶ÙÙÙ <span class="fld-req">*</span></label><textarea id="f5" placeholder="Ø­ÙÙ Ø¨Ø±Ø§Ø± Ú©ÛØ§ Ø¨ÛØ§Ù Ø¯Û Ø±ÛØ§ ÛÛ â ÙØ§ÙØ¹Ø§ØªØ Ú©Ø±Ø¯Ø§Ø±Ø Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯â¦"></textarea></div><div id="lang-row"></div>`
+    title:'Affidavit / Oath',sub:'Sworn affidavits and declarations under the Oaths Act 1873',loadMsg:'Drafting affidavit per Oaths Act 1873…',
+    fields:`<div class="fld"><label class="fld-lbl">Purpose / مقصد <span class="fld-req">*</span></label><select id="f0"><option>Support of Bail Application (ضمانت کی حمایت)</option><option>Support of Petition (درخواست کی حمایت)</option><option>Character Affidavit (کردار حلف نامہ)</option><option>Property / Asset Declaration (جائیداد کا اعلان)</option><option>Identity Affidavit (شناخت حلف نامہ)</option><option>Surety Affidavit (ضامن حلف نامہ)</option><option>General Affidavit (عمومی حلف نامہ)</option></select></div>
+    <div class="fld"><label class="fld-lbl">Deponent Name / حلف برار کا نام <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام، عمر، شناختی کارڈ نمبر — Name, age, CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Deponent Address / پتہ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="مکمل رہائشی پتہ — Full address" /></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Relation to Case / مقدمے سے تعلق</label><input type="text" id="f3" placeholder="e.g. ملزم کا والد — Father of accused" /></div>
+    <div class="fld"><label class="fld-lbl">Court / Authority / عدالت</label><input type="text" id="f4" placeholder="e.g. Sessions Court Lahore" /></div></div>
+    <div class="fld"><label class="fld-lbl">Content of Oath / حلف کا مضمون <span class="fld-req">*</span></label><textarea id="f5" placeholder="حلف برار کیا بیان دے رہا ہے — واقعات، کردار، جائیداد…"></textarea></div><div id="lang-row"></div>`
   },
   complaint:{
-    title:'Criminal Complaint',sub:'Criminal complaints under Â§200 & Â§156(3) CrPC before Judicial Magistrate',loadMsg:'Drafting criminal complaint under CrPC Â§200/156(3)â¦',
-    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / Ø´Ú©Ø§ÛØª Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC (ÙØ¬Ø³Ù¹Ø±ÛÙ¹ Ú©Û Ø³Ø§ÙÙÛ ÙÙØ¬Ø¯Ø§Ø±Û Ø´Ú©Ø§ÛØª)</option><option>Application u/s 156(3) CrPC â FIR Registration (Ø§ÛÙ Ø¢Ø¦Û Ø¢Ø± Ø¯Ø±Ø¬ Ú©Ø±ÙØ§ÙØ§)</option><option>Complaint of Cheating / Fraud â Â§420 PPC (Ø¯Ú¾ÙÚ©Û Ø¯ÛÛ)</option><option>Complaint of Forgery â Â§468/471 PPC (Ø¬Ø¹ÙØ³Ø§Ø²Û)</option><option>Complaint of Criminal Breach of Trust â Â§406 PPC (Ø§ÙØ§ÙØª ÙÛÚº Ø®ÛØ§ÙØª)</option><option>Complaint of Harassment â Â§509 PPC / PECA (ÛØ±Ø§Ø³Ø§ÙÛ)</option><option>Complaint of Assault / Hurt â Â§337/352 PPC (ÙØ§Ø± Ù¾ÛÙ¹)</option><option>Complaint of Wrongful Confinement â Â§342 PPC (ØºÛØ± ÙØ§ÙÙÙÛ ÙÛØ¯)</option><option>Complaint of Defamation â Â§499/500 PPC (ÛØªÚ© Ø¹Ø²Øª)</option><option>Complaint of Trespass â Â§447 PPC (Ø¨Û Ø§Ø¬Ø§Ø²Øª Ø¯Ø§Ø®Ù)</option><option>Complaint of Cheque Dishonour â Â§489-F PPC (ÚÛÚ© Ú©Û ÙØ§Ù¾Ø³Û)</option><option>Complaint of Domestic Violence (Ú¯Ú¾Ø±ÛÙÙ ØªØ´Ø¯Ø¯)</option><option>Consumer Complaint â CPPA 2019 (ØµØ§Ø±ÙÛÙ Ø´Ú©Ø§ÛØª)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / Ø´Ø§Ú©Û <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="Ø´Ø§Ú©Û Ú©Ø§ ÙÚ©ÙÙ ÙØ§Ù ÙÙØ¯ÛØª Ù¾ØªÛ CNIC" /></div>
-    <div class="fld"><label class="fld-lbl">Accused / ÙÙØ²Ù <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙÙØ²Ù Ú©Ø§ ÙØ§Ù Ù¾ØªÛ" /></div></div>
-    <div class="fld"><label class="fld-lbl">Court / Magistrate / Ø¹Ø¯Ø§ÙØª <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
-    <div class="fld"><label class="fld-lbl">Offence Sections / Ø¯ÙØ¹Ø§Øª</label><input type="text" id="f4" placeholder="e.g. 420, 468, 471 PPC â Ø®Ø§ÙÛ ÚÚ¾ÙÚÛÚº AI Ø®ÙØ¯ ÙÚ¯Ø§Ø¦Û Ú¯Ø§" /><div class="fld-hint">Ø®Ø§ÙÛ ÚÚ¾ÙÚÛÚº â AI automatically selects relevant PPC sections</div></div>
-    <div class="fld"><label class="fld-lbl">Facts of Complaint / ÙØ§ÙØ¹Ø§Øª Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f5" placeholder="ÙÚ©ÙÙ ÙØ§ÙØ¹Ø§Øª â ØªØ§Ø±ÛØ®ÛÚºØ ÙÙØ§ÙØ Ú©ÛØ§ ÛÙØ§Ø Ú¯ÙØ§ÛØ§Ù"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Date of Incident / ÙØ§ÙØ¹Û Ú©Û ØªØ§Ø±ÛØ®</label><input type="text" id="f6" placeholder="e.g. 15-01-2025" /></div>
-    <div class="fld"><label class="fld-lbl">Loss / Damage / ÙÙØµØ§Ù</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000" /></div></div>
-    <div class="fld"><label class="fld-lbl">Evidence Available / Ø¯Ø³ØªÛØ§Ø¨ Ø´ÙØ§ÛØ¯</label><textarea id="f8" placeholder="Ø¯Ø³ØªØ§ÙÛØ²Ø§ØªØ Ú¯ÙØ§ÛØ§ÙØ ÚÛÚ©Ø Ø±Ø³ÛØ¯ÛÚº" style="min-height:72px;"></textarea></div><div id="lang-row"></div>`
+    title:'Criminal Complaint',sub:'Criminal complaints under §200 & §156(3) CrPC before Judicial Magistrate',loadMsg:'Drafting criminal complaint under CrPC §200/156(3)…',
+    fields:`<div class="fld"><label class="fld-lbl">Complaint Type / شکایت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Criminal Complaint u/s 200 CrPC (مجسٹریٹ کے سامنے فوجداری شکایت)</option><option>Application u/s 156(3) CrPC — FIR Registration (ایف آئی آر درج کروانا)</option><option>Complaint of Cheating / Fraud — §420 PPC (دھوکہ دہی)</option><option>Complaint of Forgery — §468/471 PPC (جعلسازی)</option><option>Complaint of Criminal Breach of Trust — §406 PPC (امانت میں خیانت)</option><option>Complaint of Harassment — §509 PPC / PECA (ہراسانی)</option><option>Complaint of Assault / Hurt — §337/352 PPC (مار پیٹ)</option><option>Complaint of Wrongful Confinement — §342 PPC (غیر قانونی قید)</option><option>Complaint of Defamation — §499/500 PPC (ہتک عزت)</option><option>Complaint of Trespass — §447 PPC (بے اجازت داخل)</option><option>Complaint of Cheque Dishonour — §489-F PPC (چیک کی واپسی)</option><option>Complaint of Domestic Violence (گھریلو تشدد)</option><option>Consumer Complaint — CPPA 2019 (صارفین شکایت)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Complainant / شاکی <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="شاکی کا مکمل نام ولدیت پتہ CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Accused / ملزم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ملزم کا نام پتہ" /></div></div>
+    <div class="fld"><label class="fld-lbl">Court / Magistrate / عدالت <span class="fld-req">*</span></label><select id="f3">${COURT_OPTIONS}</select></div>
+    <div class="fld"><label class="fld-lbl">Offence Sections / دفعات</label><input type="text" id="f4" placeholder="e.g. 420, 468, 471 PPC — خالی چھوڑیں AI خود لگائے گا" /><div class="fld-hint">خالی چھوڑیں — AI automatically selects relevant PPC sections</div></div>
+    <div class="fld"><label class="fld-lbl">Facts of Complaint / واقعات کی تفصیل <span class="fld-req">*</span></label><textarea id="f5" placeholder="مکمل واقعات — تاریخیں، مقام، کیا ہوا، گواہان"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Date of Incident / واقعے کی تاریخ</label><input type="text" id="f6" placeholder="e.g. 15-01-2025" /></div>
+    <div class="fld"><label class="fld-lbl">Loss / Damage / نقصان</label><input type="text" id="f7" placeholder="e.g. PKR 5,00,000" /></div></div>
+    <div class="fld"><label class="fld-lbl">Evidence Available / دستیاب شواہد</label><textarea id="f8" placeholder="دستاویزات، گواہان، چیک، رسیدیں" style="min-height:72px;"></textarea></div><div id="lang-row"></div>`
   },
   'legal-opinion':{
-    title:'Legal Opinion',sub:'Professional legal opinions on property title, banking, corporate & contractual matters',loadMsg:'Drafting Legal Opinionâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Opinion Type <span class="fld-req">*</span></label><select id="f0"><option>Property Title / Documents Opinion (Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ Ú©Û ÙÙÚ©ÛØª Ø±Ø§Ø¦Û)</option><option>Banking / Mortgage / Collateral Opinion (Ø¨ÛÙÚ©Ø§Ø±Û Ø±Ø§Ø¦Û)</option><option>Corporate / Company Law Opinion (Ú©ÙÙ¾ÙÛ ÙØ§ÙÙÙ Ø±Ø§Ø¦Û)</option><option>Contractual / Agreement Opinion (ÙØ¹Ø§ÛØ¯Û Ø±Ø§Ø¦Û)</option><option>Succession / Inheritance Opinion (ÙØ±Ø§Ø«Øª Ø±Ø§Ø¦Û)</option><option>General Legal Opinion (Ø¹ÙÙÙÛ ÙØ§ÙÙÙÛ Ø±Ø§Ø¦Û)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Reference No. / Ø­ÙØ§ÙÛ ÙÙØ¨Ø±</label><input type="text" id="f1" placeholder="e.g. PRMO/BOP/25/41" /></div>
-    <div class="fld"><label class="fld-lbl">Addressee / ÙØ®Ø§Ø·Ø¨ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="e.g. The Head RCAD, Bank of Punjab, Multan" /></div></div>
-    <div class="fld"><label class="fld-lbl">Subject / Case Title / Ø¹ÙÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. Legal Opinion in respect of M/S Khawar Construction" /></div>
+    title:'Legal Opinion',sub:'Professional legal opinions on property title, banking, corporate & contractual matters',loadMsg:'Drafting Legal Opinion…',
+    fields:`<div class="fld"><label class="fld-lbl">Opinion Type <span class="fld-req">*</span></label><select id="f0"><option>Property Title / Documents Opinion (جائیداد کی ملکیت رائے)</option><option>Banking / Mortgage / Collateral Opinion (بینکاری رائے)</option><option>Corporate / Company Law Opinion (کمپنی قانون رائے)</option><option>Contractual / Agreement Opinion (معاہدہ رائے)</option><option>Succession / Inheritance Opinion (وراثت رائے)</option><option>General Legal Opinion (عمومی قانونی رائے)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Reference No. / حوالہ نمبر</label><input type="text" id="f1" placeholder="e.g. PRMO/BOP/25/41" /></div>
+    <div class="fld"><label class="fld-lbl">Addressee / مخاطب <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="e.g. The Head RCAD, Bank of Punjab, Multan" /></div></div>
+    <div class="fld"><label class="fld-lbl">Subject / Case Title / عنوان <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. Legal Opinion in respect of M/S Khawar Construction" /></div>
     <div class="fld"><label class="fld-lbl">Party / Client / Borrower Details <span class="fld-req">*</span></label><textarea id="f4" placeholder="Name, CNIC, address of borrower/party"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Property / Matter Details <span class="fld-req">*</span></label><textarea id="f5" placeholder="Property details, documents, chain of title, encumbrancesâ¦" style="min-height:120px;"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Documents Available / Ø¯Ø³ØªÛØ§Ø¨ Ø¯Ø³ØªØ§ÙÛØ²Ø§Øª</label><textarea id="f6" placeholder="Sale Deed, Fard, Mutation, EC, Mortgage Deed, Valuationâ¦" style="min-height:72px;"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Market Value / ÙÛÙØª</label><input type="text" id="f7" placeholder="e.g. Rs. 13,500,000" /></div>
-    <div class="fld"><label class="fld-lbl">City / Ø´ÛØ±</label><input type="text" id="f8" placeholder="e.g. Multan" /></div></div>
-    <div class="fld"><label class="fld-lbl">Advocate Name & Designation</label><input type="text" id="f9" placeholder="e.g. Hafiz Muhammad Shuaib â Advocate High Court" /></div><div id="lang-row"></div>`
+    <div class="fld"><label class="fld-lbl">Property / Matter Details <span class="fld-req">*</span></label><textarea id="f5" placeholder="Property details, documents, chain of title, encumbrances…" style="min-height:120px;"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Documents Available / دستیاب دستاویزات</label><textarea id="f6" placeholder="Sale Deed, Fard, Mutation, EC, Mortgage Deed, Valuation…" style="min-height:72px;"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Market Value / قیمت</label><input type="text" id="f7" placeholder="e.g. Rs. 13,500,000" /></div>
+    <div class="fld"><label class="fld-lbl">City / شہر</label><input type="text" id="f8" placeholder="e.g. Multan" /></div></div>
+    <div class="fld"><label class="fld-lbl">Advocate Name & Designation</label><input type="text" id="f9" placeholder="e.g. Hafiz Muhammad Shuaib — Advocate High Court" /></div><div id="lang-row"></div>`
   },
   agreement:{
-    title:'Agreement / Contract',sub:'Legally binding agreements â employment, service, tenancy, sale, partnership',loadMsg:'Drafting agreement under Contract Act 1872â¦',
-    fields:`<div class="fld"><label class="fld-lbl">Agreement Type / ÙØ¹Ø§ÛØ¯Û Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Employment Agreement (ÙÙØ§Ø²ÙØª Ú©Ø§ ÙØ¹Ø§ÛØ¯Û)</option><option>Service Agreement (Ø®Ø¯ÙØ§Øª Ú©Ø§ ÙØ¹Ø§ÛØ¯Û)</option><option>Tenancy / Lease Agreement (Ú©Ø±Ø§ÛÛ ÙØ§ÙÛ)</option><option>Sale Agreement / Bai Nama (Ø¨ÛØ¹ ÙØ§ÙÛ)</option><option>Partnership Agreement (Ø´Ø±Ø§Ú©Øª ÙØ§ÙÛ)</option><option>Loan Agreement (ÙØ±Ø¶ ÙØ§ÙÛ)</option><option>Consultancy Agreement (ÙØ´Ø§ÙØ±ØªÛ ÙØ¹Ø§ÛØ¯Û)</option><option>Non-Disclosure Agreement / NDA (Ø±Ø§Ø²Ø¯Ø§Ø±Û ÙØ¹Ø§ÛØ¯Û)</option><option>Joint Venture Agreement (ÙØ´ØªØ±Ú©Û Ú©Ø§Ø±ÙØ¨Ø§Ø±)</option><option>Franchise Agreement (ÙØ±ÙÚØ§Ø¦Ø²)</option><option>Supply / Purchase Agreement (Ø®Ø±ÛØ¯ Ù ÙØ±ÙØ®Øª)</option><option>Construction Agreement (ØªØ¹ÙÛØ±Ø§ØªÛ ÙØ¹Ø§ÛØ¯Û)</option><option>Settlement / Compromise Agreement (ØµÙØ­ ÙØ§ÙÛ)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 â Name / ÙØ±ÛÙ Ø§ÙÙ Ú©Ø§ ÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§Ù / Ú©ÙÙ¾ÙÛ Ú©Ø§ ÙØ§Ù" /></div>
-    <div class="fld"><label class="fld-lbl">Party 2 â Name / ÙØ±ÛÙ Ø¯ÙÙ Ú©Ø§ ÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙØ§Ù / Ú©ÙÙ¾ÙÛ Ú©Ø§ ÙØ§Ù" /></div></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 â CNIC / NTN / Ø´ÙØ§Ø®ØªÛ ÙÙØ¨Ø±</label><input type="text" id="f3" placeholder="CNIC or NTN" /></div>
-    <div class="fld"><label class="fld-lbl">Party 2 â CNIC / NTN / Ø´ÙØ§Ø®ØªÛ ÙÙØ¨Ø±</label><input type="text" id="f4" placeholder="CNIC or NTN" /></div></div>
-    <div class="fld"><label class="fld-lbl">Subject Matter / Purpose / ÙÙØ¶ÙØ¹ <span class="fld-req">*</span></label><textarea id="f5" placeholder="ÛÛ ÙØ¹Ø§ÛØ¯Û Ú©Ø³ Ø¨Ø§Ø±Û ÙÛÚº ÛÛ â What is this agreement about"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Consideration / Amount / Ø±ÙÙ</label><input type="text" id="f6" placeholder="e.g. PKR 50,000/month" /></div>
-    <div class="fld"><label class="fld-lbl">Duration / Term / ÙØ¯Øª</label><input type="text" id="f7" placeholder="e.g. 1 year" /></div></div>
-    <div class="fld"><label class="fld-lbl">Key Terms & Conditions / Ø´Ø±Ø§Ø¦Ø·</label><textarea id="f8" placeholder="ÙÙÙ¹Ø³ Ú©Û ÙØ¯ØªØ Ø¬Ø±ÙØ§ÙÛØ ØªØ¬Ø¯ÛØ¯Ø Ù¾Ø§Ø¨ÙØ¯ÛØ§Úºâ¦"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Governing Jurisdiction / Ø¯Ø§Ø¦Ø±Û Ø§Ø®ØªÛØ§Ø±</label><select id="f9"><option>Lahore (ÙØ§ÛÙØ±)</option><option>Karachi (Ú©Ø±Ø§ÚÛ)</option><option>Islamabad (Ø§Ø³ÙØ§Ù Ø¢Ø¨Ø§Ø¯)</option><option>Peshawar (Ù¾Ø´Ø§ÙØ±)</option><option>Quetta (Ú©ÙØ¦Ù¹Û)</option><option>Multan (ÙÙØªØ§Ù)</option><option>Faisalabad (ÙÛØµÙ Ø¢Ø¨Ø§Ø¯)</option></select></div>`
+    title:'Agreement / Contract',sub:'Legally binding agreements — employment, service, tenancy, sale, partnership',loadMsg:'Drafting agreement under Contract Act 1872…',
+    fields:`<div class="fld"><label class="fld-lbl">Agreement Type / معاہدے کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Employment Agreement (ملازمت کا معاہدہ)</option><option>Service Agreement (خدمات کا معاہدہ)</option><option>Tenancy / Lease Agreement (کرایہ نامہ)</option><option>Sale Agreement / Bai Nama (بیع نامہ)</option><option>Partnership Agreement (شراکت نامہ)</option><option>Loan Agreement (قرض نامہ)</option><option>Consultancy Agreement (مشاورتی معاہدہ)</option><option>Non-Disclosure Agreement / NDA (رازداری معاہدہ)</option><option>Joint Venture Agreement (مشترکہ کاروبار)</option><option>Franchise Agreement (فرنچائز)</option><option>Supply / Purchase Agreement (خرید و فروخت)</option><option>Construction Agreement (تعمیراتی معاہدہ)</option><option>Settlement / Compromise Agreement (صلح نامہ)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 — Name / فریق اول کا نام <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام / کمپنی کا نام" /></div>
+    <div class="fld"><label class="fld-lbl">Party 2 — Name / فریق دوم کا نام <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="نام / کمپنی کا نام" /></div></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 — CNIC / NTN / شناختی نمبر</label><input type="text" id="f3" placeholder="CNIC or NTN" /></div>
+    <div class="fld"><label class="fld-lbl">Party 2 — CNIC / NTN / شناختی نمبر</label><input type="text" id="f4" placeholder="CNIC or NTN" /></div></div>
+    <div class="fld"><label class="fld-lbl">Subject Matter / Purpose / موضوع <span class="fld-req">*</span></label><textarea id="f5" placeholder="یہ معاہدہ کس بارے میں ہے — What is this agreement about"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Consideration / Amount / رقم</label><input type="text" id="f6" placeholder="e.g. PKR 50,000/month" /></div>
+    <div class="fld"><label class="fld-lbl">Duration / Term / مدت</label><input type="text" id="f7" placeholder="e.g. 1 year" /></div></div>
+    <div class="fld"><label class="fld-lbl">Key Terms & Conditions / شرائط</label><textarea id="f8" placeholder="نوٹس کی مدت، جرمانہ، تجدید، پابندیاں…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Governing Jurisdiction / دائرہ اختیار</label><select id="f9"><option>Lahore (لاہور)</option><option>Karachi (کراچی)</option><option>Islamabad (اسلام آباد)</option><option>Peshawar (پشاور)</option><option>Quetta (کوئٹہ)</option><option>Multan (ملتان)</option><option>Faisalabad (فیصل آباد)</option></select></div>`
   },
   deed:{
-    title:'Sale / Transfer Deed',sub:'Property sale deeds, gift deeds and transfer deeds under Transfer of Property Act 1882',loadMsg:'Drafting deed under Transfer of Property Act 1882â¦',
-    fields:`<div class="fld"><label class="fld-lbl">Deed Type / Ø¯Ø³ØªØ§ÙÛØ² Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Sale Deed / Ø¨ÛØ¹ ÙØ§ÙÛ (Bai Nama)</option><option>Gift Deed / ÛØ¨Û ÙØ§ÙÛ (Hiba Nama)</option><option>Transfer / Exchange Deed (ØªØ¨Ø§Ø¯ÙÛ)</option><option>Mortgage Deed / Ø±ÛÙ ÙØ§ÙÛ</option><option>Lease Deed / ÙÛØ² ÙØ§ÙÛ</option><option>Relinquishment Deed / Ø¯Ø³ØªØ¨Ø±Ø¯Ø§Ø±Û ÙØ§ÙÛ</option><option>Partition Deed / ØªÙØ³ÛÙ ÙØ§ÙÛ</option><option>Will / ÙØµÛØª ÙØ§ÙÛ (Wasiyyat Nama)</option><option>Trust Deed / Ù¹Ø±Ø³Ù¹ ÙØ§ÙÛ</option><option>Rectification Deed / Ø§ØµÙØ§Ø­Û Ø¯Ø³ØªØ§ÙÛØ²</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Vendor / Transferor / Ø¨Ø§Ø¦Ø¹ (Ø¨ÛÚÙÛ ÙØ§ÙØ§) <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§ÙØ Ø´ÙØ§Ø®ØªÛ Ú©Ø§Ø±ÚØ Ù¾ØªÛ â Name, CNIC, address" /></div>
-    <div class="fld"><label class="fld-lbl">Vendee / Transferee / ÙØ´ØªØ±Û (Ø®Ø±ÛØ¯Ø§Ø±) <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙØ§ÙØ Ø´ÙØ§Ø®ØªÛ Ú©Ø§Ø±ÚØ Ù¾ØªÛ â Name, CNIC, address" /></div></div>
-    <div class="fld"><label class="fld-lbl">Property Description / Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ Ú©Û ØªÙØµÛÙ <span class="fld-req">*</span></label><textarea id="f3" placeholder="Ù¾ÙØ§Ù¹ ÙÙØ¨Ø±Ø Ú¯ÙÛØ Ø³ÛÚ©Ù¹Ø±Ø Ø´ÛØ± â Plot, Street, Area, City"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Sale Consideration / ÙÛÙØª</label><input type="text" id="f4" placeholder="e.g. PKR 1,20,00,000" /></div>
-    <div class="fld"><label class="fld-lbl">Token / Advance Paid / Ø¨ÛØ¹Ø§ÙÛ</label><input type="text" id="f5" placeholder="e.g. PKR 10,00,000" /></div></div>
-    <div class="fld"><label class="fld-lbl">Witnesses / Ú¯ÙØ§ÛØ§Ù (2 required)</label><input type="text" id="f6" placeholder="Ú¯ÙØ§Û 1: ÙØ§ÙØ CNIC | Ú¯ÙØ§Û 2: ÙØ§ÙØ CNIC" /></div>
-    <div class="fld"><label class="fld-lbl">Registration Office / Ø±Ø¬Ø³Ù¹Ø±Û Ø¯ÙØªØ±</label><select id="f7"><option>Sub-Registrar, Lahore</option><option>Sub-Registrar, Karachi</option><option>Sub-Registrar, Islamabad</option><option>Sub-Registrar, Peshawar</option><option>Sub-Registrar, Quetta</option><option>Sub-Registrar, Multan</option><option>Sub-Registrar, Faisalabad</option></select></div>`
+    title:'Sale / Transfer Deed',sub:'Property sale deeds, gift deeds and transfer deeds under Transfer of Property Act 1882',loadMsg:'Drafting deed under Transfer of Property Act 1882…',
+    fields:`<div class="fld"><label class="fld-lbl">Deed Type / دستاویز کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Sale Deed / بیع نامہ (Bai Nama)</option><option>Gift Deed / ہبہ نامہ (Hiba Nama)</option><option>Transfer / Exchange Deed (تبادلہ)</option><option>Mortgage Deed / رہن نامہ</option><option>Lease Deed / لیز نامہ</option><option>Relinquishment Deed / دستبرداری نامہ</option><option>Partition Deed / تقسیم نامہ</option><option>Will / وصیت نامہ (Wasiyyat Nama)</option><option>Trust Deed / ٹرسٹ نامہ</option><option>Rectification Deed / اصلاحی دستاویز</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Vendor / Transferor / بائع (بیچنے والا) <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام، شناختی کارڈ، پتہ — Name, CNIC, address" /></div>
+    <div class="fld"><label class="fld-lbl">Vendee / Transferee / مشتری (خریدار) <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="نام، شناختی کارڈ، پتہ — Name, CNIC, address" /></div></div>
+    <div class="fld"><label class="fld-lbl">Property Description / جائیداد کی تفصیل <span class="fld-req">*</span></label><textarea id="f3" placeholder="پلاٹ نمبر، گلی، سیکٹر، شہر — Plot, Street, Area, City"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Sale Consideration / قیمت</label><input type="text" id="f4" placeholder="e.g. PKR 1,20,00,000" /></div>
+    <div class="fld"><label class="fld-lbl">Token / Advance Paid / بیعانہ</label><input type="text" id="f5" placeholder="e.g. PKR 10,00,000" /></div></div>
+    <div class="fld"><label class="fld-lbl">Witnesses / گواہان (2 required)</label><input type="text" id="f6" placeholder="گواہ 1: نام، CNIC | گواہ 2: نام، CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Registration Office / رجسٹری دفتر</label><select id="f7"><option>Sub-Registrar, Lahore</option><option>Sub-Registrar, Karachi</option><option>Sub-Registrar, Islamabad</option><option>Sub-Registrar, Peshawar</option><option>Sub-Registrar, Quetta</option><option>Sub-Registrar, Multan</option><option>Sub-Registrar, Faisalabad</option></select></div>`
   },
   poa:{
-    title:'Power of Attorney',sub:'General and special power of attorney for property, court, banking and business',loadMsg:'Drafting Power of Attorney under Powers of Attorney Act 1882â¦',
-    fields:`<div class="fld"><label class="fld-lbl">POA Type / ÙØ®ØªØ§Ø± ÙØ§ÙÛ Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>General Power of Attorney (Ø¹Ø§Ù ÙØ®ØªØ§Ø± ÙØ§ÙÛ)</option><option>Special / Limited Power of Attorney (Ø®Ø§Øµ ÙØ®ØªØ§Ø± ÙØ§ÙÛ)</option><option>Irrevocable Power of Attorney (ÙØ§ÙØ§Ø¨Ù ØªÙØ³ÛØ®)</option><option>Property POA (Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ ÙØ®ØªØ§Ø± ÙØ§ÙÛ)</option><option>Banking / Financial POA (Ø¨ÛÙÚ©ÙÚ¯ ÙØ®ØªØ§Ø± ÙØ§ÙÛ)</option><option>Court / Litigation POA â Wakalatnama (ÙÚ©Ø§ÙØª ÙØ§ÙÛ)</option><option>Overseas Pakistani POA (Ø¨ÛØ±ÙÙ ÙÙÚ© Ù¾Ø§Ú©Ø³ØªØ§ÙÛ)</option><option>Vehicle Transfer POA (Ú¯Ø§ÚÛ ÙÙØªÙÙÛ)</option><option>Business / Company POA (Ú©Ø§Ø±ÙØ¨Ø§Ø±Û ÙØ®ØªØ§Ø± ÙØ§ÙÛ)</option></select></div>
-    <div class="fld"><label class="fld-lbl">Principal (Grantor) / ÙØ®ØªØ§Ø± Ú©Ø§Ø± (Ø¯ÛÙÛ ÙØ§ÙØ§) <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§ÙØ Ø´ÙØ§Ø®ØªÛ Ú©Ø§Ø±ÚØ Ù¾ØªÛ â Ø¬Ù Ø§Ø®ØªÛØ§Ø± Ø¯Û Ø±ÛØ§ ÛÛ" /></div>
-    <div class="fld"><label class="fld-lbl">Attorney (Grantee) / ÙØ®ØªØ§Ø± (ÙÛÙÛ ÙØ§ÙØ§) <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ÙØ§ÙØ Ø´ÙØ§Ø®ØªÛ Ú©Ø§Ø±ÚØ Ù¾ØªÛ â Ø¬Ø³Û Ø§Ø®ØªÛØ§Ø± ÙÙ Ø±ÛØ§ ÛÛ" /></div>
-    <div class="fld"><label class="fld-lbl">Scope of Authority / Ø§Ø®ØªÛØ§Ø±Ø§Øª Ú©Û Ø­Ø¯ <span class="fld-req">*</span></label><textarea id="f3" placeholder="Ú©ÛØ§ Ú©ÛØ§ Ø§Ø®ØªÛØ§Ø±Ø§Øª Ø¯ÛÛ Ø¬Ø§ Ø±ÛÛ ÛÛÚº â What powers are being granted"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Property / Asset / Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ (if applicable)</label><textarea id="f4" placeholder="ÙØªØ¹ÙÙÛ Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ ÛØ§ Ø§Ø«Ø§Ø«Û â Specific property or asset" style="min-height:70px;"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Duration / ÙØ¯Øª</label><select id="f5"><option>Perpetual / No Expiry (ÙØ³ØªÙÙ)</option><option>1 Year (1 Ø³Ø§Ù)</option><option>2 Years (2 Ø³Ø§Ù)</option><option>5 Years (5 Ø³Ø§Ù)</option><option>Until Revoked (ÙÙØ³ÙØ®Û ØªÚ©)</option></select></div>
-    <div class="fld"><label class="fld-lbl">Jurisdiction / Ø¯Ø§Ø¦Ø±Û Ø§Ø®ØªÛØ§Ø±</label><select id="f6"><option>Lahore (ÙØ§ÛÙØ±)</option><option>Karachi (Ú©Ø±Ø§ÚÛ)</option><option>Islamabad (Ø§Ø³ÙØ§Ù Ø¢Ø¨Ø§Ø¯)</option><option>Peshawar (Ù¾Ø´Ø§ÙØ±)</option><option>Quetta (Ú©ÙØ¦Ù¹Û)</option></select></div></div>`
+    title:'Power of Attorney',sub:'General and special power of attorney for property, court, banking and business',loadMsg:'Drafting Power of Attorney under Powers of Attorney Act 1882…',
+    fields:`<div class="fld"><label class="fld-lbl">POA Type / مختار نامہ کی قسم <span class="fld-req">*</span></label><select id="f0"><option>General Power of Attorney (عام مختار نامہ)</option><option>Special / Limited Power of Attorney (خاص مختار نامہ)</option><option>Irrevocable Power of Attorney (ناقابل تنسیخ)</option><option>Property POA (جائیداد مختار نامہ)</option><option>Banking / Financial POA (بینکنگ مختار نامہ)</option><option>Court / Litigation POA — Wakalatnama (وکالت نامہ)</option><option>Overseas Pakistani POA (بیرون ملک پاکستانی)</option><option>Vehicle Transfer POA (گاڑی منتقلی)</option><option>Business / Company POA (کاروباری مختار نامہ)</option></select></div>
+    <div class="fld"><label class="fld-lbl">Principal (Grantor) / مختار کار (دینے والا) <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام، شناختی کارڈ، پتہ — جو اختیار دے رہا ہے" /></div>
+    <div class="fld"><label class="fld-lbl">Attorney (Grantee) / مختار (لینے والا) <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="نام، شناختی کارڈ، پتہ — جسے اختیار مل رہا ہے" /></div>
+    <div class="fld"><label class="fld-lbl">Scope of Authority / اختیارات کی حد <span class="fld-req">*</span></label><textarea id="f3" placeholder="کیا کیا اختیارات دیے جا رہے ہیں — What powers are being granted"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Property / Asset / جائیداد (if applicable)</label><textarea id="f4" placeholder="متعلقہ جائیداد یا اثاثے — Specific property or asset" style="min-height:70px;"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Duration / مدت</label><select id="f5"><option>Perpetual / No Expiry (مستقل)</option><option>1 Year (1 سال)</option><option>2 Years (2 سال)</option><option>5 Years (5 سال)</option><option>Until Revoked (منسوخی تک)</option></select></div>
+    <div class="fld"><label class="fld-lbl">Jurisdiction / دائرہ اختیار</label><select id="f6"><option>Lahore (لاہور)</option><option>Karachi (کراچی)</option><option>Islamabad (اسلام آباد)</option><option>Peshawar (پشاور)</option><option>Quetta (کوئٹہ)</option></select></div></div>`
   },
   application:{
-    title:'Formal Application',sub:'Applications to courts, government departments and public authorities',loadMsg:'Drafting formal applicationâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">Application Type / Ø¯Ø±Ø®ÙØ§Ø³Øª Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Application to Court / Ø¹Ø¯Ø§ÙØª ÙÛÚº Ø¯Ø±Ø®ÙØ§Ø³Øª (Misc.)</option><option>Application under Right to Information Act (ÙØ¹ÙÙÙØ§Øª Ú©Ø§ Ø­Ù)</option><option>Service Matter â Departmental (Ø³Ø±ÙØ³ ÙØ¹Ø§ÙÙÛ)</option><option>Application to Deputy Commissioner / AC (ÚÙ¾Ù¹Û Ú©ÙØ´ÙØ±)</option><option>Application to Police / IGP (Ù¾ÙÙÛØ³)</option><option>Application to NADRA (ÙØ§Ø¯Ø±Ø§)</option><option>Application to Revenue / Patwari (Ø±ÛÙÙÛÙ / Ù¾Ù¹ÙØ§Ø±Û)</option><option>Complaint Application (Ø´Ú©Ø§ÛØª Ø¯Ø±Ø®ÙØ§Ø³Øª)</option><option>Early Hearing Application (Ø¬ÙØ¯ Ø³ÙØ§Ø¹Øª Ú©Û Ø¯Ø±Ø®ÙØ§Ø³Øª)</option><option>Transfer of Case (ÙÙØ¯ÙÛ Ú©Û ÙÙØªÙÙÛ)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Applicant Name / Ø¯Ø±Ø®ÙØ§Ø³Øª Ú¯Ø²Ø§Ø± Ú©Ø§ ÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ÙØ§ÙØ Ø´ÙØ§Ø®ØªÛ Ú©Ø§Ø±Ú â Name & CNIC" /></div>
-    <div class="fld"><label class="fld-lbl">Applicant Address / Ù¾ØªÛ</label><input type="text" id="f2" placeholder="ÙÚ©ÙÙ Ø±ÛØ§Ø¦Ø´Û Ù¾ØªÛ â Full address" /></div></div>
-    <div class="fld"><label class="fld-lbl">Addressed To / Ø¨ÙØ§Ù <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. Ø¬ÙØ§Ø¨ Ø³ÛØ´Ù Ø¬Ø¬ ØµØ§Ø­Ø¨ ÙØ§ÛÙØ±" /></div>
-    <div class="fld"><label class="fld-lbl">Subject / Title / ÙÙØ¶ÙØ¹ <span class="fld-req">*</span></label><input type="text" id="f4" placeholder="e.g. Ø¶Ø¨Ø· Ø´Ø¯Û Ø¬Ø§Ø¦ÛØ¯Ø§Ø¯ Ú©Û ÙØ§Ù¾Ø³Û Ú©Û Ø¯Ø±Ø®ÙØ§Ø³Øª" /></div>
-    <div class="fld"><label class="fld-lbl">Background & Grievance / Ù¾Ø³ ÙÙØ¸Ø± Ø§ÙØ± Ø´Ú©Ø§ÛØª <span class="fld-req">*</span></label><textarea id="f5" placeholder="Ú©ÛØ§ ÛÙØ§Ø Ú©ÛØ§ ÚØ§ÛÛÛØ ÙØªØ¹ÙÙÛ ØªØ§Ø±ÛØ®ÛÚº Ø§ÙØ± ÙØ§ÙØ¹Ø§Øªâ¦"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Relief / Request / ÙØ·ÙÙØ¨Û Ú©Ø§Ø±Ø±ÙØ§Ø¦Û</label><textarea id="f6" placeholder="Ú©ÛØ§ ÙØ®ØµÙØµ Ú©Ø§Ø±Ø±ÙØ§Ø¦Û ÛØ§ Ø­Ú©Ù ÚØ§ÛØªÛ ÛÛÚºâ¦" style="min-height:70px;"></textarea></div>`
+    title:'Formal Application',sub:'Applications to courts, government departments and public authorities',loadMsg:'Drafting formal application…',
+    fields:`<div class="fld"><label class="fld-lbl">Application Type / درخواست کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Application to Court / عدالت میں درخواست (Misc.)</option><option>Application under Right to Information Act (معلومات کا حق)</option><option>Service Matter — Departmental (سروس معاملہ)</option><option>Application to Deputy Commissioner / AC (ڈپٹی کمشنر)</option><option>Application to Police / IGP (پولیس)</option><option>Application to NADRA (نادرا)</option><option>Application to Revenue / Patwari (ریونیو / پٹواری)</option><option>Complaint Application (شکایت درخواست)</option><option>Early Hearing Application (جلد سماعت کی درخواست)</option><option>Transfer of Case (مقدمے کی منتقلی)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Applicant Name / درخواست گزار کا نام <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="نام، شناختی کارڈ — Name & CNIC" /></div>
+    <div class="fld"><label class="fld-lbl">Applicant Address / پتہ</label><input type="text" id="f2" placeholder="مکمل رہائشی پتہ — Full address" /></div></div>
+    <div class="fld"><label class="fld-lbl">Addressed To / بنام <span class="fld-req">*</span></label><input type="text" id="f3" placeholder="e.g. جناب سیشن جج صاحب لاہور" /></div>
+    <div class="fld"><label class="fld-lbl">Subject / Title / موضوع <span class="fld-req">*</span></label><input type="text" id="f4" placeholder="e.g. ضبط شدہ جائیداد کی واپسی کی درخواست" /></div>
+    <div class="fld"><label class="fld-lbl">Background & Grievance / پس منظر اور شکایت <span class="fld-req">*</span></label><textarea id="f5" placeholder="کیا ہوا، کیا چاہیے، متعلقہ تاریخیں اور واقعات…"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Relief / Request / مطلوبہ کارروائی</label><textarea id="f6" placeholder="کیا مخصوص کارروائی یا حکم چاہتے ہیں…" style="min-height:70px;"></textarea></div>`
   },
   mou:{
-    title:'MOU / Treaty',sub:'Memoranda of Understanding between parties, institutions or organizations',loadMsg:'Drafting Memorandum of Understandingâ¦',
-    fields:`<div class="fld"><label class="fld-lbl">MOU Type / ÙÙØ§ÛÙØªÛ ÛØ§Ø¯Ø¯Ø§Ø´Øª Ú©Û ÙØ³Ù <span class="fld-req">*</span></label><select id="f0"><option>Business MOU (Ú©Ø§Ø±ÙØ¨Ø§Ø±Û)</option><option>Academic / Institutional MOU (ØªØ¹ÙÛÙÛ)</option><option>Government-to-Government MOU (Ø³Ø±Ú©Ø§Ø±Û)</option><option>NGO / Non-Profit MOU (ÙÙØ§Ø­Û)</option><option>Joint Venture MOU (ÙØ´ØªØ±Ú©Û ÙÙØµÙØ¨Û)</option><option>Settlement / Compromise MOU (ØµÙØ­ ÙØ§ÙÛ)</option></select></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 â Name / ÙØ±ÛÙ Ø§ÙÙ <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="Ø§Ø¯Ø§Ø±Û ÛØ§ ÙØ±Ø¯ Ú©Ø§ ÙØ§Ù" /></div>
-    <div class="fld"><label class="fld-lbl">Party 2 â Name / ÙØ±ÛÙ Ø¯ÙÙ <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="Ø§Ø¯Ø§Ø±Û ÛØ§ ÙØ±Ø¯ Ú©Ø§ ÙØ§Ù" /></div></div>
-    <div class="fld"><label class="fld-lbl">Purpose of MOU / ÙÙØµØ¯ <span class="fld-req">*</span></label><textarea id="f3" placeholder="ÛÛ ÙÙØ§ÛÙØª Ú©Ø³ Ø¨Ø§Ø±Û ÙÛÚº ÛÛ â What is the understanding about"></textarea></div>
-    <div class="fld"><label class="fld-lbl">Key Obligations / Ø°ÙÛ Ø¯Ø§Ø±ÛØ§Úº</label><textarea id="f4" placeholder="ÛØ± ÙØ±ÛÙ Ú©Û Ø°ÙÛ Ø¯Ø§Ø±Û â What each party agrees to do"></textarea></div>
-    <div class="fld-row"><div class="fld"><label class="fld-lbl">Duration / ÙØ¯Øª</label><input type="text" id="f5" placeholder="e.g. 2 years" /></div>
-    <div class="fld"><label class="fld-lbl">Governing Law / ÙØ§ÙÙÙ</label><select id="f6"><option>Laws of Pakistan (ÙÙØ§ÙÛÙ Ù¾Ø§Ú©Ø³ØªØ§Ù)</option><option>Laws of Punjab (ÙÙØ§ÙÛÙ Ù¾ÙØ¬Ø§Ø¨)</option><option>Laws of Sindh (ÙÙØ§ÙÛÙ Ø³ÙØ¯Ú¾)</option><option>Laws of KPK (ÙÙØ§ÙÛÙ Ø®ÛØ¨Ø±Ù¾Ø®ØªÙÙØ®ÙØ§Û)</option></select></div></div>`
+    title:'MOU / Treaty',sub:'Memoranda of Understanding between parties, institutions or organizations',loadMsg:'Drafting Memorandum of Understanding…',
+    fields:`<div class="fld"><label class="fld-lbl">MOU Type / مفاہمتی یادداشت کی قسم <span class="fld-req">*</span></label><select id="f0"><option>Business MOU (کاروباری)</option><option>Academic / Institutional MOU (تعلیمی)</option><option>Government-to-Government MOU (سرکاری)</option><option>NGO / Non-Profit MOU (فلاحی)</option><option>Joint Venture MOU (مشترکہ منصوبہ)</option><option>Settlement / Compromise MOU (صلح نامہ)</option></select></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Party 1 — Name / فریق اول <span class="fld-req">*</span></label><input type="text" id="f1" placeholder="ادارے یا فرد کا نام" /></div>
+    <div class="fld"><label class="fld-lbl">Party 2 — Name / فریق دوم <span class="fld-req">*</span></label><input type="text" id="f2" placeholder="ادارے یا فرد کا نام" /></div></div>
+    <div class="fld"><label class="fld-lbl">Purpose of MOU / مقصد <span class="fld-req">*</span></label><textarea id="f3" placeholder="یہ مفاہمت کس بارے میں ہے — What is the understanding about"></textarea></div>
+    <div class="fld"><label class="fld-lbl">Key Obligations / ذمہ داریاں</label><textarea id="f4" placeholder="ہر فریق کی ذمہ داری — What each party agrees to do"></textarea></div>
+    <div class="fld-row"><div class="fld"><label class="fld-lbl">Duration / مدت</label><input type="text" id="f5" placeholder="e.g. 2 years" /></div>
+    <div class="fld"><label class="fld-lbl">Governing Law / قانون</label><select id="f6"><option>Laws of Pakistan (قوانین پاکستان)</option><option>Laws of Punjab (قوانین پنجاب)</option><option>Laws of Sindh (قوانین سندھ)</option><option>Laws of KPK (قوانین خیبرپختونخواہ)</option></select></div></div>`
   }
 };
 
@@ -1794,7 +1794,7 @@ function openTool(tool, el) {
   const t = TOOLS[tool];
   document.getElementById('ws-title').textContent = t.title;
   document.getElementById('ws-sub').textContent   = t.sub;
-  document.getElementById('ws-out-title').textContent = t.title + ' â Output';
+  document.getElementById('ws-out-title').textContent = t.title + ' — Output';
   document.getElementById('ws-fields').innerHTML  = t.fields + uploadSectionHTML();
   uploadedFiles = [];
   renderFileList();
@@ -1807,16 +1807,16 @@ function openTool(tool, el) {
   document.getElementById('ws-doc').contentEditable   = false;
   isEditing = false;
   const editBtn = document.getElementById('edit-btn');
-  if (editBtn) { editBtn.innerHTML = 'âï¸ Edit'; editBtn.style.background = ''; editBtn.style.color = ''; }
+  if (editBtn) { editBtn.innerHTML = '✏️ Edit'; editBtn.style.background = ''; editBtn.style.color = ''; }
   const refineBar = document.getElementById('ai-refine-bar');
   if (refineBar) refineBar.style.display = 'none';
   document.getElementById('topbar-title').textContent = t.title;
-    document.getElementById('gen-label').textContent = '\u2726 Generate Document';
+    document.getElementById('gen-label').textContent = '✦ Generate Document';
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    GENERATE
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 async function getMonthlyGenCount() {
   if (!sb || !currentUser.id) return 0;
   try {
@@ -1860,7 +1860,7 @@ function updateUsageDisplay() {
 }
 
 async function generate() {
-  /* ââ USAGE LIMIT CHECK ââ */
+  /* ── USAGE LIMIT CHECK ── */
   const limit = getPlanLimit();
   if (monthlyGenCount >= limit) {
     const msg = document.getElementById('limit-msg');
@@ -1872,17 +1872,17 @@ async function generate() {
   const t = TOOLS[activeTool];
 
   if (isExtracting) {
-    showToast('Please wait â document extraction is in progress', 'err');
+    showToast('Please wait — document extraction is in progress', 'err');
     return;
   }
   const hasUploadedDoc = uploadedFiles.some(f => f.data);
   const first = document.getElementById('f0');
   if (first && !first.value.trim() && !hasUploadedDoc && !uploadedFiles.some(f => f.extractedText)) {
-    showToast('Please fill in the required fields â or upload a document', 'err');
+    showToast('Please fill in the required fields — or upload a document', 'err');
     first.focus(); return;
   }
 
-  // Check required textareas â skip when doc uploaded or extracted
+  // Check required textareas — skip when doc uploaded or extracted
   if (!hasUploadedDoc && !uploadedFiles.some(f => f.extractedText)) {
     const textareas = document.querySelectorAll('#ws-fields textarea');
     for (const ta of textareas) {
@@ -1959,7 +1959,7 @@ async function generate() {
     let html = '';
 
     if (contentType.includes('text/event-stream')) {
-      // SSE streaming response â read chunks
+      // SSE streaming response — read chunks
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let sseBuffer = '';
@@ -2010,7 +2010,7 @@ async function generate() {
       sb.from('generation_logs').insert({ user_id: currentUser.id, tool_type: activeTool, created_at: new Date().toISOString() }).then(() => {}).catch(() => {});
       const allFields = document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea');
       let autoTitle = TOOLS[activeTool]?.title || 'Untitled';
-      for (const el of allFields) { if (el.value && el.value.trim() && el.tagName !== 'SELECT' && el.type !== 'file') { autoTitle = el.value.trim().replace(/^.*[\\\/]/, '').substring(0, 80); break; } }
+      for (const el of allFields) { if (el.value && el.value.trim() && el.tagName !== 'SELECT' && el.type !== 'file') { autoTitle = el.value.trim().substring(0, 80); break; } }
       lastAutoSavedDocId = null;
       sb.from('documents').insert({ user_id: currentUser.id, tool_type: activeTool, title: autoTitle, html_content: html, created_at: new Date().toISOString() }).select().single().then(({ data: savedDoc }) => { if (savedDoc) { lastAutoSavedDocId = savedDoc.id; renderDocCard(savedDoc); } }).catch(() => {});
     }
@@ -2018,7 +2018,7 @@ async function generate() {
   } catch (err) {
     document.getElementById('ws-loading').style.display = 'none';
     if (err.name === 'AbortError') {
-      showToast('Generation timed out. Please try again â the server may be busy.', 'err');
+      showToast('Generation timed out. Please try again — the server may be busy.', 'err');
       document.getElementById('ws-empty').style.display = 'flex';
     } else {
       const html = buildDoc(activeTool, f, lang);
@@ -2040,9 +2040,9 @@ async function generate() {
 
 function getVal(f, id) { return (f[id] || '').trim(); }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    DOCUMENT BUILDER
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 function buildDoc(tool, f, lang) {
   lang = lang || 'en';
   const today = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
@@ -2103,14 +2103,14 @@ function buildDoc(tool, f, lang) {
       </div>
     </div>`;
 
-  // ââ ARGUMENT ââ
+  // ── ARGUMENT ──
   if (tool === 'argument') {
     const title  = getVal(f,'f0') || 'Case Title';
     const pos    = getVal(f,'f1') || 'Defense / Defendant';
-    const type   = getVal(f,'f2') || 'Criminal â PPC';
+    const type   = getVal(f,'f2') || 'Criminal — PPC';
     const facts  = getVal(f,'f3') || 'As per instructions of the client.';
     const evid   = getVal(f,'f4') || 'Documentary and oral evidence available.';
-    const secs   = getVal(f,'f5') || 'PPC Â§302, Â§34, CrPC Â§265-K';
+    const secs   = getVal(f,'f5') || 'PPC §302, §34, CrPC §265-K';
     const court  = getVal(f,'f6') || 'Sessions Court';
     const side   = pos.includes('Prosecution') ? 'prosecution' : 'defense';
     const opp    = pos.includes('Prosecution') ? 'Defense' : 'State';
@@ -2125,8 +2125,8 @@ function buildDoc(tool, f, lang) {
     <div style="margin:18px 0;">
     ${groundsHead()}
     ${arg('claim','Primary Legal Submission','That the present matter falls squarely within the ambit of <strong>'+secs+'</strong>. The facts on record, taken together with the available evidence, establish the '+(side==='prosecution'?'guilt of the accused beyond reasonable doubt.':'complete innocence of the accused. The accused has been falsely implicated.'))}
-    ${arg('support','Ground I â Evidence','That the material on record, specifically the '+evid+', directly corroborates the version presented by the '+side+'. This evidence is contemporaneous, unimpeachable and stands unrebutted throughout.')}
-    ${arg('support','Ground II â Legal Precedent','That reliance is respectfully placed on <em>Muhammad Akram v. The State (2019 SCMR 1492)</em> and <em>Tariq Bashir v. The State (PLD 1995 SC 34)</em>, wherein the Hon\'ble Supreme Court held that evidence in such matters must be assessed holistically and the constitutional rights of the parties must be protected.')}
+    ${arg('support','Ground I — Evidence','That the material on record, specifically the '+evid+', directly corroborates the version presented by the '+side+'. This evidence is contemporaneous, unimpeachable and stands unrebutted throughout.')}
+    ${arg('support','Ground II — Legal Precedent','That reliance is respectfully placed on <em>Muhammad Akram v. The State (2019 SCMR 1492)</em> and <em>Tariq Bashir v. The State (PLD 1995 SC 34)</em>, wherein the Hon\'ble Supreme Court held that evidence in such matters must be assessed holistically and the constitutional rights of the parties must be protected.')}
     ${arg('counter','Anticipated Objection by Opposite Side','That the opposite counsel may contend that the factual matrix does not satisfy the requisite legal threshold and may attempt to challenge the credibility of the evidence on record.')}
     ${arg('rebuttal','Rebuttal to Objection','That the said contention is without merit and is hereby respectfully refuted. The evidence is consistent throughout. There is no motive for false implication. The case of the '+side+' is fully established on record.')}
     </div>
@@ -2135,9 +2135,9 @@ function buildDoc(tool, f, lang) {
     ${advocateSig('','','')}`;
   }
 
-  // ââ BAIL ââ
+  // ── BAIL ──
   if (tool === 'bail') {
-    const bt      = getVal(f,'f0') || 'Post-Arrest Bail â Â§497 CrPC';
+    const bt      = getVal(f,'f0') || 'Post-Arrest Bail — §497 CrPC';
     const accused = getVal(f,'f1') || 'The Accused';
     const fir     = getVal(f,'f2') || 'FIR as per record';
     const offence = getVal(f,'f3') || 'As per FIR';
@@ -2154,7 +2154,7 @@ function buildDoc(tool, f, lang) {
       <tr><td style="padding:5px 10px;border:1px solid #000;font-weight:600;">COURT:</td><td style="padding:5px 10px;border:1px solid #000;">${court}</td></tr>
     </table>
     ${partiesBlock(accused, 'The State', 'Petitioner / Accused', 'Respondent')}
-    ${subjectLine('Petition U/S Â§'+sec+' Cr.P.C. for the Grant of '+bt)}
+    ${subjectLine('Petition U/S §'+sec+' Cr.P.C. for the Grant of '+bt)}
     ${sheweth()}
     ${para(1,'That the above-named petitioner/accused <strong>'+accused+'</strong> has been involved in the above-mentioned FIR. The succinct allegations as narrated in the FIR are as under: '+fir+'.')}
     ${para(2,'That the petitioner is a law abiding citizen and has nothing to do with the alleged occurrence. '+bg)}
@@ -2172,7 +2172,7 @@ function buildDoc(tool, f, lang) {
     ${advocateSig('','','')}`;
   }
 
-  // ââ GENERIC BUILDER for remaining tools ââ
+  // ── GENERIC BUILDER for remaining tools ──
   const toolCfg = TOOLS[tool];
   const vals    = Object.values(f).map(v => v.trim()).filter(Boolean);
   const party1  = vals[0] || 'Applicant';
@@ -2196,10 +2196,10 @@ function buildDoc(tool, f, lang) {
     ${advocateSig('','','')}`;
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    DOCUMENTS
-ââââââââââââââââââââââââââââââââââââââ */
-const DOC_ICONS = {argument:'âï¸',petition:'ð',writ:'ð',bail:'ð',plaint:'ð',appeal:'ð£','legal-notice':'âï¸',affidavit:'âï¸',complaint:'âï¸','legal-opinion':'ðï¸',agreement:'ð¤',deed:'ð ',poa:'ðªª',application:'ð®',mou:'ðï¸'};
+══════════════════════════════════════ */
+const DOC_ICONS = {argument:'⚔️',petition:'📜',writ:'🔏',bail:'🔓',plaint:'📋',appeal:'📣','legal-notice':'✉️',affidavit:'✍️',complaint:'⚖️','legal-opinion':'🏛️',agreement:'🤝',deed:'🏠',poa:'🪪',application:'📮',mou:'🗒️'};
 const DOC_TAGS  = {argument:'tg-green',petition:'tg-blue',writ:'tg-red',bail:'tg-gold',plaint:'tg-blue',appeal:'tg-green','legal-notice':'tg-gold',affidavit:'tg-blue',complaint:'tg-red','legal-opinion':'tg-blue',agreement:'tg-green',deed:'tg-gold',poa:'tg-blue',application:'tg-gold',mou:'tg-green'};
 
 function renderDocCard(doc) {
@@ -2212,7 +2212,7 @@ function renderDocCard(doc) {
   card.dataset.id = doc.id || '';
   const dateStr   = new Date(doc.created_at || Date.now()).toLocaleDateString('en-PK', { day:'numeric', month:'short', year:'numeric' });
   const toolTitle = TOOLS[doc.tool_type]?.title || doc.tool_type || 'Document';
-  card.innerHTML  = `<div class="dc-icon">${DOC_ICONS[doc.tool_type]||'ð'}</div><div class="dc-name">${doc.title||'Untitled'}</div><div class="dc-date">${dateStr}</div><div class="dc-tag"><span class="tool-tag ${DOC_TAGS[doc.tool_type]||'tg-green'}">${toolTitle}</span></div><button class="dc-del print-hide" onclick="event.stopPropagation();deleteDoc('${doc.id}',this.closest('.doc-card'))" title="Delete">â</button>`;
+  card.innerHTML  = `<div class="dc-icon">${DOC_ICONS[doc.tool_type]||'📄'}</div><div class="dc-name">${doc.title||'Untitled'}</div><div class="dc-date">${dateStr}</div><div class="dc-tag"><span class="tool-tag ${DOC_TAGS[doc.tool_type]||'tg-green'}">${toolTitle}</span></div><button class="dc-del print-hide" onclick="event.stopPropagation();deleteDoc('${doc.id}',this.closest('.doc-card'))" title="Delete">✕</button>`;
   card.onclick    = () => openSavedDoc(doc);
   grid.prepend(card);
 
@@ -2224,7 +2224,7 @@ function renderDocCard(doc) {
     if (recentEmpty) recentEmpty.style.display = 'none';
     const rc = document.createElement('div');
     rc.className = 'recent-card';
-    rc.innerHTML = `<div class="rc-type">${DOC_ICONS[doc.tool_type]||'ð'} ${toolTitle}</div><div class="rc-name">${doc.title||'Untitled'}</div><div class="rc-meta">${dateStr}</div><div class="rc-status saved">â Saved</div>`;
+    rc.innerHTML = `<div class="rc-type">${DOC_ICONS[doc.tool_type]||'📄'} ${toolTitle}</div><div class="rc-name">${doc.title||'Untitled'}</div><div class="rc-meta">${dateStr}</div><div class="rc-status saved">● Saved</div>`;
     rc.onclick   = () => openSavedDoc(doc);
     recentList.prepend(rc);
   }
@@ -2233,7 +2233,7 @@ function renderDocCard(doc) {
 async function loadDocuments() {
   if (!currentUser.id) return;
   const dc = document.getElementById('doc-count');
-  if (dc) dc.textContent = 'Loadingâ¦';
+  if (dc) dc.textContent = 'Loading…';
 
   const { data: docs, error } = await sb.from('documents')
     .select('id, tool_type, title, created_at, html_content')
@@ -2292,7 +2292,7 @@ function openSavedDoc(doc) {
     docEl.style.display = 'block';
     docEl.className = 'out-doc';
     document.getElementById('ws-empty').style.display = 'none';
-    document.getElementById('ws-out-title').textContent = (TOOLS[doc.tool_type]?.title||'Document') + ' â Output';
+    document.getElementById('ws-out-title').textContent = (TOOLS[doc.tool_type]?.title||'Document') + ' — Output';
   }, 100);
 }
 
@@ -2302,12 +2302,12 @@ function filterDocs(q) {
   });
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    OUTPUT ACTIONS
-ââââââââââââââââââââââââââââââââââââââ */
-/* ââââââââââââââââââââââââââââââââââââââ
+══════════════════════════════════════ */
+/* ══════════════════════════════════════
    DOCUMENT EDITING
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 let isEditing = false;
 
 function toggleEdit() {
@@ -2323,19 +2323,19 @@ function toggleEdit() {
     doc.style.outline = '2px solid var(--green3)';
     doc.style.outlineOffset = '-2px';
     doc.style.cursor = 'text';
-    btn.innerHTML = 'â Done Editing';
+    btn.innerHTML = '✅ Done Editing';
     btn.style.background = 'var(--green)';
     btn.style.color = '#fff';
     if (refineBar) refineBar.style.display = 'flex';
-    showToast('âï¸ Editing mode ON â click anywhere in the document to edit');
+    showToast('✏️ Editing mode ON — click anywhere in the document to edit');
   } else {
     doc.style.outline = 'none';
     doc.style.cursor = 'default';
-    btn.innerHTML = 'âï¸ Edit';
+    btn.innerHTML = '✏️ Edit';
     btn.style.background = '';
     btn.style.color = '';
     if (refineBar) refineBar.style.display = 'none';
-    showToast('Editing mode OFF â changes preserved');
+    showToast('Editing mode OFF — changes preserved');
   }
 }
 
@@ -2353,7 +2353,7 @@ async function aiRefine() {
 
   const refineBtn = document.getElementById('refine-btn');
   refineBtn.disabled = true;
-  refineBtn.textContent = 'Refiningâ¦';
+  refineBtn.textContent = 'Refining…';
 
   try {
     const response = await fetch('/api/generate', {
@@ -2399,16 +2399,16 @@ async function aiRefine() {
 
     if (html && html.length > 50) {
       doc.innerHTML = (doc.querySelector('.doc-meta-bar')?.outerHTML || '') + html;
-      showToast('â Document refined by AI!');
+      showToast('✅ Document refined by AI!');
     } else {
-      showToast('AI returned empty response â try a different instruction', 'err');
+      showToast('AI returned empty response — try a different instruction', 'err');
     }
   } catch (e) {
-    showToast('â ï¸ Refine failed: ' + (e.message || 'Try again'), 'err');
+    showToast('⚠️ Refine failed: ' + (e.message || 'Try again'), 'err');
   }
 
   refineBtn.disabled = false;
-  refineBtn.textContent = 'â¦ Refine with AI';
+  refineBtn.textContent = '✦ Refine with AI';
   input.value = '';
 }
 
@@ -2416,13 +2416,13 @@ function copyDoc() {
   const doc = document.getElementById('ws-doc');
   if (!doc || !doc.innerHTML.trim()) { showToast('Generate a document first','err'); return; }
   navigator.clipboard.writeText(doc.innerText).then(() => {
-    showToast('ð Document text copied to clipboard');
+    showToast('📋 Document text copied to clipboard');
   }).catch(() => {
     const ta = document.createElement('textarea');
     ta.value = doc.innerText; ta.style.position='fixed'; ta.style.opacity='0';
     document.body.appendChild(ta); ta.select();
     document.execCommand('copy'); document.body.removeChild(ta);
-    showToast('ð Copied to clipboard');
+    showToast('📋 Copied to clipboard');
   });
 }
 
@@ -2550,9 +2550,9 @@ function openPrintWindow() {
   setTimeout(() => { if (!win.closed) { win.focus(); win.print(); setTimeout(() => win.close(), 500); } }, 1000);
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    PRICING
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 let pendingUpgradePlan = null;
 
 let isAnnualBilling = false;
@@ -2569,18 +2569,18 @@ function toggleBillingPeriod() {
     lblM.style.color = 'var(--muted)'; lblM.style.fontWeight = '400';
     lblA.style.color = 'var(--green)'; lblA.style.fontWeight = '600';
     document.getElementById('pro-price-display').innerHTML = 'PKR 2,499<span style="font-size:14px;font-weight:400;color:var(--muted);">/mo</span>';
-    document.getElementById('pro-price-sub').textContent = 'PKR 29,988/year Â· Save PKR 6,012';
+    document.getElementById('pro-price-sub').textContent = 'PKR 29,988/year · Save PKR 6,012';
     document.getElementById('firm-price-display').innerHTML = 'PKR 8,099<span style="font-size:14px;font-weight:400;color:var(--muted);">/mo</span>';
-    document.getElementById('firm-price-sub').textContent = 'PKR 97,188/year Â· Save PKR 10,812';
+    document.getElementById('firm-price-sub').textContent = 'PKR 97,188/year · Save PKR 10,812';
   } else {
     track.style.background = 'var(--border2)';
     knob.style.transform = 'translateX(0)';
     lblM.style.color = 'var(--green)'; lblM.style.fontWeight = '600';
     lblA.style.color = 'var(--muted)'; lblA.style.fontWeight = '400';
     document.getElementById('pro-price-display').textContent = 'PKR 3,000';
-    document.getElementById('pro-price-sub').textContent = 'per month Â· billed monthly';
+    document.getElementById('pro-price-sub').textContent = 'per month · billed monthly';
     document.getElementById('firm-price-display').textContent = 'PKR 9,000';
-    document.getElementById('firm-price-sub').textContent = 'per month Â· up to 3 advocates';
+    document.getElementById('firm-price-sub').textContent = 'per month · up to 3 advocates';
   }
 }
 
@@ -2604,11 +2604,11 @@ function openUpgrade(planKey) {
 }
 
 async function initSafepayCheckout() {
-  // Payments disabled â using WhatsApp for upgrades during beta
+  // Payments disabled — using WhatsApp for upgrades during beta
   showToast('Contact us on WhatsApp to upgrade your plan');
 }
 
-// Handle payment redirect â runs on page load
+// Handle payment redirect — runs on page load
 function handlePaymentRedirect() {
   const params = new URLSearchParams(window.location.search);
   const paymentStatus = params.get('payment');
@@ -2623,7 +2623,7 @@ function handlePaymentRedirect() {
     const plan = PLAN_PRICES[planKey];
     if (!plan) return;
 
-    // Upgrade will happen after auth loads â store intent
+    // Upgrade will happen after auth loads — store intent
     sessionStorage.setItem('wakeel_complete_upgrade', JSON.stringify({
       planKey: planKey,
       planName: plan.name
@@ -2682,12 +2682,12 @@ function updatePlanButtons() {
   const btnFirm = document.getElementById('plan-btn-firm');
   if (btnFree) { btnFree.textContent = plan === 'Free Trial' ? 'Current Plan' : 'Free Trial'; btnFree.onclick = () => showToast('You are on the ' + plan + ' plan'); }
   if (btnPro) {
-    if (plan === 'Professional' || plan === 'Firm') { btnPro.textContent = plan === 'Professional' ? 'â Current Plan' : 'Included'; btnPro.classList.remove('gold'); btnPro.classList.add('outline'); btnPro.onclick = () => showToast('You are on the ' + plan + ' plan'); }
-    else { btnPro.textContent = 'Upgrade to Pro â'; btnPro.classList.add('gold'); btnPro.classList.remove('outline'); btnPro.onclick = () => openUpgrade('pro'); }
+    if (plan === 'Professional' || plan === 'Firm') { btnPro.textContent = plan === 'Professional' ? '✓ Current Plan' : 'Included'; btnPro.classList.remove('gold'); btnPro.classList.add('outline'); btnPro.onclick = () => showToast('You are on the ' + plan + ' plan'); }
+    else { btnPro.textContent = 'Upgrade to Pro →'; btnPro.classList.add('gold'); btnPro.classList.remove('outline'); btnPro.onclick = () => openUpgrade('pro'); }
   }
   if (btnFirm) {
-    if (plan === 'Firm') { btnFirm.textContent = 'â Current Plan'; btnFirm.onclick = () => showToast('You are on the Firm plan'); }
-    else { btnFirm.textContent = 'Upgrade to Firm â'; btnFirm.onclick = () => openUpgrade('firm'); }
+    if (plan === 'Firm') { btnFirm.textContent = '✓ Current Plan'; btnFirm.onclick = () => showToast('You are on the Firm plan'); }
+    else { btnFirm.textContent = 'Upgrade to Firm →'; btnFirm.onclick = () => openUpgrade('firm'); }
   }
 }
 
@@ -2700,9 +2700,9 @@ document.getElementById('limit-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('limit-modal')) closeModal('limit-modal');
 });
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    TOAST
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 function showToast(msg, type) {
   const t = document.createElement('div');
   t.className = 'toast';
@@ -2712,11 +2712,11 @@ function showToast(msg, type) {
   setTimeout(() => t.remove(), 3200);
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    FILE UPLOAD
-ââââââââââââââââââââââââââââââââââââââ */
-const FILE_ICONS = { pdf:'ð', doc:'ð', docx:'ð', txt:'ð', jpg:'ð¼ï¸', jpeg:'ð¼ï¸', png:'ð¼ï¸', webp:'ð¼ï¸', xls:'ð', xlsx:'ð', csv:'ð' };
-function getFileIcon(n) { return FILE_ICONS[n.split('.').pop().toLowerCase()] || 'ð'; }
+══════════════════════════════════════ */
+const FILE_ICONS = { pdf:'📄', doc:'📝', docx:'📝', txt:'📃', jpg:'🖼️', jpeg:'🖼️', png:'🖼️', webp:'🖼️', xls:'📊', xlsx:'📊', csv:'📊' };
+function getFileIcon(n) { return FILE_ICONS[n.split('.').pop().toLowerCase()] || '📎'; }
 function getFileTag(n) {
   const e = n.split('.').pop().toLowerCase();
   if (e==='pdf') return '<span class="fi-tag pdf">PDF</span>';
@@ -2728,18 +2728,18 @@ function formatSize(b) { if (b<1024) return b+' B'; if (b<1048576) return (b/102
 
 function uploadSectionHTML() {
   return `<div class="upload-section">
-    <div class="upload-sec-label">Upload Documents â AI reads & fills fields automatically</div>
+    <div class="upload-sec-label">Upload Documents — AI reads & fills fields automatically</div>
     <div class="upload-zone" id="upload-zone">
       <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.txt" />
-      <div class="upload-zone-icon">ð</div>
+      <div class="upload-zone-icon">📄</div>
       <div class="upload-zone-label">Drag & drop PDF or image here</div>
-      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields â max 4MB each</div>
+      <div class="upload-zone-hint">or <span onclick="document.getElementById('file-input').click()">browse to upload</span><br>AI reads PDF &amp; images to auto-fill fields — max 4MB each</div>
     </div>
     <div class="files-list" id="files-list"></div>
     <div class="upload-count" id="upload-count" style="display:none;"></div>
     <button id="extract-btn" onclick="extractFromDocument()" style="display:none;margin-top:10px;width:100%;padding:11px 16px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;align-items:center;justify-content:center;gap:8px;">
       <span id="extract-spinner" class="spinner" style="display:none;"></span>
-      <span id="extract-label">â¦ Extract & Fill Fields from Document</span>
+      <span id="extract-label">✦ Extract & Fill Fields from Document</span>
     </button>
   </div>`;
 }
@@ -2774,7 +2774,7 @@ function handleFiles(fileList) {
     } else {
       uploadedFiles.push({ name: file.name, size: file.size, type: file.type, data: null });
       renderFileList();
-      showToast(file.name+' added (reference only â AI reads PDF/images)');
+      showToast(file.name+' added (reference only — AI reads PDF/images)');
     }
   });
 }
@@ -2786,10 +2786,10 @@ function showExtractBtn() {
   if (!btn) return;
   btn.style.display = readable.length ? 'flex' : 'none';
   if (label && readable.length) {
-    const name = readable[0].name.length > 28 ? readable[0].name.substring(0,25)+'â¦' : readable[0].name;
+    const name = readable[0].name.length > 28 ? readable[0].name.substring(0,25)+'…' : readable[0].name;
     label.textContent = readable.length > 1
-      ? `â¦ Extract from "${name}" (+${readable.length-1} more)`
-      : `â¦ Extract & Fill Fields from "${name}"`;
+      ? `✦ Extract from "${name}" (+${readable.length-1} more)`
+      : `✦ Extract & Fill Fields from "${name}"`;
   }
 }
 
@@ -2801,7 +2801,7 @@ function renderFileList() {
   uploadedFiles.forEach((file, i) => {
     const div = document.createElement('div');
     div.className = 'file-item';
-    div.innerHTML = `<span class="fi-icon">${getFileIcon(file.name)}</span><div class="fi-info"><div class="fi-name">${file.name}</div><div class="fi-size">${formatSize(file.size)}</div></div>${getFileTag(file.name)}<button class="fi-remove" onclick="removeFile(${i})" title="Remove">â</button>`;
+    div.innerHTML = `<span class="fi-icon">${getFileIcon(file.name)}</span><div class="fi-info"><div class="fi-name">${file.name}</div><div class="fi-size">${formatSize(file.size)}</div></div>${getFileTag(file.name)}<button class="fi-remove" onclick="removeFile(${i})" title="Remove">✕</button>`;
     list.appendChild(div);
   });
   if (count) {
@@ -2814,7 +2814,7 @@ function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); showExtrac
 
 async function extractFromDocument() {
   const readable = uploadedFiles.filter(f => f.data);
-  if (!readable.length) { showToast('No readable file â upload a PDF or image', 'err'); return; }
+  if (!readable.length) { showToast('No readable file — upload a PDF or image', 'err'); return; }
 
   const btn = document.getElementById('extract-btn');
   const spinner = document.getElementById('extract-spinner');
@@ -2822,7 +2822,7 @@ async function extractFromDocument() {
   btn.disabled = true;
   isExtracting = true;
   if (spinner) spinner.style.display = 'inline-block';
-  if (label) label.textContent = 'Extractingâ¦';
+  if (label) label.textContent = 'Extracting…';
 
   const fieldSchema = {};
   document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea').forEach(el => {
@@ -2881,15 +2881,15 @@ async function extractFromDocument() {
     });
 
     if (filled > 0) {
-      showToast('Extracted ' + filled + ' field' + (filled>1?'s':'') + ' â doc content will be used during generation');
-      if (label) label.textContent = 'â Fields Filled â Ready to Generate';
+      showToast('Extracted ' + filled + ' field' + (filled>1?'s':'') + ' — doc content will be used during generation');
+      if (label) label.textContent = '✓ Fields Filled — Ready to Generate';
     } else {
-      showToast('Document read â no matching fields found', 'err');
-      if (label) label.textContent = 'â¦ Extract & Fill Fields from Document';
+      showToast('Document read — no matching fields found', 'err');
+      if (label) label.textContent = '✦ Extract & Fill Fields from Document';
     }
   } catch (e) {
     showToast('Extraction failed: ' + e.message, 'err');
-    if (label) label.textContent = 'â¦ Extract & Fill Fields from Document';
+    if (label) label.textContent = '✦ Extract & Fill Fields from Document';
   } finally {
     if (spinner) spinner.style.display = 'none';
     btn.disabled = false;
@@ -2903,9 +2903,9 @@ function attachedFilesHTML() {
   return `<div class="doc-att-box"><div class="doc-att-title">Attached Supporting Documents (${uploadedFiles.length})</div>${items}</div>`;
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    PROFILE
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 const avatarColors = ['#b07d2a','#276044','#1a2e5a','#7d1f1f','#4a6741','#5c4033'];
 let avatarColorIdx = 0;
 
@@ -2922,10 +2922,10 @@ function openProfile() {
   document.getElementById('pf-email').value             = currentUser.email || '';
 
   if (currentUser.plan === 'Professional') {
-    document.getElementById('pm-plan-detail').textContent = 'Active Â· 60 documents/month';
+    document.getElementById('pm-plan-detail').textContent = 'Active · 60 documents/month';
     document.getElementById('pm-plan-price').textContent  = 'PKR 3,000 / month';
   } else if (currentUser.plan === 'Firm') {
-    document.getElementById('pm-plan-detail').textContent = 'Active Â· 150 documents/month Â· 3 advocates';
+    document.getElementById('pm-plan-detail').textContent = 'Active · 150 documents/month · 3 advocates';
     document.getElementById('pm-plan-price').textContent  = 'PKR 9,000 / month';
   } else {
     document.getElementById('pm-plan-detail').textContent = monthlyGenCount + ' of 5 documents used this month';
@@ -2993,7 +2993,7 @@ async function saveProfile() {
   document.getElementById('pm-name').textContent      = name;
   document.getElementById('pm-avatar-text').textContent = initials;
   document.getElementById('pm-email').textContent     = email;
-  showToast('â Profile updated successfully!');
+  showToast('✅ Profile updated successfully!');
   closeModal('profile-modal');
 }
 
@@ -3017,7 +3017,7 @@ async function changePassword() {
 
   const { error } = await sb.auth.updateUser({ password: nw });
   if (error) { showToast('Error: '+error.message,'err'); return; }
-  showToast('â Password updated successfully!');
+  showToast('✅ Password updated successfully!');
   ['pf-curr-pass','pf-new-pass','pf-conf-pass'].forEach(id => { document.getElementById(id).value = ''; });
 }
 
@@ -3030,9 +3030,9 @@ document.getElementById('profile-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('profile-modal')) closeModal('profile-modal');
 });
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    LANGUAGE TOGGLE
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 const LANG_DEFAULTS = { argument:'en', petition:'en', writ:'en', bail:'en', plaint:'en', appeal:'en', 'legal-notice':'en', affidavit:'ur', complaint:'en', 'legal-opinion':'en', agreement:'en', deed:'ur', poa:'en', application:'ur', mou:'en' };
 
 function injectLangToggle(tool) {
@@ -3044,9 +3044,9 @@ function injectLangToggle(tool) {
       <span class="lang-label">Document Language</span>
       <div class="lang-toggle">
         <button class="lang-btn ${def==='en'?'active':''}" onclick="setLang('en',this)" id="lang-en">English</button>
-        <button class="lang-btn ${def==='ur'?'active':''}" onclick="setLang('ur',this)" id="lang-ur">Ø§Ø±Ø¯Ù</button>
+        <button class="lang-btn ${def==='ur'?'active':''}" onclick="setLang('ur',this)" id="lang-ur">اردو</button>
       </div>
-      <span class="lang-note" id="lang-note">${def==='en'?'Used in High Courts & formal proceedings':'Sessions Courts Ø§ÙØ± Ø³Ø±Ú©Ø§Ø±Û Ø¯ÙØ§ØªØ± Ú©Û ÙÛÛ'}</span>
+      <span class="lang-note" id="lang-note">${def==='en'?'Used in High Courts & formal proceedings':'Sessions Courts اور سرکاری دفاتر کے لیے'}</span>
     </div>`;
 }
 
@@ -3055,16 +3055,16 @@ function setLang(lang, btn) {
   btn.classList.add('active');
   const note = document.getElementById('lang-note');
   if (note) note.textContent = lang === 'en'
-    ? 'English â used in High Courts & formal proceedings'
-    : 'Ø§Ø±Ø¯Ù â Sessions Courts Ø§ÙØ± Ø³Ø±Ú©Ø§Ø±Û Ø¯ÙØ§ØªØ± Ú©Û ÙÛÛ';
+    ? 'English — used in High Courts & formal proceedings'
+    : 'اردو — Sessions Courts اور سرکاری دفاتر کے لیے';
 }
 
-/* ââââââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════════
    SUPABASE INIT + BOOT
-   Runs LAST â after all functions defined
+   Runs LAST — after all functions defined
    Wrapped in try-catch so a CDN failure
    never breaks the button onclick handlers
-ââââââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════════ */
 (function initSupabase() {
   try {
     const { createClient } = supabase;
@@ -3116,7 +3116,7 @@ function setLang(lang, btn) {
 
   } catch(e) {
     console.error('Supabase failed to init:', e);
-    // Buttons still work â they'll show a toast error instead of crashing
+    // Buttons still work — they'll show a toast error instead of crashing
   }
 })();
 </script>
