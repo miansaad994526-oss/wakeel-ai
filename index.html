@@ -1,9 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pleader AI — Pakistan's Legal Intelligence Platform</title>
+<meta name="description" content="Pleader AI is Pakistan's leading AI-powered legal platform. Draft legal documents, analyze cases, and get instant legal guidance — in English and Urdu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pleaderai.com/">
+<meta property="og:title" content="Pleader AI — Pakistan's Legal Intelligence Platform">
+<meta property="og:description" content="Pakistan's leading AI-powered legal platform. Draft legal documents, analyze cases, get instant legal guidance.">
+<meta property="og:image" content="https://www.pleaderai.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pleader AI — Pakistan's Legal Intelligence Platform">
+<meta name="twitter:description" content="Pakistan's leading AI-powered legal platform. Draft documents, analyze cases, get instant guidance.">
+<meta name="twitter:image" content="https://www.pleaderai.com/og-image.png">
+<link rel="canonical" href="https://www.pleaderai.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23162d20'/%3E%3Ctext x='50' y='67' font-size='62' text-anchor='middle' fill='%23e8b84b' font-family='Georgia,serif' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -707,7 +719,7 @@ select option{background:#fff;}
 <div id="auth-screen">
   <div class="auth-box">
     <div class="auth-header">
-      <div class="auth-logo">Pleader<span>AI</span></div>
+      <div class="auth-logo">Wakeel<span>AI</span></div>
       <div class="auth-tagline">Pakistan's Legal Intelligence Platform</div>
     </div>
     <div class="auth-body">
@@ -727,7 +739,7 @@ select option{background:#fff;}
           <input class="auth-input" type="password" placeholder="••••••••" id="login-pass" />
         </div>
         <div class="auth-btn-err" id="login-err"></div>
-        <button class="auth-btn" id="login-btn" onclick="doLogin()">Sign In to Pleader AI</button>
+        <button class="auth-btn" id="login-btn" onclick="doLogin()">Sign In to Wakeel AI</button>
 
         <div class="auth-divider"><span>or continue with</span></div>
 
@@ -790,8 +802,8 @@ select option{background:#fff;}
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-logo">
-    <div class="sb-logo-icon">⚖️</div>
-    <div class="sb-logo-text">Pleader<span>AI</span></div>
+    <div class="sb-logo-icon">و</div>
+    <div class="sb-logo-text">Wakeel<span>AI</span></div>
   </div>
   <div class="sb-scroll">
     <div class="sb-section">
@@ -1227,11 +1239,42 @@ select option{background:#fff;}
           <div><strong id="upgrade-plan-name">Professional</strong><br><span style="font-size:11px;color:var(--muted);" id="upgrade-plan-detail">60 documents/month · All tools</span></div>
           <div style="text-align:right;"><strong style="font-size:20px;color:var(--green);" id="upgrade-plan-price">PKR 3,000</strong><br><span style="font-size:10px;color:var(--muted);">/month</span></div>
         </div>
-        <p style="font-size:12px;color:var(--muted);line-height:1.6;">Online payments coming soon. For now, contact us on WhatsApp to upgrade your plan instantly.</p>
+        </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;font-weight:500;">Choose Payment Method</div>
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <button onclick="selPayMethod('jc')" id="pm-jc" style="flex:1;padding:9px 6px;border:2px solid var(--green);border-radius:8px;background:var(--green);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">JazzCash</button>
+          <button onclick="selPayMethod('ep')" id="pm-ep" style="flex:1;padding:9px 6px;border:2px solid var(--border);border-radius:8px;background:transparent;color:var(--text);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">EasyPaisa</button>
+          <button onclick="selPayMethod('card')" id="pm-card" style="flex:1;padding:9px 6px;border:2px solid var(--border);border-radius:8px;background:transparent;color:var(--text);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">Card</button>
+        </div>
+        <div id="pmd-jc" style="background:var(--bg2);border-radius:8px;padding:14px 16px;">
+          <p style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px;">Send via JazzCash Mobile Account:</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:6px;padding:10px 12px;margin-bottom:8px;border:1px solid var(--border);">
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:2px;">Account Number</div><div style="font-size:15px;font-weight:700;letter-spacing:1px;"><!-- TODO: Your JazzCash number -->0300-0000000</div></div>
+            <button onclick="navigator.clipboard.writeText('03000000000');showToast('Number copied!')" style="font-size:11px;padding:5px 10px;border:1px solid var(--border2);border-radius:5px;background:transparent;cursor:pointer;color:var(--green);font-weight:600;">Copy</button>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">Account Title: <strong>Pleader AI</strong> &nbsp;·&nbsp; After sending, tap below with your transaction ID.</p>
+          <a id="safepay-pay-btn" href="#" onclick="notifyPayment('JazzCash');return false;" style="width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+            ✓ I've Sent — Confirm &amp; Notify Us
+          </a>
+        </div>
+        <div id="pmd-ep" style="display:none;background:var(--bg2);border-radius:8px;padding:14px 16px;">
+          <p style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px;">Send via EasyPaisa Mobile Account:</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:6px;padding:10px 12px;margin-bottom:8px;border:1px solid var(--border);">
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:2px;">Account Number</div><div style="font-size:15px;font-weight:700;letter-spacing:1px;"><!-- TODO: Your EasyPaisa number -->0300-0000000</div></div>
+            <button onclick="navigator.clipboard.writeText('03000000000');showToast('Number copied!')" style="font-size:11px;padding:5px 10px;border:1px solid var(--border2);border-radius:5px;background:transparent;cursor:pointer;color:var(--green);font-weight:600;">Copy</button>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">Account Title: <strong>Pleader AI</strong> &nbsp;·&nbsp; After sending, tap below with your transaction ID.</p>
+          <a href="#" onclick="notifyPayment('EasyPaisa');return false;" style="width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+            ✓ I've Sent — Confirm &amp; Notify Us
+          </a>
+        </div>
+        <div id="pmd-card" style="display:none;background:var(--bg2);border-radius:8px;padding:20px 16px;text-align:center;">
+          <div style="font-size:30px;margin-bottom:8px;">💳</div>
+          <p style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;">Card Payments Coming Soon</p>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;">Visa, Mastercard &amp; debit card payments will be available shortly. Please use JazzCash or EasyPaisa for now.</p>
+        </div>
       </div>
-      <a href="https://wa.me/923000000000?text=I%20want%20to%20upgrade%20my%20Pleader%20AI%20plan" target="_blank" id="safepay-pay-btn" style="width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
-        📱 Contact on WhatsApp to Upgrade
-      </a>
       <div id="upgrade-loading" style="display:none;">
     </div>
     <div class="modal-ft">
@@ -1314,7 +1357,7 @@ async function doLogin() {
   const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
 
   btn.classList.remove('loading');
-  btn.textContent = 'Sign In to Pleader AI';
+  btn.textContent = 'Sign In to Wakeel AI';
 
   if (error) {
     errEl.textContent = (error.message.includes('Invalid login credentials') || error.message.includes('invalid_credentials'))
@@ -1521,7 +1564,7 @@ function nav(view, el) {
     el.classList.add('active');
   }
   const titles = { home:'Dashboard', docs:'My Documents', workspace:'Legal Workspace', pricing:'Plans & Billing' };
-  document.getElementById('topbar-title').textContent = titles[view] || 'Pleader AI';
+  document.getElementById('topbar-title').textContent = titles[view] || 'Wakeel AI';
   // Close mobile sidebar on navigation
   closeMobileSidebar();
 }
@@ -1811,7 +1854,6 @@ function openTool(tool, el) {
   const refineBar = document.getElementById('ai-refine-bar');
   if (refineBar) refineBar.style.display = 'none';
   document.getElementById('topbar-title').textContent = t.title;
-    document.getElementById('gen-label').textContent = '✦ Generate Document';
 }
 
 /* ══════════════════════════════════════
@@ -1994,7 +2036,7 @@ async function generate() {
     doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
     const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
     const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">AI Generated \u2014 Review before filing</span></div>';
-    html = html.replace(/<\/?(?:html|head|body|meta|link|script|style)[^>]*>/gi,''); doc.innerHTML = metaBar + html;
+    doc.innerHTML = metaBar + html;
     doc.style.display = 'block';
     // Scroll document panel to top
     const wsRightBody = document.querySelector('.ws-right-body');
@@ -2010,7 +2052,7 @@ async function generate() {
       sb.from('generation_logs').insert({ user_id: currentUser.id, tool_type: activeTool, created_at: new Date().toISOString() }).then(() => {}).catch(() => {});
       const allFields = document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea');
       let autoTitle = TOOLS[activeTool]?.title || 'Untitled';
-      for (const el of allFields) { if (el.value && el.value.trim() && el.tagName !== 'SELECT' && el.type !== 'file') { autoTitle = el.value.trim().substring(0, 80); break; } }
+      for (const el of allFields) { if (el.value && el.value.trim() && el.tagName !== 'SELECT') { autoTitle = el.value.trim().substring(0, 80); break; } }
       lastAutoSavedDocId = null;
       sb.from('documents').insert({ user_id: currentUser.id, tool_type: activeTool, title: autoTitle, html_content: html, created_at: new Date().toISOString() }).select().single().then(({ data: savedDoc }) => { if (savedDoc) { lastAutoSavedDocId = savedDoc.id; renderDocCard(savedDoc); } }).catch(() => {});
     }
@@ -2026,7 +2068,7 @@ async function generate() {
       doc.className = 'out-doc' + (lang === 'ur' ? ' urdu' : '');
       const today2 = new Date().toLocaleDateString('en-PK', { day:'numeric', month:'long', year:'numeric' });
       const metaBar = '<div class="doc-meta-bar print-hide"><span>\ud83d\udcc4 ' + t.title + '</span><span>' + today2 + '</span><span style="margin-left:auto;color:var(--dim);font-size:10px;">Template \u2014 AI unavailable</span></div>';
-      html = html.replace(/<\/?(?:html|head|body|meta|link|script|style)[^>]*>/gi,''); doc.innerHTML = metaBar + html;
+      doc.innerHTML = metaBar + html;
       doc.style.display = 'block';
       docCount++; monthlyGenCount++; updateDocCount(); updateUsageDisplay();
       showToast('\u26a0\ufe0f AI unavailable \u2014 used template. ' + (err.message || ''), 'err');
@@ -2487,10 +2529,22 @@ function exportWord() {
   if (metaBar) metaBar.remove();
   const bodyContent = clone.innerHTML;
   const wordStyles = `body{font-family:'Times New Roman',Times,serif;font-size:12pt;line-height:2;color:#000;margin:0;${isUrdu?'direction:rtl;font-size:14pt;line-height:2.4;':''}} .doc-court-header{text-align:center;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #000;} .doc-court-name{font-size:13pt;font-weight:bold;text-transform:uppercase;text-decoration:underline;} .doc-pet-no{font-size:12pt;font-style:italic;} .doc-parties{margin:24px 0;} .doc-party-row{display:flex;justify-content:space-between;} .doc-party-role{font-style:italic;} .doc-versus{text-align:center;font-weight:bold;letter-spacing:3px;margin:4px 0;} .doc-subject{text-align:center;font-weight:bold;text-transform:uppercase;text-decoration:underline;margin:20px 0;} .doc-sheweth{font-weight:bold;text-transform:uppercase;margin:20px 0 12px;} .doc-para{display:flex;gap:16px;margin-bottom:12px;text-align:justify;} .doc-para-n{min-width:24px;font-weight:bold;} .doc-section-head{font-weight:bold;text-transform:uppercase;letter-spacing:2px;text-align:center;margin:20px 0 14px;text-decoration:underline;} .doc-prayer-head{font-weight:bold;text-transform:uppercase;margin:24px 0 10px;} .doc-prayer-intro{margin-bottom:10px;text-align:justify;} .doc-prayer-item{display:flex;gap:12px;margin-bottom:8px;} .doc-certificate{margin:24px 0;padding:14px 18px;border:1px solid #000;font-style:italic;} .doc-cert-head{font-weight:bold;font-style:normal;text-transform:uppercase;margin-bottom:6px;} table{width:100%;border-collapse:collapse;} td,th{border:1px solid #000;padding:6px 10px;} th{font-weight:bold;text-align:center;} .doc-sig-block{margin-top:48px;} .doc-sig-line{height:1px;background:#000;width:100%;margin-bottom:6px;} .doc-sig-name{font-weight:bold;text-transform:uppercase;} .doc-sig-role{font-style:italic;margin-top:2px;} .doc-verification{margin-top:24px;padding:12px 16px;border:1px solid #000;font-style:italic;} .ri{display:flex;gap:14px;margin-bottom:10px;text-align:justify;} .ri-n{min-width:22px;font-weight:bold;} .doc-meta-bar,.print-hide{display:none!important;}`;
-  const wordHtml = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${toolTitle}</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]--><style>${wordStyles}</style></head><body>${bodyContent}</body></html>`;
+  const wordHtml = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Pleader AI — Pakistan's Legal Intelligence Platform</title>
+<meta name="description" content="Pleader AI is Pakistan's leading AI-powered legal platform. Draft legal documents, analyze cases, and get instant legal guidance — in English and Urdu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pleaderai.com/">
+<meta property="og:title" content="Pleader AI — Pakistan's Legal Intelligence Platform">
+<meta property="og:description" content="Pakistan's leading AI-powered legal platform. Draft legal documents, analyze cases, get instant legal guidance.">
+<meta property="og:image" content="https://www.pleaderai.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pleader AI — Pakistan's Legal Intelligence Platform">
+<meta name="twitter:description" content="Pakistan's leading AI-powered legal platform. Draft documents, analyze cases, get instant guidance.">
+<meta name="twitter:image" content="https://www.pleaderai.com/og-image.png">
+<link rel="canonical" href="https://www.pleaderai.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23162d20'/%3E%3Ctext x='50' y='67' font-size='62' text-anchor='middle' fill='%23e8b84b' font-family='Georgia,serif' font-weight='700'%3EP%3C/text%3E%3C/svg%3E"><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]--><style>${wordStyles}</style></head><body>${bodyContent}</body></html>`;
   const blob = new Blob(['\ufeff' + wordHtml], { type: 'application/msword' });
   const url = URL.createObjectURL(blob);
-  const filename = toolTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_') + '_PleaderAI.doc';
+  const filename = toolTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_') + '_WakeelAI.doc';
   const a = document.createElement('a');
   a.href = url; a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
@@ -2544,7 +2598,19 @@ function openPrintWindow() {
 
   const win = window.open('', '_blank', 'width=800,height=900');
   if (!win) { showToast('Allow popups to export PDF', 'err'); return; }
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title></title><style>${css}</style></head><body>${docEl.innerHTML}</body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Pleader AI — Pakistan's Legal Intelligence Platform</title>
+<meta name="description" content="Pleader AI is Pakistan's leading AI-powered legal platform. Draft legal documents, analyze cases, and get instant legal guidance — in English and Urdu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pleaderai.com/">
+<meta property="og:title" content="Pleader AI — Pakistan's Legal Intelligence Platform">
+<meta property="og:description" content="Pakistan's leading AI-powered legal platform. Draft legal documents, analyze cases, get instant legal guidance.">
+<meta property="og:image" content="https://www.pleaderai.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pleader AI — Pakistan's Legal Intelligence Platform">
+<meta name="twitter:description" content="Pakistan's leading AI-powered legal platform. Draft documents, analyze cases, get instant guidance.">
+<meta name="twitter:image" content="https://www.pleaderai.com/og-image.png">
+<link rel="canonical" href="https://www.pleaderai.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23162d20'/%3E%3Ctext x='50' y='67' font-size='62' text-anchor='middle' fill='%23e8b84b' font-family='Georgia,serif' font-weight='700'%3EP%3C/text%3E%3C/svg%3E"><style>${css}</style></head><body>${docEl.innerHTML}</body></html>`);
   win.document.close();
   win.onload = () => { setTimeout(() => { win.focus(); win.print(); setTimeout(() => win.close(), 500); }, 250); };
   setTimeout(() => { if (!win.closed) { win.focus(); win.print(); setTimeout(() => win.close(), 500); } }, 1000);
@@ -2603,9 +2669,35 @@ function openUpgrade(planKey) {
   document.getElementById('upgrade-modal').classList.add('open');
 }
 
+function selPayMethod(method) {
+  ['jc','ep','card'].forEach(function(m) {
+    var btn   = document.getElementById('pm-' + m);
+    var panel = document.getElementById('pmd-' + m);
+    if (!btn || !panel) return;
+    var active = (m === method);
+    btn.style.background  = active ? 'var(--green)' : 'transparent';
+    btn.style.color       = active ? '#fff' : 'var(--text)';
+    btn.style.borderColor = active ? 'var(--green)' : 'var(--border)';
+    panel.style.display   = active ? 'block' : 'none';
+  });
+}
+
+function notifyPayment(method) {
+  var planName  = (document.getElementById('upgrade-plan-name')  || {}).textContent || 'Professional';
+  var planPrice = (document.getElementById('upgrade-plan-price') || {}).textContent || 'PKR 3,000';
+  var msg = encodeURIComponent(
+    'Hello! I have sent payment for my Pleader AI upgrade.\n\n' +
+    'Plan: ' + planName + '\n' +
+    'Amount: ' + planPrice + '/month\n' +
+    'Method: ' + method + '\n\n' +
+    'Transaction ID: [Please enter your TXN ID here]'
+  );
+  // TODO: Replace 923000000000 with your actual WhatsApp Business number
+  window.open('https://wa.me/923000000000?text=' + msg, '_blank');
+}
+
 async function initSafepayCheckout() {
-  // Payments disabled — using WhatsApp for upgrades during beta
-  showToast('Contact us on WhatsApp to upgrade your plan');
+  // Legacy stub — payments are now handled via selPayMethod UI above
 }
 
 // Handle payment redirect — runs on page load
@@ -2624,7 +2716,7 @@ function handlePaymentRedirect() {
     if (!plan) return;
 
     // Upgrade will happen after auth loads — store intent
-    sessionStorage.setItem('pleader_complete_upgrade', JSON.stringify({
+    sessionStorage.setItem('wakeel_complete_upgrade', JSON.stringify({
       planKey: planKey,
       planName: plan.name
     }));
@@ -2636,11 +2728,11 @@ function handlePaymentRedirect() {
 async function completeUpgradeAfterPayment() {
   let upgradeData = null;
   try {
-    const raw = sessionStorage.getItem('pleader_complete_upgrade');
+    const raw = sessionStorage.getItem('wakeel_complete_upgrade');
     if (!raw) return;
     upgradeData = JSON.parse(raw);
-    sessionStorage.removeItem('pleader_complete_upgrade');
-    sessionStorage.removeItem('pleader_pending_payment');
+    sessionStorage.removeItem('wakeel_complete_upgrade');
+    sessionStorage.removeItem('wakeel_pending_payment');
   } catch(e) { return; }
 
   if (!upgradeData || !currentUser.id) return;
@@ -2813,64 +2905,88 @@ function renderFileList() {
 function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); showExtractBtn(); }
 
 async function extractFromDocument() {
-  if (!uploadedFiles || uploadedFiles.length === 0) {
-    showToast('Please upload at least one document first.', 'error');
-    return;
-  }
+  const readable = uploadedFiles.filter(f => f.data);
+  if (!readable.length) { showToast('No readable file — upload a PDF or image', 'err'); return; }
 
-  const tool = tools[currentTool];
-  if (!tool) return;
+  const btn = document.getElementById('extract-btn');
+  const spinner = document.getElementById('extract-spinner');
+  const label = document.getElementById('extract-label');
+  btn.disabled = true;
+  isExtracting = true;
+  if (spinner) spinner.style.display = 'inline-block';
+  if (label) label.textContent = 'Extracting…';
 
-  // Get extractable fields — skip f0 (type select) and f9 (advocate name)
-  const SKIP = new Set(['f0', 'f9']);
-  const fields = (tool.fields || [])
-    .filter(f => !SKIP.has(f.id) && f.type !== 'select')
-    .map(f => ({ id: f.id, label: f.label, placeholder: f.placeholder || '', type: f.type || 'text' }));
+  const fieldSchema = {};
+  document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea').forEach(el => {
+    if (!el.id || !el.id.startsWith('f')) return;
+    const lbl = el.closest('.fld')?.querySelector('.fld-lbl');
+    if (lbl) fieldSchema[el.id] = lbl.textContent.replace(/\s*\*\s*$/, '').trim();
+  });
 
-  const extractBtn = document.getElementById('extract-btn');
-  const extractLabel = document.getElementById('extract-label');
-  const extractSpinner = document.getElementById('extract-spinner');
-  if (extractBtn) extractBtn.disabled = true;
-  if (extractSpinner) extractSpinner.style.display = 'inline-block';
-  if (extractLabel) extractLabel.textContent = 'Extracting…';
+  try {
+    const t = TOOLS[activeTool];
+    const fileToExtract = readable[0];
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: (() => {
+        const payload = JSON.stringify({
+          tool: activeTool, toolTitle: t.title, mode: 'extract',
+          fields: { fieldSchema: JSON.stringify(fieldSchema) },
+          attachedFiles: [{ name: fileToExtract.name, type: fileToExtract.type, data: fileToExtract.data }]
+        });
+        if (payload.length > 4400000) throw new Error('File too large for server (' + (payload.length / 1048576).toFixed(1) + 'MB). Try a smaller PDF or image under 3MB.');
+        return payload;
+      })()
+    });
 
-  fetch('/api/extract', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      files: uploadedFiles.map(f => ({ data: f.data, mediaType: f.mediaType || f.type })),
-      toolId: tool.id || currentTool,
-      fields: fields
-    })
-  })
-  .then(async res => {
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({ error: 'Extraction failed' }));
-      throw new Error(err.error || 'Extraction failed');
+    const rawText = await response.text().catch(() => '');
+    let data = null;
+    try { data = JSON.parse(rawText); } catch(_) {}
+    
+    if (!response.ok || !data) {
+      const errMsg = data?.error || data?.details || rawText.substring(0, 150) || 'Server error (status ' + response.status + ')';
+      throw new Error(errMsg);
     }
-    return res.json();
-  })
-  .then(extracted => {
+
+    const extracted = data.extracted || {};
+
+    // Store extracted doc text for AI to use during generation
+    if (extracted.__docText__) {
+      const docFile = uploadedFiles.find(uf => uf.data);
+      if (docFile) docFile.extractedText = extracted.__docText__;
+    }
+
     let filled = 0;
     Object.entries(extracted).forEach(([id, value]) => {
-      if (!value || SKIP.has(id)) return;
+      if (!value || id === '__docText__') return;
       const el = document.getElementById(id);
-      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) {
+      if (!el) return;
+      if (el.tagName === 'SELECT') {
+        const opts = Array.from(el.options);
+        const match = opts.find(o => o.value.toLowerCase().includes(value.toLowerCase()) || value.toLowerCase().includes(o.value.toLowerCase()));
+        if (match) { el.value = match.value; filled++; }
+      } else {
         el.value = value;
-        el.dispatchEvent(new Event('input', { bubbles: true }));
         filled++;
       }
     });
-    showToast(filled > 0 ? `✓ Extracted ${filled} field${filled !== 1 ? 's' : ''} from document` : 'No extractable fields found in document.', filled > 0 ? 'success' : 'warning');
-  })
-  .catch(err => {
-    showToast('Extraction error: ' + err.message, 'error');
-  })
-  .finally(() => {
-    if (extractBtn) extractBtn.disabled = false;
-    if (extractSpinner) extractSpinner.style.display = 'none';
-    if (extractLabel) extractLabel.textContent = '✦ Extract & Fill Fields from Document';
-  });
+
+    if (filled > 0) {
+      showToast('Extracted ' + filled + ' field' + (filled>1?'s':'') + ' — doc content will be used during generation');
+      if (label) label.textContent = '✓ Fields Filled — Ready to Generate';
+    } else {
+      showToast('Document read — no matching fields found', 'err');
+      if (label) label.textContent = '✦ Extract & Fill Fields from Document';
+    }
+  } catch (e) {
+    showToast('Extraction failed: ' + e.message, 'err');
+    if (label) label.textContent = '✦ Extract & Fill Fields from Document';
+  } finally {
+    if (spinner) spinner.style.display = 'none';
+    btn.disabled = false;
+    isExtracting = false;
+  }
 }
 
 function attachedFilesHTML() {
