@@ -2813,88 +2813,64 @@ function renderFileList() {
 function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); showExtractBtn(); }
 
 async function extractFromDocument() {
-  const readable = uploadedFiles.filter(f => f.data);
-  if (!readable.length) { showToast('No readable file — upload a PDF or image', 'err'); return; }
+  if (!uploadedFiles || uploadedFiles.length === 0) {
+    showToast('Please upload at least one document first.', 'error');
+    return;
+  }
 
-  const btn = document.getElementById('extract-btn');
-  const spinner = document.getElementById('extract-spinner');
-  const label = document.getElementById('extract-label');
-  btn.disabled = true;
-  isExtracting = true;
-  if (spinner) spinner.style.display = 'inline-block';
-  if (label) label.textContent = 'Extracting…';
+  const tool = tools[currentTool];
+  if (!tool) return;
 
-  const fieldSchema = {};
-  document.querySelectorAll('#ws-fields input,#ws-fields select,#ws-fields textarea').forEach(el => {
-    if (!el.id || !el.id.startsWith('f')) return;
-    const lbl = el.closest('.fld')?.querySelector('.fld-lbl');
-    if (lbl) fieldSchema[el.id] = lbl.textContent.replace(/\s*\*\s*$/, '').trim();
-  });
+  // Get extractable fields — skip f0 (type select) and f9 (advocate name)
+  const SKIP = new Set(['f0', 'f9']);
+  const fields = (tool.fields || [])
+    .filter(f => !SKIP.has(f.id) && f.type !== 'select')
+    .map(f => ({ id: f.id, label: f.label, placeholder: f.placeholder || '', type: f.type || 'text' }));
 
-  try {
-    const t = TOOLS[activeTool];
-    const fileToExtract = readable[0];
-    const response = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: (() => {
-        const payload = JSON.stringify({
-          tool: activeTool, toolTitle: t.title, mode: 'extract',
-          fields: { fieldSchema: JSON.stringify(fieldSchema) },
-          attachedFiles: [{ name: fileToExtract.name, type: fileToExtract.type, data: fileToExtract.data }]
-        });
-        if (payload.length > 4400000) throw new Error('File too large for server (' + (payload.length / 1048576).toFixed(1) + 'MB). Try a smaller PDF or image under 3MB.');
-        return payload;
-      })()
-    });
+  const extractBtn = document.getElementById('extract-btn');
+  const extractLabel = document.getElementById('extract-label');
+  const extractSpinner = document.getElementById('extract-spinner');
+  if (extractBtn) extractBtn.disabled = true;
+  if (extractSpinner) extractSpinner.style.display = 'inline-block';
+  if (extractLabel) extractLabel.textContent = 'Extracting…';
 
-    const rawText = await response.text().catch(() => '');
-    let data = null;
-    try { data = JSON.parse(rawText); } catch(_) {}
-    
-    if (!response.ok || !data) {
-      const errMsg = data?.error || data?.details || rawText.substring(0, 150) || 'Server error (status ' + response.status + ')';
-      throw new Error(errMsg);
+  fetch('/api/extract', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      files: uploadedFiles.map(f => ({ data: f.data, mediaType: f.mediaType || f.type })),
+      toolId: tool.id || currentTool,
+      fields: fields
+    })
+  })
+  .then(async res => {
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Extraction failed' }));
+      throw new Error(err.error || 'Extraction failed');
     }
-
-    const extracted = data.extracted || {};
-
-    // Store extracted doc text for AI to use during generation
-    if (extracted.__docText__) {
-      const docFile = uploadedFiles.find(uf => uf.data);
-      if (docFile) docFile.extractedText = extracted.__docText__;
-    }
-
+    return res.json();
+  })
+  .then(extracted => {
     let filled = 0;
     Object.entries(extracted).forEach(([id, value]) => {
-      if (!value || id === '__docText__') return;
+      if (!value || SKIP.has(id)) return;
       const el = document.getElementById(id);
-      if (!el) return;
-      if (el.tagName === 'SELECT') {
-        const opts = Array.from(el.options);
-        const match = opts.find(o => o.value.toLowerCase().includes(value.toLowerCase()) || value.toLowerCase().includes(o.value.toLowerCase()));
-        if (match) { el.value = match.value; filled++; }
-      } else {
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) {
         el.value = value;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
         filled++;
       }
     });
-
-    if (filled > 0) {
-      showToast('Extracted ' + filled + ' field' + (filled>1?'s':'') + ' — doc content will be used during generation');
-      if (label) label.textContent = '✓ Fields Filled — Ready to Generate';
-    } else {
-      showToast('Document read — no matching fields found', 'err');
-      if (label) label.textContent = '✦ Extract & Fill Fields from Document';
-    }
-  } catch (e) {
-    showToast('Extraction failed: ' + e.message, 'err');
-    if (label) label.textContent = '✦ Extract & Fill Fields from Document';
-  } finally {
-    if (spinner) spinner.style.display = 'none';
-    btn.disabled = false;
-    isExtracting = false;
-  }
+    showToast(filled > 0 ? `✓ Extracted ${filled} field${filled !== 1 ? 's' : ''} from document` : 'No extractable fields found in document.', filled > 0 ? 'success' : 'warning');
+  })
+  .catch(err => {
+    showToast('Extraction error: ' + err.message, 'error');
+  })
+  .finally(() => {
+    if (extractBtn) extractBtn.disabled = false;
+    if (extractSpinner) extractSpinner.style.display = 'none';
+    if (extractLabel) extractLabel.textContent = '✦ Extract & Fill Fields from Document';
+  });
 }
 
 function attachedFilesHTML() {
