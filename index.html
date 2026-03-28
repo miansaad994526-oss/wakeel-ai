@@ -1984,7 +1984,7 @@ async function generate() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       signal: controller.signal,
-      body: JSON.stringify({ tool: activeTool, fields: f, lang: lang, toolTitle: t.title })
+      body: (() => { const _p = { tool: activeTool, fields: f, lang: lang, toolTitle: t.title }; if (uploadedFiles && uploadedFiles.length > 0) { _p.attachedFiles = uploadedFiles.filter(uf => uf.data).map(uf => ({ name: uf.name, type: uf.type || uf.mediaType || 'application/pdf', data: uf.data })); } return JSON.stringify(_p); })()
     });
 
     clearTimeout(timeoutId);
