@@ -29,50 +29,39 @@ LANGUAGE & STYLE:
 CSS CLASSES TO USE:
 doc-court-header, doc-court-name, doc-pet-no, doc-parties, doc-party-row, doc-party-name, doc-party-role, doc-versus, doc-subject, doc-sheweth, doc-para, doc-para-n, doc-section-head, doc-prayer-head, doc-prayer-intro, doc-prayer-item, doc-certificate, doc-cert-head, doc-index, doc-index-title, doc-sig-block, doc-sig-line, doc-sig-name, doc-sig-role, ri, ri-n, doc-fir-table.
 Use <hr class="doc-page-break"> between companion sections (petition + affidavit + dispensation + index).`;
+
 const TOOL_PROMPTS = {
   argument: `WRITTEN SUBMISSIONS: Court header, case ref, parties, "WRITTEN SUBMISSIONS ON BEHALF OF THE [PARTY]" heading, "Respectfully Sheweth:-", numbered paras with facts and legal analysis, "G R O U N D S" with lettered grounds (a-h+) citing law, "P R A Y E R", signature.`,
-
   petition: `PETITION FILING PACKAGE — 4 sections separated by <hr class="doc-page-break">:
 1. MAIN PETITION: court header, parties, subject, sheweth, 10+ numbered paras, GROUNDS (a-j), PRAYER, signature, certificate.
 2. AFFIDAVIT with verification.
 3. DISPENSATION APPLICATION.
 4. INDEX table.`,
-
   writ: `WRIT PETITION PACKAGE — 5 sections separated by <hr class="doc-page-break">:
 1. URGENCY APPLICATION to Deputy Registrar.
 2. MAIN WRIT PETITION under Article 199, Constitution 1973.
 3. AFFIDAVIT with verification.
 4. DISPENSATION APPLICATION.
 5. INDEX table.`,
-
   bail: `BAIL APPLICATION PACKAGE — 4 sections separated by <hr class="doc-page-break">:
 1. BAIL PETITION with FIR details table, facts, 10-14 grounds, prayer.
 2. AFFIDAVIT with verification.
 3. DISPENSATION APPLICATION u/s 561-A CrPC.
 4. INDEX table.`,
-
   plaint: `PLAINT / CIVIL SUIT under Order VII CPC: court header, parties, subject, numbered paras (cause of action, limitation, jurisdiction, valuation), prayer, verification.`,
-
   appeal: `APPEAL / REVISION PETITION: court header, parties, MEMORANDUM OF APPEAL, facts, grounds (a-j), prayer, certificate. Then AFFIDAVIT on new page.`,
-
   'legal-notice': `LEGAL NOTICE (letter format, NOT court document): advocate letterhead, "LEGAL NOTICE" heading, addressee, numbered paras, demand with deadline, consequences, signature.`,
-
   affidavit: `SWORN AFFIDAVIT: court header (if for court), deponent details, numbered sworn paragraphs, verification clause.`,
-
   complaint: `CRIMINAL COMPLAINT PACKAGE — 4 sections separated by <hr class="doc-page-break">:
 1. COMPLAINT u/s 200 or 156(3) CrPC with facts and prayer.
-2. AFFIDAVIT. 3. DISPENSATION. 4. INDEX.`,
-
+2. AFFIDAVIT.
+3. DISPENSATION.
+4. INDEX.`,
   'legal-opinion': `PROFESSIONAL LEGAL OPINION (letter format): advocate letterhead, addressee, property/matter details, analysis sections, "MY OPINION" section, signature. Use ALL details from uploaded documents.`,
-
   agreement: `LEGAL AGREEMENT under Contract Act 1872: title, parties with CNIC, WHEREAS recitals, 12-15 numbered clauses, signatures, witnesses.`,
-
   deed: `SALE/TRANSFER DEED: title, parties with CNIC, WHEREAS, deed clauses (1-10), schedule of property, boundaries, signatures, witnesses.`,
-
   poa: `POWER OF ATTORNEY / WAKAALAT NAMA: title, appointing clause, numbered powers (1-6), signatures.`,
-
   application: `FORMAL APPLICATION — detect type from context. For court: header, case title, heading, sheweth, facts, prayer, signature. For government: addressee, subject, body, signature.`,
-
   mou: `MOU: title, parties, WHEREAS recitals, numbered articles (1-10+), signatures, witnesses.`
 };
 
@@ -97,19 +86,33 @@ function buildUserPrompt(tool, fields, lang, toolTitle) {
 // ─── Sanitize AI output: strip code fences, dangerous tags ───
 function sanitizeHtml(raw) {
   let html = raw
-    .replace(/^[\s\S]*?```html?\s*/i, '')  // strip everything before ```html
+    .replace(/^[\s\S]*?```html?\s*/i, '')   // strip everything before ```html
     .replace(/```[\s]*$/i, '')               // strip closing ```
     .trim();
-
   // If no code fence was found, use raw (AI followed instructions)
   if (html === raw.trim()) html = raw.trim();
-
   // Remove dangerous tags that break page layout
   html = html
     .replace(/<\/?(?:html|head|body|meta|link|script|style)[^>]*>/gi, '')
     .replace(/<!\s*DOCTYPE[^>]*>/gi, '');
-
   return html;
+}
+
+// ─── Build content blocks from attached files ───
+function buildFileContentBlocks(attachedFiles) {
+  const blocks = [];
+  if (!attachedFiles || !attachedFiles.length) return blocks;
+  for (const file of attachedFiles) {
+    if (!file.data || file.data.length < 100) continue;
+    const isImage = /^image\//i.test(file.type);
+    const isPDF = file.type === 'application/pdf' || (file.name && file.name.toLowerCase().endsWith('.pdf'));
+    if (isImage) {
+      blocks.push({ type: 'image', source: { type: 'base64', media_type: file.type, data: file.data } });
+    } else if (isPDF) {
+      blocks.push({ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: file.data } });
+    }
+  }
+  return blocks;
 }
 
 export default async function handler(req) {
@@ -146,7 +149,6 @@ export default async function handler(req) {
           status: 400, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
         });
       }
-
       const file = attachedFiles[0];
       if (!file.data || file.data.length < 100) {
         return new Response(JSON.stringify({ error: 'File data is empty or corrupted. Re-upload.' }), {
@@ -168,20 +170,18 @@ export default async function handler(req) {
         });
       }
 
-      msgContent.push({
-        type: 'text',
-        text: `Extract information from this document to fill a "${toolTitle || tool}" form.\n\nReturn ONLY a JSON object with these field IDs as keys:\n${fields.fieldSchema}\n\nAlso include "__docText__" with a plain-text summary (max 3000 chars) of the document.\n\nReturn ONLY valid JSON. No explanation, no markdown fences.`
-      });
+      msgContent.push({ type: 'text', text: `Extract information from this document to fill a "${toolTitle || tool}" form.\n\nReturn ONLY a JSON object with these field IDs as keys:\n${fields.fieldSchema}\n\nAlso include "__docText__" with a comprehensive plain-text extraction (max 6000 chars) of ALL content in the document — include every name, date, CNIC, address, amount, clause, and detail you can find.\n\nReturn ONLY valid JSON. No explanation, no markdown fences.` });
 
       const extractRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01'
+          'anthropic-version': '2023-06-01',
+          'anthropic-beta': 'pdfs-2024-09-25'
         },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
+          model: 'claude-sonnet-4-6-20250320',
           max_tokens: 4000,
           messages: [{ role: 'user', content: msgContent }]
         })
@@ -190,10 +190,7 @@ export default async function handler(req) {
       if (!extractRes.ok) {
         const errBody = await extractRes.text().catch(() => '');
         let msg = 'Extraction failed (' + extractRes.status + ')';
-        try {
-          const ej = JSON.parse(errBody);
-          if (ej.error?.message) msg = ej.error.message;
-        } catch (_) {}
+        try { const ej = JSON.parse(errBody); if (ej.error?.message) msg = ej.error.message; } catch (_) {}
         return new Response(JSON.stringify({ error: msg }), {
           status: extractRes.status, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
         });
@@ -233,18 +230,31 @@ export default async function handler(req) {
       userPrompt = buildUserPrompt(tool, fields, lang, toolTitle || tool);
     }
 
+    // ─── BUILD MESSAGE CONTENT ───
+    // If attached files are present, include them as content blocks so the AI
+    // can read the FULL document (not just the extracted text summary).
+    const fileBlocks = buildFileContentBlocks(attachedFiles);
+    let messageContent;
+    if (fileBlocks.length > 0) {
+      // Multi-part message: file blocks + text prompt
+      messageContent = [...fileBlocks, { type: 'text', text: userPrompt }];
+    } else {
+      messageContent = userPrompt;
+    }
+
     const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
+        'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'pdfs-2024-09-25'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6-20250320',
         max_tokens: 8000,
         system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }],
+        messages: [{ role: 'user', content: messageContent }],
         stream: true
       })
     });
@@ -290,9 +300,7 @@ export default async function handler(req) {
         // Send a done signal so the client knows streaming is complete
         await writer.write(encoder.encode(`data: ${JSON.stringify({ done: true })}\n\n`));
       } catch (e) {
-        try {
-          await writer.write(encoder.encode(`data: ${JSON.stringify({ error: e.message })}\n\n`));
-        } catch (_) {}
+        try { await writer.write(encoder.encode(`data: ${JSON.stringify({ error: e.message })}\n\n`)); } catch (_) {}
       } finally {
         try { await writer.close(); } catch (_) {}
       }
@@ -306,7 +314,6 @@ export default async function handler(req) {
         ...CORS_HEADERS
       }
     });
-
   } catch (error) {
     return new Response(JSON.stringify({ error: 'Server error: ' + error.message }), {
       status: 500, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
