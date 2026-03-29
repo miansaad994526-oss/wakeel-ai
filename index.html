@@ -1984,7 +1984,12 @@ async function generate() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       signal: controller.signal,
-      body: (() => { const _p = { tool: activeTool, fields: f, lang: lang, toolTitle: t.title }; if (uploadedFiles && uploadedFiles.length > 0) { _p.attachedFiles = uploadedFiles.filter(uf => uf.data).map(uf => ({ name: uf.name, type: uf.type || uf.mediaType || 'application/pdf', data: uf.data })); } return JSON.stringify(_p); })()
+      body: (() => { const _p = { tool: activeTool, fields: f, lang: lang, toolTitle: t.title }; if (uploadedFiles && uploadedFiles.length > 0) { const _MAX = 2621440; let _tot = 0;
+      _p.attachedFiles = uploadedFiles.filter(uf => uf.data).filter(uf => {
+        const sz = uf.data.length * 0.75;
+        if (_tot + sz > _MAX) return false;
+        _tot += sz; return true;
+      }).map(uf => ({ name: uf.name, type: uf.type || uf.mediaType || 'application/pdf', data: uf.data })); } return JSON.stringify(_p); })()
     });
 
     clearTimeout(timeoutId);
