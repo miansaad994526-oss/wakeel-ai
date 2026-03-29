@@ -181,7 +181,7 @@ export default async function handler(req) {
           'anthropic-beta': 'pdfs-2024-09-25'
         },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-6-20250320',
+          model: 'claude-sonnet-4-5-20241022',
           max_tokens: 4000,
           messages: [{ role: 'user', content: msgContent }]
         })
@@ -251,7 +251,7 @@ export default async function handler(req) {
         'anthropic-beta': 'pdfs-2024-09-25'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6-20250320',
+        model: 'claude-sonnet-4-5-20241022',
         max_tokens: 8000,
         system: systemPrompt,
         messages: [{ role: 'user', content: messageContent }],
