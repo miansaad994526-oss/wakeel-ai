@@ -374,6 +374,8 @@ select option{background:#fff;}
   color:#000;
   border:1px solid #ddd;
   box-shadow:0 2px 20px rgba(0,0,0,.08);
+  overflow-x:auto;
+  word-break:break-word;
 }
 .out-doc *{color:#000 !important;background:transparent !important;border-color:#000 !important;}
 .out-doc .doc-court-header{text-align:center;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid #000;}
@@ -425,7 +427,8 @@ select option{background:#fff;}
 .out-doc .doc-index table th,.out-doc .doc-index table td{border:1px solid #000;padding:6px 10px;text-align:left;}
 .out-doc .doc-index table th{font-weight:700;background:#f5f5f0;}
 .out-doc .doc-index-title{text-align:center;font-weight:700;font-size:15px;letter-spacing:4px;margin-bottom:12px;}
-.out-doc .doc-fir-table{margin:16px auto;border-collapse:collapse;font-size:14px;}
+.out-doc .doc-fir-table{margin:16px auto;border-collapse:collapse;font-size:14px;width:100%;max-width:100%;}
+.out-doc table{max-width:100%;width:100%;}
 .out-doc .doc-fir-table td{border:1px solid #000;padding:6px 14px;}
 .out-doc .doc-fir-table td:first-child{font-weight:700;min-width:90px;}
 @media print{.out-doc .doc-page-break{page-break-after:always;border:none;margin:0;}}
