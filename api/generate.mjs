@@ -57,7 +57,55 @@ const TOOL_PROMPTS = {
 2. AFFIDAVIT.
 3. DISPENSATION.
 4. INDEX.`,
-  'legal-opinion': `PROFESSIONAL LEGAL OPINION (letter format): advocate letterhead, addressee, property/matter details, analysis sections, "MY OPINION" section, signature. Use ALL details from uploaded documents.`,
+  'legal-opinion': `BANKING PROPERTY LEGAL OPINION — Pakistani bank mortgage/loan facility format. Generate in this EXACT structure:
+
+1. ADVOCATE LETTERHEAD: Advocate name, qualification (Advocate High Court / Supreme Court), office address, phone, email — centered at top.
+
+2. REFERENCE & DATE (right-aligned): "Ref No. ___/[year]" and "Dated: [date]"
+
+3. ADDRESSEE BLOCK:
+   The [Division/Branch Head Title],
+   [Bank Name],
+   [Branch/Regional Office Address].
+
+4. SUBJECT LINE (bold): "Subject: LEGAL OPINION OF [CLIENT/COMPANY NAME]"
+
+5. OPENING PARAGRAPH: "[Client/Company] has applied to [Bank] for [facility type e.g. Running Finance / Term Finance / LTFF] of Rs. [amount] and has offered the property described below as security/collateral. I have examined the following documents relating to the title of the said property."
+
+6. DESCRIPTION OF PROPERTY:
+   Heading: "DESCRIPTION OF PROPERTY"
+   State property type, location (Khewat No., Khasra No., Mauzah, Tehsil, District).
+   Numbered paragraphs (1, 2, 3...) showing COMPLETE CHAIN OF TITLE — each entry: who transferred to whom, type of deed/mutation, date, registration/attestation reference.
+
+7. DOCUMENTS EXAMINED:
+   Heading: "DOCUMENTS EXAMINED"
+   Lettered list (i, ii, iii, iv...):
+   i. NEC (No Encumbrance Certificate) from [authority]
+   ii. PT-1 / Fard Malkiat (Record of Rights/Jamabandi)
+   iii. Site Plan / Aks Shajra
+   iv. Completion Certificate (if built-up property)
+   v. Chain documents (sale deeds, mutation extracts, transfer letters)
+   vi. Valuation/Inspection Report
+   vii. Agreement to Create Mortgage
+   viii. Any other documents provided
+
+8. MY OPINION:
+   Heading: "MY OPINION"
+   Seven numbered paragraphs:
+   1. The title of [owner] to the subject property is clear, genuine and marketable.
+   2. The property is free from all encumbrances, charges, mortgages, liens, attachments and adverse claims as verified from the documents.
+   3. All documents in the chain of title are genuine, duly executed, registered/attested and legally valid under applicable Pakistani law.
+   4. The chain of ownership from original allottee/owner to the present owner is complete and unbroken.
+   5. The bank can safely accept the subject property as security and create an equitable/registered mortgage in its favour.
+   6. In case of default, the bank will be able to enforce its security and sell/dispose of the property without legal impediment.
+   7. [Specific conditions/caveats: e.g. "Fresh NEC must be obtained before disbursement", "Mutation in client's name should be completed", "Completion certificate to be obtained" — or "No adverse remarks noted."]
+
+9. CLOSING: "The above opinion is based solely on the documents supplied to me for examination. I have not conducted a physical inspection of the property. This opinion is issued for the use of [Bank Name] only."
+
+10. SIGNATURE BLOCK (doc-sig-block): Advocate's name, enrollment number, date.
+
+Use doc-sig-block, doc-sig-line, doc-sig-name, doc-sig-role for signature.
+Use ALL names, amounts, property details, dates from uploaded documents and user fields. Do NOT invent property details.`
   agreement: `LEGAL AGREEMENT under Contract Act 1872: title, parties with CNIC, WHEREAS recitals, 12-15 numbered clauses, signatures, witnesses.`,
   deed: `SALE/TRANSFER DEED: title, parties with CNIC, WHEREAS, deed clauses (1-10), schedule of property, boundaries, signatures, witnesses.`,
   poa: `POWER OF ATTORNEY / WAKAALAT NAMA: title, appointing clause, numbered powers (1-6), signatures.`,
