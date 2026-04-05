@@ -1,4 +1,4 @@
-// Wakeel AI — Edge Runtime (NO timeout on Vercel Hobby)
+// Wakeel AI â Edge Runtime (NO timeout on Vercel Hobby)
 export const config = { runtime: 'edge' };
 
 const CORS_HEADERS = {
@@ -7,13 +7,13 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-// ─── Lean system prompt — no conflicting rules, no wasted tokens ───
+// âââ Lean system prompt â no conflicting rules, no wasted tokens âââ
 const SYSTEM_PROMPT = `You are Wakeel AI, a Pakistani legal document drafting assistant.
 
 OUTPUT FORMAT:
 - Return ONLY raw HTML using the CSS classes below. No markdown, no code fences, no \`\`\`, no explanation text.
 - NEVER include <style>, <script>, <html>, <head>, or <body> tags. Only inner HTML content.
-- Use the CSS classes exactly as listed — the page already has styles for them.
+- Use the CSS classes exactly as listed â the page already has styles for them.
 
 FACTUAL ACCURACY:
 - Use ONLY the names, dates, CNIC numbers, addresses, and facts the user provides. NEVER invent parties or details.
@@ -32,18 +32,18 @@ Use <hr class="doc-page-break"> between companion sections (petition + affidavit
 
 const TOOL_PROMPTS = {
   argument: `WRITTEN SUBMISSIONS: Court header, case ref, parties, "WRITTEN SUBMISSIONS ON BEHALF OF THE [PARTY]" heading, "Respectfully Sheweth:-", numbered paras with facts and legal analysis, "G R O U N D S" with lettered grounds (a-h+) citing law, "P R A Y E R", signature.`,
-  petition: `PETITION FILING PACKAGE — 4 sections separated by <hr class="doc-page-break">:
+  petition: `PETITION FILING PACKAGE â 4 sections separated by <hr class="doc-page-break">:
 1. MAIN PETITION: court header, parties, subject, sheweth, 10+ numbered paras, GROUNDS (a-j), PRAYER, signature, certificate.
 2. AFFIDAVIT with verification.
 3. DISPENSATION APPLICATION.
 4. INDEX table.`,
-  writ: `WRIT PETITION PACKAGE — 5 sections separated by <hr class="doc-page-break">:
+  writ: `WRIT PETITION PACKAGE â 5 sections separated by <hr class="doc-page-break">:
 1. URGENCY APPLICATION to Deputy Registrar.
 2. MAIN WRIT PETITION under Article 199, Constitution 1973.
 3. AFFIDAVIT with verification.
 4. DISPENSATION APPLICATION.
 5. INDEX table.`,
-  bail: `BAIL APPLICATION PACKAGE — 4 sections separated by <hr class="doc-page-break">:
+  bail: `BAIL APPLICATION PACKAGE â 4 sections separated by <hr class="doc-page-break">:
 1. BAIL PETITION with FIR details table, facts, 10-14 grounds, prayer.
 2. AFFIDAVIT with verification.
 3. DISPENSATION APPLICATION u/s 561-A CrPC.
@@ -52,14 +52,14 @@ const TOOL_PROMPTS = {
   appeal: `APPEAL / REVISION PETITION: court header, parties, MEMORANDUM OF APPEAL, facts, grounds (a-j), prayer, certificate. Then AFFIDAVIT on new page.`,
   'legal-notice': `LEGAL NOTICE (letter format, NOT court document): advocate letterhead, "LEGAL NOTICE" heading, addressee, numbered paras, demand with deadline, consequences, signature.`,
   affidavit: `SWORN AFFIDAVIT: court header (if for court), deponent details, numbered sworn paragraphs, verification clause.`,
-  complaint: `CRIMINAL COMPLAINT PACKAGE — 4 sections separated by <hr class="doc-page-break">:
+  complaint: `CRIMINAL COMPLAINT PACKAGE â 4 sections separated by <hr class="doc-page-break">:
 1. COMPLAINT u/s 200 or 156(3) CrPC with facts and prayer.
 2. AFFIDAVIT.
 3. DISPENSATION.
 4. INDEX.`,
-  'legal-opinion': `BANKING PROPERTY LEGAL OPINION — Pakistani bank mortgage/loan facility format. Generate in this EXACT structure:
+  'legal-opinion': `BANKING PROPERTY LEGAL OPINION â Pakistani bank mortgage/loan facility format. Generate in this EXACT structure:
 
-1. ADVOCATE LETTERHEAD: Advocate name, qualification (Advocate High Court / Supreme Court), office address, phone, email — centered at top.
+1. ADVOCATE LETTERHEAD: Advocate name, qualification (Advocate High Court / Supreme Court), office address, phone, email â centered at top.
 
 2. REFERENCE & DATE (right-aligned): "Ref No. ___/[year]" and "Dated: [date]"
 
@@ -75,7 +75,7 @@ const TOOL_PROMPTS = {
 6. DESCRIPTION OF PROPERTY:
    Heading: "DESCRIPTION OF PROPERTY"
    State property type, location (Khewat No., Khasra No., Mauzah, Tehsil, District).
-   Numbered paragraphs (1, 2, 3...) showing COMPLETE CHAIN OF TITLE — each entry: who transferred to whom, type of deed/mutation, date, registration/attestation reference.
+   Numbered paragraphs (1, 2, 3...) showing COMPLETE CHAIN OF TITLE â each entry: who transferred to whom, type of deed/mutation, date, registration/attestation reference.
 
 7. DOCUMENTS EXAMINED:
    Heading: "DOCUMENTS EXAMINED"
@@ -98,18 +98,18 @@ const TOOL_PROMPTS = {
    4. The chain of ownership from original allottee/owner to the present owner is complete and unbroken.
    5. The bank can safely accept the subject property as security and create an equitable/registered mortgage in its favour.
    6. In case of default, the bank will be able to enforce its security and sell/dispose of the property without legal impediment.
-   7. [Specific conditions/caveats: e.g. "Fresh NEC must be obtained before disbursement", "Mutation in client's name should be completed", "Completion certificate to be obtained" — or "No adverse remarks noted."]
+   7. [Specific conditions/caveats: e.g. "Fresh NEC must be obtained before disbursement", "Mutation in client's name should be completed", "Completion certificate to be obtained" â or "No adverse remarks noted."]
 
 9. CLOSING: "The above opinion is based solely on the documents supplied to me for examination. I have not conducted a physical inspection of the property. This opinion is issued for the use of [Bank Name] only."
 
 10. SIGNATURE BLOCK (doc-sig-block): Advocate's name, enrollment number, date.
 
 Use doc-sig-block, doc-sig-line, doc-sig-name, doc-sig-role for signature.
-Use ALL names, amounts, property details, dates from uploaded documents and user fields. Do NOT invent property details.`
+Use ALL names, amounts, property details, dates from uploaded documents and user fields. Do NOT invent property details.`,
   agreement: `LEGAL AGREEMENT under Contract Act 1872: title, parties with CNIC, WHEREAS recitals, 12-15 numbered clauses, signatures, witnesses.`,
   deed: `SALE/TRANSFER DEED: title, parties with CNIC, WHEREAS, deed clauses (1-10), schedule of property, boundaries, signatures, witnesses.`,
   poa: `POWER OF ATTORNEY / WAKAALAT NAMA: title, appointing clause, numbered powers (1-6), signatures.`,
-  application: `FORMAL APPLICATION — detect type from context. For court: header, case title, heading, sheweth, facts, prayer, signature. For government: addressee, subject, body, signature.`,
+  application: `FORMAL APPLICATION â detect type from context. For court: header, case title, heading, sheweth, facts, prayer, signature. For government: addressee, subject, body, signature.`,
   mou: `MOU: title, parties, WHEREAS recitals, numbered articles (1-10+), signatures, witnesses.`
 };
 
@@ -131,7 +131,7 @@ function buildUserPrompt(tool, fields, lang, toolTitle) {
   return `Generate a ${toolTitle}.\n\n${langNote}\n\nDETAILS:\n${entries}${docSection}\n\nReturn complete HTML now. Use ONLY the facts above.`;
 }
 
-// ─── Sanitize AI output: strip code fences, dangerous tags ───
+// âââ Sanitize AI output: strip code fences, dangerous tags âââ
 function sanitizeHtml(raw) {
   let html = raw
     .replace(/^[\s\S]*?```html?\s*/i, '')   // strip everything before ```html
@@ -146,7 +146,7 @@ function sanitizeHtml(raw) {
   return html;
 }
 
-// ─── Build content blocks from attached files ───
+// âââ Build content blocks from attached files âââ
 function buildFileContentBlocks(attachedFiles) {
   const blocks = [];
   if (!attachedFiles || !attachedFiles.length) return blocks;
@@ -218,7 +218,7 @@ export default async function handler(req) {
         });
       }
 
-      msgContent.push({ type: 'text', text: `Extract information from this document to fill a "${toolTitle || tool}" form.\n\nReturn ONLY a JSON object with these field IDs as keys:\n${fields.fieldSchema}\n\nAlso include "__docText__" with a comprehensive plain-text extraction (max 6000 chars) of ALL content in the document — include every name, date, CNIC, address, amount, clause, and detail you can find.\n\nReturn ONLY valid JSON. No explanation, no markdown fences.` });
+      msgContent.push({ type: 'text', text: `Extract information from this document to fill a "${toolTitle || tool}" form.\n\nReturn ONLY a JSON object with these field IDs as keys:\n${fields.fieldSchema}\n\nAlso include "__docText__" with a comprehensive plain-text extraction (max 6000 chars) of ALL content in the document â include every name, date, CNIC, address, amount, clause, and detail you can find.\n\nReturn ONLY valid JSON. No explanation, no markdown fences.` });
 
       const extractRes = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
@@ -278,7 +278,7 @@ export default async function handler(req) {
       userPrompt = buildUserPrompt(tool, fields, lang, toolTitle || tool);
     }
 
-    // ─── BUILD MESSAGE CONTENT ───
+    // âââ BUILD MESSAGE CONTENT âââ
     // If attached files are present, include them as content blocks so the AI
     // can read the FULL document (not just the extracted text summary).
     const fileBlocks = buildFileContentBlocks(attachedFiles);
